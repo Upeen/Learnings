@@ -1,0 +1,1595 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Powered Data Career Explorer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+    :root {
+      --primary: #0af;
+      --primary-dark: #0088cc;
+      --dark-bg: #121212;
+      --card-bg: #222;
+      --panel-bg: #1a1a1a;
+      --text-light: #f1f1f1;
+      --text-secondary: #ddd;
+      --success: #00c853;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 170, 255, 0.3); }
+      to { text-shadow: 0 0 15px rgba(0, 170, 255, 0.6), 0 0 20px rgba(0, 170, 255, 0.4); }
+    }
+    .subtitle {
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .ai-status {
+      background-color: rgba(0, 170, 255, 0.1);
+      border: 1px solid var(--primary);
+      border-radius: 20px;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .ai-status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 24px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover {
+      background-color: rgba(0, 170, 255, 0.1);
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 16px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      opacity: 50;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #00c6ff);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+    .card:hover::before {
+      transform: translateY(0);
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+    .card:nth-child(8) { animation-delay: 0.8s; }
+    .card:nth-child(9) { animation-delay: 0.9s; }
+    .card:nth-child(10) { animation-delay: 1.0s; }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .card:hover {
+      background-color: #1e1e1e;
+      cursor: pointer;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 170, 255, 0.25);
+    }
+    .card-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+    .role-icon-img {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 6px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 2px var(--primary));
+      transition: all 0.3s ease;
+    }
+    .card:hover .role-icon-img {
+      transform: scale(1.2) rotate(5deg);
+      filter: drop-shadow(0 0 4px var(--primary)) brightness(1.1);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .trend-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+    .trend-up {
+      color: #4caf50;
+    }
+    .trend-down {
+      color: #f44336;
+    }
+    .trend-neutral {
+      color: #ff9800;
+    }
+    .ai-updated-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 200, 83, 0.2);
+      color: var(--success);
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      display: none;
+    }
+    .card.ai-updated .ai-updated-badge {
+      display: block;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 450px;
+      max-width: 100%;
+      height: 100vh;
+      background-color: var(--panel-bg);
+      box-shadow: -3px 0 20px rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+      padding: 24px;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+    }
+    .side-panel.open {
+      right: 0;
+    }
+    .side-panel h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--primary);
+      text-align: center;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+    .panel-section {
+      margin-bottom: 20px;
+      padding: 0 10px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s ease;
+    }
+    .side-panel.open .panel-section {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .side-panel.open .panel-section:nth-child(2) { transition-delay: 0.1s; }
+    .side-panel.open .panel-section:nth-child(3) { transition-delay: 0.2s; }
+    .side-panel.open .panel-section:nth-child(4) { transition-delay: 0.3s; }
+    .side-panel.open .panel-section:nth-child(5) { transition-delay: 0.4s; }
+    .side-panel.open .panel-section:nth-child(6) { transition-delay: 0.5s; }
+    .side-panel.open .panel-section:nth-child(7) { transition-delay: 0.6s; }
+    .panel-section h3 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 4px;
+      color: #66c2ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-section h3::before {
+      content: "→";
+      color: var(--primary);
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 0;
+      list-style-type: none;
+      color: var(--text-secondary);
+    }
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+    ul li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    ul#panelTools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-left: 0;
+      margin: 0 10px;
+    }
+    ul#panelTools li {
+      display: inline-block;
+      background-color: #2c2c2c;
+      padding: 6px 14px;
+      margin: 0;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #8ab4f8;
+      user-select: none;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    ul#panelTools li:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    p#panelSkills {
+      font-style: italic;
+      color: #a0a0a0;
+      margin: 0 10px 10px;
+      padding-left: 20px;
+    }
+    .close-btn {
+      background: none;
+      color: var(--primary);
+      font-size: 28px;
+      border: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      user-select: none;
+      text-decoration: none;
+      z-index: 10;
+    }
+    .close-btn:hover {
+      color: #44caff;
+      transform: rotate(90deg);
+      text-decoration: none;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 1400;
+      backdrop-filter: blur(3px);
+      transition: opacity 0.3s ease;
+    }
+    .overlay.visible {
+      display: block;
+      opacity: 1;
+    }
+    .role-header-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5));
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
+      50% { filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.8)); }
+      100% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
+    }
+    /* AI Agent Styles */
+    .ai-agent-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+      transition: all 0.3s ease;
+      z-index: 1600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-agent-btn:hover {
+      background-color: #44caff;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+    }
+    .ai-agent-panel {
+      position: fixed;
+      bottom: -100%;
+      right: 20px;
+      width: 350px;
+      max-width: 90%;
+      height: 400px;
+      background-color: var(--panel-bg);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ai-agent-panel.open {
+      bottom: 20px;
+    }
+    .ai-agent-header {
+      background-color: var(--card-bg);
+      padding: 12px;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .ai-agent-close-btn {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ai-agent-close-btn:hover {
+      color: #44caff;
+      transform: rotate(90deg);
+    }
+    .ai-agent-chat {
+      flex-grow: 1;
+      padding: 12px;
+      overflow-y: auto;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ai-agent-message {
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 85%;
+      position: relative;
+      animation: messageAppear 0.3s ease;
+    }
+    @keyframes messageAppear {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ai-agent-message.user {
+      background-color: var(--primary);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .ai-agent-message.bot {
+      background-color: #2c2c2c;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+    .ai-agent-input-container {
+      display: flex;
+      padding: 12px;
+      background-color: #222;
+      border-radius: 0 0 12px 12px;
+    }
+    .ai-agent-input {
+      flex-grow: 1;
+      background-color: #333;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 12px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .ai-agent-input:focus {
+      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+    }
+    .ai-agent-send-btn {
+      background-color: var(--primary);
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin-left: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ai-agent-send-btn:hover {
+      background-color: #44caff;
+    }
+    .ai-processing {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      color: #aaa;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+    .ai-processing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      opacity: 0.7;
+      animation: pulseDot 1.5s infinite;
+    }
+    .ai-processing-dot:nth-child(1) { animation-delay: 0s; }
+    .ai-processing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .ai-processing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.5); }
+    }
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: var(--success);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 2000;
+      transition: transform 0.5s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .notification.show {
+      transform: translateX(-50%) translateY(0);
+    }
+    .panel-section-content {
+      padding: 0 10px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .panel-section-content p {
+      margin: 10px 0;
+    }
+    .panel-section-content ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    .panel-section-content ul li {
+      margin-bottom: 8px;
+    }
+    @media (max-width: 768px) {
+      .card {
+        width: 100%;
+      }
+      .side-panel {
+        width: 100%;
+        padding: 16px;
+      }
+      .side-panel h2 {
+        font-size: 1.3rem;
+        gap: 8px;
+      }
+      .role-header-img {
+        width: 36px;
+        height: 36px;
+      }
+      .panel-section {
+        padding: 0 8px;
+      }
+      ul#panelTools {
+        margin: 0 8px;
+      }
+      p#panelSkills {
+        margin: 0 8px 8px;
+      }
+      .close-btn {
+        top: 16px;
+        right: 16px;
+      }
+      .ai-agent-panel {
+        width: 100%;
+        right: 0;
+        border-radius: 0;
+      }
+      .ai-agent-btn {
+        bottom: 16px;
+        right: 16px;
+      }
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      .ai-status {
+        position: relative;
+        margin-top: 10px;
+        top: auto;
+        right: auto;
+      }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--panel-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #44caff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <div class="ai-status">
+      <div class="ai-status-indicator"></div>
+      <span>AI Assistant Active</span>
+    </div>
+    <h1>AI-Powered Data Career Explorer</h1>
+    <p class="subtitle">Real-time career insights updated by AI based on the latest industry trends and job market data</p>
+  </div>
+  <div class="controls">
+    <button class="btn" id="updateAllBtn">
+      <i>🔄</i> Update All Roles with AI
+    </button>
+    <button class="btn btn-outline" id="simulateBtn">
+      <i>⚡</i> Simulate AI Analysis
+    </button>
+  </div>
+  <div class="card-container" id="cardContainer" tabindex="0"></div>
+  <!-- Side Panel -->
+  <div class="side-panel" id="sidePanel" tabindex="0" aria-live="polite" aria-label="Role Details Panel">
+    <button class="close-btn" id="closePanelBtn" aria-label="Close Details Panel">&times;</button>
+    <h2 id="panelTitle"></h2>
+    <div class="panel-section">
+      <h3>Description</h3>
+      <div class="panel-section-content" id="fullDescription"></div>
+    </div>
+    <div class="panel-section">
+      <h3>Key Responsibilities</h3>
+      <ul id="responsibilitiesList"></ul>
+    </div>
+    <div class="panel-section">
+      <h3>Skills</h3>
+      <p id="panelSkills"></p>
+    </div>
+    <div class="panel-section">
+      <h3>Tools to Master</h3>
+      <ul id="panelTools"></ul>
+    </div>
+    <div class="panel-section">
+      <h3>Salary by Experience</h3>
+      <ul id="salaryExpList"></ul>
+    </div>
+    <div class="panel-section">
+      <h3>Roadmap</h3>
+      <ul id="roadmapList"></ul>
+    </div>
+    <div class="panel-section">
+      <h3>Additional Tips</h3>
+      <ul id="additionalTipsList"></ul>
+    </div>
+  </div>
+  <div class="overlay" id="overlay" tabindex="-1"></div>
+  <!-- AI Agent -->
+  <button class="ai-agent-btn" id="aiAgentBtn" aria-label="Open AI Career Assistant">🤖</button>
+  <div class="ai-agent-panel" id="aiAgentPanel" aria-live="polite" aria-label="AI Career Assistant Panel">
+    <div class="ai-agent-header">
+      <span>AI Career Assistant</span>
+      <button class="ai-agent-close-btn" id="aiAgentCloseBtn" aria-label="Close AI Assistant">&times;</button>
+    </div>
+    <div class="ai-agent-chat" id="aiAgentChat">
+      <div class="ai-agent-message bot">
+        Hello! I'm your AI Career Assistant. I can help you explore data careers and provide real-time insights based on current trends. Ask me anything!
+      </div>
+    </div>
+    <div class="ai-agent-input-container">
+      <input type="text" class="ai-agent-input" id="aiAgentInput" placeholder="Ask about data careers..." aria-label="Type your question about data careers">
+      <button class="ai-agent-send-btn" id="aiAgentSendBtn" aria-label="Send question">➤</button>
+    </div>
+  </div>
+  <div class="notification" id="notification">
+    <span>✅</span>
+    <span id="notificationText">Career data updated with latest trends!</span>
+  </div>
+  <script>
+    // Base data structure
+    const baseData = [
+      {
+        role: "Data Scientist",
+        salary: "₹6L - ₹20L+",
+        salaryExperience: {
+          "0-2 years": "₹6L - ₹10L",
+          "3-5 years": "₹11L - ₹15L",
+          "6+ years": "₹16L - ₹20L+"
+        },
+        skills: "Python, ML, SQL, Statistics, Visualization",
+        tools: ["Python", "R", "Tableau", "SQL", "Jupyter", "Scikit-learn"],
+        description: "Data Scientists are analytical experts who use statistical methods to interpret and analyze large datasets. They build predictive models, uncover hidden patterns, and provide actionable insights to drive business decisions.",
+        responsibilities: [
+          "Collect and clean large datasets from various sources",
+          "Apply statistical analysis and machine learning algorithms",
+          "Create predictive models and machine learning algorithms",
+          "Visualize data and present findings to stakeholders",
+          "Communicate results through clear reports and presentations",
+          "Collaborate with cross-functional teams to solve business problems",
+          "Evaluate and interpret the results of models",
+          "Continuously improve models based on new data",
+          "Stay updated with the latest industry trends and technologies"
+        ],
+        roadmap: [
+          "Learn Python, Pandas, NumPy.",
+          "Understand statistics & machine learning algorithms.",
+          "Practice with real-world datasets.",
+          "Join Kaggle competitions.",
+          "Master visualization & storytelling."
+        ],
+        additionalTips: [
+          "Stay updated with ML research (e.g., arXiv, Google Scholar).",
+          "Practice on Kaggle regularly.",
+          "Contribute to open-source data science projects.",
+          "Develop storytelling and visualization skills."
+        ],
+        image: "https://img.icons8.com/color/96/000000/data-configuration.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/data-configuration.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Data Analyst",
+        salary: "₹3L - ₹8L",
+        salaryExperience: {
+          "0-2 years": "₹3L - ₹5L",
+          "3-5 years": "₹5L - ₹7L",
+          "6+ years": "₹7L - ₹8L"
+        },
+        skills: "Excel, SQL, Python (basic), Visualization",
+        tools: ["Excel", "SQL", "Tableau", "Power BI", "Google Sheets", "Looker"],
+        description: "Data Analysts collect, process, and perform statistical analyses on large datasets. They create visualizations and reports to help organizations make data-driven decisions and identify business opportunities.",
+        responsibilities: [
+          "Extract and analyze data from various sources",
+          "Clean and validate data for accuracy",
+          "Create reports and dashboards for stakeholders",
+          "Identify trends and patterns in datasets",
+          "Present findings to non-technical audiences",
+          "Support business decision-making with data insights",
+          "Document analysis processes and methodologies",
+          "Ensure data quality and integrity",
+          "Collaborate with business teams to understand requirements"
+        ],
+        roadmap: [
+          "Master Excel and SQL basics.",
+          "Learn Python fundamentals.",
+          "Practice data cleaning and visualization.",
+          "Build dashboards using Tableau or Power BI.",
+          "Improve presentation and communication skills."
+        ],
+        additionalTips: [
+          "Focus on clear communication of results.",
+          "Practice storyboarding insights.",
+          "Take online courses on data visualization.",
+          "Collaborate with business teams."
+        ],
+        image: "https://img.icons8.com/color/96/000000/analytics.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/analytics.png",
+        trend: "neutral",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Machine Learning Engineer",
+        salary: "₹8L - ₹25L+",
+        salaryExperience: {
+          "0-2 years": "₹8L - ₹12L",
+          "3-5 years": "₹13L - ₹20L",
+          "6+ years": "₹21L - ₹25L+"
+        },
+        skills: "Python, ML frameworks, Software Development",
+        tools: ["TensorFlow", "PyTorch", "Docker", "Keras", "MLflow", "FastAPI"],
+        description: "Machine Learning Engineers design, build, and deploy machine learning models into production systems. They bridge the gap between Data Scientists' prototypes and scalable, reliable applications.",
+        responsibilities: [
+          "Design and implement ML systems and pipelines",
+          "Deploy and monitor ML models in production",
+          "Optimize models for performance and scalability",
+          "Collaborate with Data Scientists to productionize models",
+          "Ensure model reliability, security, and compliance",
+          "Automate ML workflows and retraining processes",
+          "Troubleshoot and resolve model performance issues",
+          "Implement A/B testing for model improvements",
+          "Document ML system architectures and processes"
+        ],
+        roadmap: [
+          "Learn Python and software engineering fundamentals.",
+          "Understand ML algorithms deeply.",
+          "Get hands-on with TensorFlow and PyTorch.",
+          "Practice containerization with Docker.",
+          "Build end-to-end ML projects and deploy them."
+        ],
+        additionalTips: [
+          "Follow latest ML research and frameworks.",
+          "Contribute to open-source ML projects.",
+          "Understand cloud deployment basics.",
+          "Practice collaborative coding (Git, CI/CD)."
+        ],
+        image: "https://img.icons8.com/color/96/000000/artificial-intelligence.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/artificial-intelligence.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Data Engineer",
+        salary: "₹6L - ₹18L",
+        salaryExperience: {
+          "0-2 years": "₹6L - ₹9L",
+          "3-5 years": "₹10L - ₹14L",
+          "6+ years": "₹15L - ₹18L"
+        },
+        skills: "SQL, Python/Java, Big Data, Cloud",
+        tools: ["Hadoop", "Spark", "AWS", "Kafka", "Airflow", "Snowflake"],
+        description: "Data Engineers build and maintain the infrastructure and systems that collect, process, and store large volumes of data. They ensure data is accessible and reliable for Data Scientists and Analysts.",
+        responsibilities: [
+          "Design and build data pipelines and architectures",
+          "Develop ETL/ELT processes for data integration",
+          "Maintain data warehouses and lakes",
+          "Optimize database performance and scalability",
+          "Ensure data quality, security, and governance",
+          "Collaborate with analysts and scientists on data requirements",
+          "Monitor and troubleshoot data pipeline issues",
+          "Implement data backup and recovery procedures",
+          "Stay current with emerging data technologies"
+        ],
+        roadmap: [
+          "Learn SQL and Python or Java.",
+          "Understand big data ecosystems (Hadoop, Spark).",
+          "Get hands-on with AWS cloud services.",
+          "Learn Kafka and real-time data processing.",
+          "Build and monitor robust data pipelines."
+        ],
+        additionalTips: [
+          "Focus on data reliability and scalability.",
+          "Automate monitoring and alerting.",
+          "Keep up with cloud innovations.",
+          "Practice infrastructure as code."
+        ],
+        image: "https://img.icons8.com/color/96/000000/database.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/database.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "BI Developer",
+        salary: "₹4L - ₹12L",
+        salaryExperience: {
+          "0-2 years": "₹4L - ₹7L",
+          "3-5 years": "₹8L - ₹10L",
+          "6+ years": "₹11L - ₹12L"
+        },
+        skills: "SQL, BI tools, Data Warehousing",
+        tools: ["Tableau", "Power BI", "SQL", "Looker", "Qlik", "MicroStrategy"],
+        description: "BI Developers design, develop, and maintain business intelligence solutions that transform raw data into meaningful insights. They create dashboards, reports, and data models to support business decision-making.",
+        responsibilities: [
+          "Design and develop BI dashboards and reports",
+          "Create data models and semantic layers",
+          "Implement ETL processes for data integration",
+          "Optimize query performance and data models",
+          "Collaborate with business users to gather requirements",
+          "Provide training and support for BI tools",
+          "Ensure data accuracy and consistency across reports",
+          "Maintain and update existing BI solutions",
+          "Document BI system specifications and processes"
+        ],
+        roadmap: [
+          "Master SQL querying.",
+          "Learn Tableau and Power BI thoroughly.",
+          "Understand data warehousing concepts.",
+          "Build dashboards that answer business questions.",
+          "Improve storytelling with data."
+        ],
+        additionalTips: [
+          "Get feedback from end-users frequently.",
+          "Practice optimizing query performance.",
+          "Keep up with BI tool updates.",
+          "Learn basic data modeling."
+        ],
+        image: "https://img.icons8.com/color/96/000000/dashboard.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/dashboard.png",
+        trend: "neutral",
+        lastUpdated: new Date()
+      },
+      {
+        role: "AI Research Scientist",
+        salary: "₹10L - ₹30L+",
+        salaryExperience: {
+          "0-2 years": "₹10L - ₹15L",
+          "3-5 years": "₹16L - ₹25L",
+          "6+ years": "₹26L - ₹30L+"
+        },
+        skills: "Deep Learning, Research, Python",
+        tools: ["TensorFlow", "PyTorch", "MATLAB", "OpenAI Gym", "CUDA", "Weights & Biases"],
+        description: "AI Research Scientists push the boundaries of artificial intelligence through innovative research. They develop new algorithms, conduct experiments, and publish findings to advance the field of AI.",
+        responsibilities: [
+          "Conduct fundamental and applied AI research",
+          "Design and implement novel algorithms and models",
+          "Perform experiments and analyze results",
+          "Publish research papers and present at conferences",
+          "Collaborate with academic and industry partners",
+          "Stay current with the latest AI developments",
+          "Mentor junior researchers and students",
+          "Secure funding for research projects",
+          "Evaluate and critique existing AI methodologies"
+        ],
+        roadmap: [
+          "Build a strong math and ML foundation.",
+          "Get involved in research projects.",
+          "Publish papers in conferences/journals.",
+          "Master deep learning frameworks.",
+          "Stay connected with academic communities."
+        ],
+        additionalTips: [
+          "Attend AI conferences and workshops.",
+          "Collaborate internationally.",
+          "Focus on reproducibility and rigor.",
+          "Explore interdisciplinary applications."
+        ],
+        image: "https://img.icons8.com/color/96/000000/artificial-intelligence.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/artificial-intelligence.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Data Architect",
+        salary: "₹12L - ₹25L+",
+        salaryExperience: {
+          "0-2 years": "₹12L - ₹16L",
+          "3-5 years": "₹17L - ₹22L",
+          "6+ years": "₹23L - ₹25L+"
+        },
+        skills: "Data Modeling, Cloud, Big Data",
+        tools: ["Redshift", "BigQuery", "Snowflake", "Data Vault", "ERwin", "Apache Atlas"],
+        description: "Data Architects design the overall data strategy and architecture for organizations. They create blueprints for data management, ensuring data flows efficiently and securely across systems.",
+        responsibilities: [
+          "Design enterprise data architecture and strategy",
+          "Create data models and database designs",
+          "Define data integration and ETL strategies",
+          "Ensure data quality, security, and governance",
+          "Evaluate and recommend database technologies",
+          "Collaborate with stakeholders on data requirements",
+          "Oversee implementation of data architecture solutions",
+          "Establish data standards and best practices",
+          "Monitor compliance with data architecture policies"
+        ],
+        roadmap: [
+          "Learn data modeling and database design.",
+          "Master cloud data warehouse platforms.",
+          "Understand data governance and security.",
+          "Work on enterprise-scale data projects.",
+          "Develop cross-functional collaboration skills."
+        ],
+        additionalTips: [
+          "Stay updated on cloud technologies.",
+          "Document architecture decisions thoroughly.",
+          "Engage in data governance committees.",
+          "Focus on scalability and maintainability."
+        ],
+        image: "https://img.icons8.com/color/96/000000/database-export.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/database-export.png",
+        trend: "neutral",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Statistician",
+        salary: "₹5L - ₹15L",
+        salaryExperience: {
+          "0-2 years": "₹5L - ₹8L",
+          "3-5 years": "₹9L - ₹12L",
+          "6+ years": "₹13L - ₹15L"
+        },
+        skills: "Statistics, R, SAS, Python",
+        tools: ["R", "SAS", "SPSS", "Stata", "Minitab", "JMP"],
+        description: "Statisticians apply mathematical theories and techniques to collect, analyze, and interpret numerical data. They design surveys and experiments to solve real-world problems across various industries.",
+        responsibilities: [
+          "Design surveys and experiments",
+          "Collect and analyze numerical data",
+          "Apply statistical models and tests",
+          "Interpret results and draw conclusions",
+          "Create reports and visualizations",
+          "Communicate findings to stakeholders",
+          "Validate data collection methods",
+          "Ensure statistical accuracy in research",
+          "Collaborate with research teams on study design"
+        ],
+        roadmap: [
+          "Master statistical theories and methods.",
+          "Learn R and SAS software.",
+          "Practice designing experiments and tests.",
+          "Develop data visualization skills.",
+          "Apply statistics to real-world problems."
+        ],
+        additionalTips: [
+          "Keep updated with statistical software versions.",
+          "Join professional statistics communities.",
+          "Practice communicating complex results simply.",
+          "Explore interdisciplinary applications."
+        ],
+        image: "https://img.icons8.com/color/96/000000/statistics.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/statistics.png",
+        trend: "down",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Analytics Manager",
+        salary: "₹12L - ₹25L+",
+        salaryExperience: {
+          "0-2 years": "₹12L - ₹16L",
+          "3-5 years": "₹17L - ₹22L",
+          "6+ years": "₹23L - ₹25L+"
+        },
+        skills: "Leadership, SQL, Python, Business Acumen",
+        tools: ["SQL", "Tableau", "Power BI", "Google Analytics", "Mixpanel", "Amplitude"],
+        description: "Analytics Managers lead teams of data professionals to drive business value through data insights. They develop analytics strategies, manage projects, and communicate findings to executive leadership.",
+        responsibilities: [
+          "Lead and mentor analytics teams",
+          "Develop and execute analytics strategies",
+          "Manage analytics projects and resources",
+          "Communicate insights to executive leadership",
+          "Align analytics initiatives with business goals",
+          "Foster a data-driven culture in the organization",
+          "Define KPIs and success metrics for analytics",
+          "Evaluate and implement new analytics tools",
+          "Prepare and present analytics reports to stakeholders"
+        ],
+        roadmap: [
+          "Gain strong SQL and Python skills.",
+          "Develop leadership and project management abilities.",
+          "Master business intelligence tools.",
+          "Build communication and presentation skills.",
+          "Drive organizational data culture."
+        ],
+        additionalTips: [
+          "Focus on mentorship and team growth.",
+          "Stay business strategy-oriented.",
+          "Encourage cross-department collaboration.",
+          "Promote best analytics practices."
+        ],
+        image: "https://img.icons8.com/color/96/000000/manager.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/manager.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Big Data Engineer",
+        salary: "₹8L - ₹20L+",
+        salaryExperience: {
+          "0-2 years": "₹8L - ₹12L",
+          "3-5 years": "₹13L - ₹17L",
+          "6+ years": "₹18L - ₹20L+"
+        },
+        skills: "Hadoop, Spark, Kafka, SQL, Python",
+        tools: ["Hadoop", "Spark", "Kafka", "Cassandra", "HBase", "Flink"],
+        description: "Big Data Engineers design, build, and manage large-scale data processing systems. They work with distributed computing frameworks to handle massive datasets and enable real-time analytics.",
+        responsibilities: [
+          "Design and implement big data architectures",
+          "Develop and maintain distributed data processing systems",
+          "Optimize performance of large-scale data pipelines",
+          "Ensure reliability and scalability of big data platforms",
+          "Integrate various data sources and systems",
+          "Troubleshoot complex distributed system issues",
+          "Implement data security and access controls",
+          "Monitor system performance and resource utilization",
+          "Collaborate with data scientists on infrastructure needs"
+        ],
+        roadmap: [
+          "Learn Hadoop and Spark ecosystems.",
+          "Master Kafka for streaming data.",
+          "Understand NoSQL databases like Cassandra.",
+          "Practice building scalable pipelines.",
+          "Stay updated with big data tools."
+        ],
+        additionalTips: [
+          "Focus on performance optimization.",
+          "Implement robust monitoring.",
+          "Collaborate with data scientists early.",
+          "Adopt best security practices."
+        ],
+        image: "https://img.icons8.com/color/96/000000/server.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/server.png",
+        trend: "up",
+        lastUpdated: new Date()
+      }
+    ];
+    // AI-simulated updates
+    const aiUpdates = {
+      "Data Scientist": {
+        salary: "₹7L - ₹22L+",
+        skills: "Python, ML, SQL, Statistics, Visualization, GenAI",
+        tools: ["Python", "R", "Tableau", "SQL", "Jupyter", "Scikit-learn", "LangChain"],
+        description: "Data Scientists now increasingly work with Generative AI models and large language models. They build, fine-tune, and deploy AI solutions that create new content and enhance decision-making processes.",
+        responsibilities: [
+          "Collect and clean large datasets from various sources",
+          "Apply statistical analysis and machine learning algorithms",
+          "Create predictive models and machine learning algorithms",
+          "Fine-tune and deploy large language models",
+          "Develop generative AI applications",
+          "Visualize data and present findings to stakeholders",
+          "Communicate results through clear reports and presentations",
+          "Collaborate with cross-functional teams to solve business problems",
+          "Evaluate and interpret the results of GenAI models",
+          "Continuously improve models based on new data and feedback"
+        ],
+        roadmap: [
+          "Learn Python, Pandas, NumPy.",
+          "Understand statistics & machine learning algorithms.",
+          "Practice with real-world datasets and GenAI models.",
+          "Join Kaggle competitions focused on LLMs.",
+          "Master visualization & storytelling with GenAI tools."
+        ],
+        trend: "up"
+      },
+      "Data Analyst": {
+        salary: "₹4L - ₹9L",
+        tools: ["Excel", "SQL", "Tableau", "Power BI", "Google Sheets", "Looker", "Python"],
+        description: "Modern Data Analysts leverage Generative AI tools to enhance their analysis and automate routine tasks. They focus more on insights interpretation and strategic recommendations rather than just data preparation.",
+        responsibilities: [
+          "Extract and analyze data from various sources",
+          "Clean and validate data for accuracy",
+          "Create reports and dashboards for stakeholders",
+          "Use AI tools for automated insights generation",
+          "Identify trends and patterns in datasets",
+          "Present findings to non-technical audiences",
+          "Support business decision-making with data insights",
+          "Document analysis processes and methodologies",
+          "Ensure data quality and integrity",
+          "Collaborate with business teams to understand requirements"
+        ],
+        trend: "neutral"
+      },
+      "Machine Learning Engineer": {
+        salary: "₹10L - ₹28L+",
+        skills: "Python, ML frameworks, Software Development, GenAI",
+        tools: ["TensorFlow", "PyTorch", "Docker", "Keras", "MLflow", "FastAPI", "Hugging Face"],
+        description: "ML Engineers now specialize in deploying Generative AI models and building AI-powered applications. They work with large-scale models and implement MLOps practices for production environments.",
+        responsibilities: [
+          "Design and implement ML systems and pipelines",
+          "Deploy and monitor ML models in production",
+          "Optimize models for performance and scalability",
+          "Collaborate with Data Scientists to productionize models",
+          "Deploy and maintain Generative AI applications",
+          "Ensure model reliability, security, and compliance",
+          "Automate ML workflows and retraining processes",
+          "Troubleshoot and resolve model performance issues",
+          "Implement A/B testing for model improvements"
+        ],
+        trend: "up"
+      },
+      "Data Engineer": {
+        salary: "₹7L - ₹20L",
+        tools: ["Hadoop", "Spark", "AWS", "Kafka", "Airflow", "Snowflake", "dbt"],
+        description: "Data Engineers are building data platforms optimized for AI and machine learning workloads. They implement real-time data pipelines and manage data infrastructure for large-scale analytics.",
+        responsibilities: [
+          "Design and build data pipelines and architectures",
+          "Develop ETL/ELT processes for data integration",
+          "Maintain data warehouses and lakes optimized for ML",
+          "Implement real-time streaming data solutions",
+          "Optimize database performance and scalability",
+          "Ensure data quality, security, and governance",
+          "Collaborate with analysts and scientists on data requirements",
+          "Monitor and troubleshoot data pipeline issues",
+          "Implement data backup and recovery procedures"
+        ],
+        trend: "up"
+      },
+      "AI Research Scientist": {
+        salary: "₹12L - ₹35L+",
+        tools: ["TensorFlow", "PyTorch", "MATLAB", "OpenAI Gym", "CUDA", "Weights & Biases", "Hugging Face"],
+        description: "AI Research Scientists are pioneering breakthroughs in Generative AI, multimodal models, and ethical AI. They work on cutting-edge research that shapes the future of artificial intelligence.",
+        responsibilities: [
+          "Conduct fundamental and applied AI research",
+          "Design and implement novel algorithms and models",
+          "Research Generative AI and large language models",
+          "Perform experiments and analyze results",
+          "Publish research papers and present at conferences",
+          "Collaborate with academic and industry partners",
+          "Stay current with the latest AI developments",
+          "Mentor junior researchers and students",
+          "Secure funding for research projects"
+        ],
+        trend: "up"
+      }
+    };
+    // Current data state
+    let data = [...baseData];
+    let currentPanelIndex = -1;
+    let aiProcessing = false;
+    const cardContainer = document.getElementById('cardContainer');
+    const sidePanel = document.getElementById('sidePanel');
+    const overlay = document.getElementById('overlay');
+    const closePanelBtn = document.getElementById('closePanelBtn');
+    const updateAllBtn = document.getElementById('updateAllBtn');
+    const simulateBtn = document.getElementById('simulateBtn');
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    // Panel elements
+    const panelTitle = document.getElementById('panelTitle');
+    const fullDescription = document.getElementById('fullDescription');
+    const responsibilitiesList = document.getElementById('responsibilitiesList');
+    const panelSkills = document.getElementById('panelSkills');
+    const panelTools = document.getElementById('panelTools');
+    const salaryExpList = document.getElementById('salaryExpList');
+    const roadmapList = document.getElementById('roadmapList');
+    const additionalTipsList = document.getElementById('additionalTipsList');
+    // AI Agent elements
+    const aiAgentBtn = document.getElementById('aiAgentBtn');
+    const aiAgentPanel = document.getElementById('aiAgentPanel');
+    const aiAgentCloseBtn = document.getElementById('aiAgentCloseBtn');
+    const aiAgentChat = document.getElementById('aiAgentChat');
+    const aiAgentInput = document.getElementById('aiAgentInput');
+    const aiAgentSendBtn = document.getElementById('aiAgentSendBtn');
+    // Populate cards
+    function populateCards() {
+      cardContainer.innerHTML = '';
+      data.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        if (item.aiUpdated) card.classList.add('ai-updated');
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-pressed', 'false');
+        card.setAttribute('aria-label', `View details about ${item.role}`);
+        const trendIcon = item.trend === 'up' ? '📈' : item.trend === 'down' ? '📉' : '↔️';
+        const trendClass = item.trend === 'up' ? 'trend-up' : item.trend === 'down' ? 'trend-down' : 'trend-neutral';
+        const updatedDate = item.lastUpdated ? new Date(item.lastUpdated).toLocaleDateString() : 'N/A';
+        card.innerHTML = `
+          <div class="card-content">
+            <img src="${item.image}" alt="${item.role} icon" class="role-icon-img" onerror="this.src='https://via.placeholder.com/36?text=Image+Not+Found'; this.alt='Image Not Found';" />
+            <div>
+              <h3>${item.role}</h3>
+              <p><strong>Salary:</strong> ${item.salary}</p>
+              <p><strong>Skills:</strong> ${item.skills}</p>
+              <p><strong>Tools:</strong> ${item.tools.slice(0, 3).join(', ')}${item.tools.length > 3 ? '...' : ''}</p>
+              <div class="trend-indicator ${trendClass}">
+                ${trendIcon} ${item.trend === 'up' ? 'Growing demand' : item.trend === 'down' ? 'Declining demand' : 'Stable demand'}
+              </div>
+            </div>
+          </div>
+          <div class="ai-updated-badge">AI Updated</div>
+        `;
+        card.addEventListener('click', () => openPanel(idx));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openPanel(idx);
+          }
+        });
+        cardContainer.appendChild(card);
+      });
+    }
+    function openPanel(index) {
+      currentPanelIndex = index;
+      const item = data[index];
+      panelTitle.innerHTML = `
+        <img src="${item.panelImage}" alt="${item.role}" class="role-header-img" onerror="this.src='https://via.placeholder.com/48?text=Image+Not+Found'; this.alt='Image Not Found';" />
+        <span>${item.role}</span>
+      `;
+      fullDescription.innerHTML = `<p>${item.description}</p>`;
+      
+      responsibilitiesList.innerHTML = '';
+      item.responsibilities.forEach(resp => {
+        const li = document.createElement('li');
+        li.textContent = resp;
+        responsibilitiesList.appendChild(li);
+      });
+      
+      panelSkills.textContent = item.skills;
+      panelTools.innerHTML = '';
+      item.tools.forEach(tool => {
+        const li = document.createElement('li');
+        li.textContent = tool;
+        panelTools.appendChild(li);
+      });
+      salaryExpList.innerHTML = '';
+      for (const [exp, sal] of Object.entries(item.salaryExperience)) {
+        const li = document.createElement('li');
+        li.textContent = `${exp}: ${sal}`;
+        salaryExpList.appendChild(li);
+      }
+      roadmapList.innerHTML = '';
+      if(item.roadmap) {
+        item.roadmap.forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          roadmapList.appendChild(li);
+        });
+      } else {
+        roadmapList.innerHTML = '<li>Coming soon</li>';
+      }
+      additionalTipsList.innerHTML = '';
+      if(item.additionalTips) {
+        item.additionalTips.forEach(tip => {
+          const li = document.createElement('li');
+          li.textContent = tip;
+          additionalTipsList.appendChild(li);
+        });
+      } else {
+        additionalTipsList.innerHTML = '<li>Coming soon</li>';
+      }
+      sidePanel.classList.add('open');
+      overlay.classList.add('visible');
+      sidePanel.focus();
+    }
+    function closePanel() {
+      sidePanel.classList.remove('open');
+      overlay.classList.remove('visible');
+      cardContainer.querySelector('.card').focus();
+    }
+    // AI Update Functions
+    function updateRoleWithAI(roleName) {
+      return new Promise((resolve) => {
+        if (!aiUpdates[roleName]) {
+          resolve(false);
+          return;
+        }
+        // Simulate AI processing time
+        setTimeout(() => {
+          const roleIndex = data.findIndex(item => item.role === roleName);
+          if (roleIndex !== -1) {
+            const update = aiUpdates[roleName];
+            data[roleIndex] = {
+              ...data[roleIndex],
+              ...update,
+              aiUpdated: true,
+              lastUpdated: new Date()
+            };
+            // Update the panel if it's currently open for this role
+            if (currentPanelIndex === roleIndex) {
+              openPanel(roleIndex);
+            }
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }, 1500);
+      });
+    }
+    function updateAllRoles() {
+      showNotification("AI is analyzing latest career trends...");
+      aiProcessing = true;
+      const updatePromises = data.map(item => updateRoleWithAI(item.role));
+      Promise.all(updatePromises).then(results => {
+        const updatedCount = results.filter(updated => updated).length;
+        populateCards();
+        showNotification(`Updated ${updatedCount} roles with latest AI insights`);
+        aiProcessing = false;
+      });
+    }
+    function simulateAIUpdates() {
+      showNotification("Simulating AI analysis of job market data...");
+      aiProcessing = true;
+      // Randomly select 3-5 roles to update
+      const rolesToUpdate = [...data];
+      shuffleArray(rolesToUpdate);
+      const updateCount = Math.floor(Math.random() * 3) + 3;
+      const selectedRoles = rolesToUpdate.slice(0, updateCount).map(item => item.role);
+      let updated = 0;
+      selectedRoles.forEach((role, index) => {
+        setTimeout(() => {
+          updateRoleWithAI(role).then(success => {
+            if (success) updated++;
+            if (index === selectedRoles.length - 1) {
+              populateCards();
+              showNotification(`Simulated AI update for ${updated} roles`);
+              aiProcessing = false;
+            }
+          });
+        }, index * 800);
+      });
+    }
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    function showNotification(message) {
+      notificationText.textContent = message;
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+    // AI Agent functionality
+    function openAiAgentPanel() {
+      aiAgentPanel.classList.add('open');
+      overlay.classList.add('visible');
+      aiAgentInput.focus();
+    }
+    function closeAiAgentPanel() {
+      aiAgentPanel.classList.remove('open');
+      overlay.classList.remove('visible');
+      aiAgentBtn.focus();
+    }
+    function addMessage(content, isUser = false) {
+      const message = document.createElement('div');
+      message.className = `ai-agent-message ${isUser ? 'user' : 'bot'}`;
+      message.textContent = content;
+      aiAgentChat.appendChild(message);
+      aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
+    }
+    function handleUserQuery(query) {
+      query = query.trim().toLowerCase();
+      addMessage(query, true);
+      if (!query) {
+        addMessage("Please ask a question about data careers!");
+        return;
+      }
+      // Show processing indicator
+      const processing = document.createElement('div');
+      processing.className = 'ai-processing';
+      processing.innerHTML = `
+        <span>AI Assistant is thinking</span>
+        <div class="ai-processing-dot"></div>
+        <div class="ai-processing-dot"></div>
+        <div class="ai-processing-dot"></div>
+      `;
+      aiAgentChat.appendChild(processing);
+      aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
+      // Simulate processing time
+      setTimeout(() => {
+        processing.remove();
+        // Simple keyword-based response logic
+        let response = "I'm not sure how to answer that. Try asking about a specific role, salary, skills, tools, or roadmap!";
+        let found = false;
+        // Search for role-specific information
+        data.forEach(item => {
+          const roleLower = item.role.toLowerCase();
+          if (query.includes(roleLower)) {
+            found = true;
+            if (query.includes("salary")) {
+              response = `${item.role} salary ranges: ${item.salary}. By experience: ${Object.entries(item.salaryExperience).map(([exp, sal]) => `${exp}: ${sal}`).join(', ')}.`;
+            } else if (query.includes("skills")) {
+              response = `${item.role} requires skills: ${item.skills}.`;
+            } else if (query.includes("tools")) {
+              response = `${item.role} uses tools: ${item.tools.join(', ')}.`;
+            } else if (query.includes("roadmap")) {
+              response = `${item.role} roadmap: ${item.roadmap ? item.roadmap.join(', ') : 'Coming soon'}.`;
+            } else if (query.includes("description") || query.includes("what does")) {
+              response = `${item.role} description: ${item.description}`;
+            } else if (query.includes("tips")) {
+              response = `${item.role} additional tips: ${item.additionalTips ? item.additionalTips.join(', ') : 'Coming soon'}.`;
+            } else if (query.includes("trend") || query.includes("demand")) {
+              const trendText = item.trend === 'up' ? 'growing demand' : item.trend === 'down' ? 'declining demand' : 'stable demand';
+              response = `Current market trend for ${item.role} shows ${trendText}.`;
+            } else if (query.includes("responsibilities")) {
+              response = `${item.role} key responsibilities:\n${item.responsibilities.join('\n')}`;
+            } else {
+              response = `For ${item.role}, here's a summary: Salary: ${item.salary}, Skills: ${item.skills}, Tools: ${item.tools.join(', ')}. Click the ${item.role} card for more details!`;
+            }
+          }
+        });
+        // General queries
+        if (!found) {
+          if (query.includes("data career") || query.includes("careers")) {
+            response = `Available data careers: ${data.map(item => item.role).join(', ')}. Click any card or ask me about a specific role!`;
+          } else if (query.includes("highest salary") || query.includes("highest paid")) {
+            const highestPaid = data.reduce((prev, curr) => {
+              const prevMax = parseInt(prev.salary.split(' - ')[1].replace('₹', '').replace('L+', '').replace('L', '')) || 0;
+              const currMax = parseInt(curr.salary.split(' - ')[1].replace('₹', '').replace('L+', '').replace('L', '')) || 0;
+              return currMax > prevMax ? curr : prev;
+            });
+            response = `The highest-paid role is ${highestPaid.role} with a salary range of ${highestPaid.salary}.`;
+          } else if (query.includes("tools")) {
+            const allTools = [...new Set(data.flatMap(item => item.tools))];
+            response = `Common tools in data careers: ${allTools.join(', ')}. Ask about tools for a specific role!`;
+          } else if (query.includes("skills")) {
+            const allSkills = [...new Set(data.flatMap(item => item.skills.split(', ')))];
+            response = `Common skills in data careers: ${allSkills.join(', ')}. Ask about skills for a specific role!`;
+          } else if (query.includes("update") || query.includes("refresh")) {
+            response = `I can update career information with the latest trends! Click the "Update All Roles with AI" button to refresh all data, or "Simulate AI Analysis" to see a demo.`;
+          }
+          // --- New Condition for Trend Queries ---
+          else if (query.includes("trend") || query.includes("demand") || query.includes("growing") || query.includes("declining") || query.includes("stable")) {
+            let trendFilter = null;
+            if (query.includes("growing")) {
+              trendFilter = "up";
+              response = "Roles with Growing demand:\n";
+            } else if (query.includes("declining")) {
+              trendFilter = "down";
+              response = "Roles with Declining demand:\n";
+            } else if (query.includes("stable")) {
+              trendFilter = "neutral";
+              response = "Roles with Stable demand:\n";
+            } else {
+               // General trend/demand query without specific state
+               response = "Here are the current market trends:\n";
+               response += data.map(item => {
+                   const trendText = item.trend === 'up' ? '📈 Growing' : item.trend === 'down' ? '📉 Declining' : '↔️ Stable';
+                   return `- ${item.role}: ${trendText}`;
+               }).join('\n');
+               addMessage(response);
+               return; // Important: Exit after handling the general trend query
+            }
+
+            // Filter data based on trend
+            const filteredRoles = trendFilter ? data.filter(item => item.trend === trendFilter) : data;
+
+            if (filteredRoles.length > 0) {
+              response += filteredRoles.map(item => `- ${item.role}`).join('\n');
+            } else {
+              response = "No roles found matching that specific trend filter.";
+            }
+          }
+          // --- End of New Condition ---
+        }
+        addMessage(response);
+      }, 1000);
+    }
+    // Event listeners
+    closePanelBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', () => {
+      closePanel();
+      closeAiAgentPanel();
+    });
+    updateAllBtn.addEventListener('click', updateAllRoles);
+    simulateBtn.addEventListener('click', simulateAIUpdates);
+    aiAgentBtn.addEventListener('click', openAiAgentPanel);
+    aiAgentCloseBtn.addEventListener('click', closeAiAgentPanel);
+    aiAgentSendBtn.addEventListener('click', () => {
+      const query = aiAgentInput.value;
+      if (query.trim()) {
+        handleUserQuery(query);
+        aiAgentInput.value = '';
+      }
+    });
+    aiAgentInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && aiAgentInput.value.trim()) {
+        const query = aiAgentInput.value;
+        handleUserQuery(query);
+        aiAgentInput.value = '';
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (sidePanel.classList.contains('open')) {
+          closePanel();
+        }
+        if (aiAgentPanel.classList.contains('open')) {
+          closeAiAgentPanel();
+        }
+      }
+    });
+    // Initialize
+    populateCards();
+  </script>
+</body>
+</html>
+```
