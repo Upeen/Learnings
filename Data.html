@@ -668,6 +668,7 @@
     </button>
   </div>
   <div class="card-container" id="cardContainer" tabindex="0"></div>
+  <!-- Compare Roles section removed -->
   <!-- Side Panel -->
   <div class="side-panel" id="sidePanel" tabindex="0" aria-live="polite" aria-label="Role Details Panel">
     <button class="close-btn" id="closePanelBtn" aria-label="Close Details Panel">&times;</button>
@@ -1292,6 +1293,7 @@
         });
         cardContainer.appendChild(card);
       });
+      // ...existing code...
     }
     function openPanel(index) {
       currentPanelIndex = index;
@@ -1463,95 +1465,35 @@
       `;
       aiAgentChat.appendChild(processing);
       aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
-      // Simulate processing time
-      setTimeout(() => {
+
+      // Hugging Face Inference API integration
+      const HF_API_KEY = 'YOUR_HF_API_KEY'; // <-- Replace with your Hugging Face API key
+      const HF_MODEL = 'gpt2'; // You can change to another supported model
+      fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${HF_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inputs: query })
+      })
+      .then(res => res.json())
+      .then(data => {
         processing.remove();
-        // Simple keyword-based response logic
-        let response = "I'm not sure how to answer that. Try asking about a specific role, salary, skills, tools, or roadmap!";
-        let found = false;
-        // Search for role-specific information
-        data.forEach(item => {
-          const roleLower = item.role.toLowerCase();
-          if (query.includes(roleLower)) {
-            found = true;
-            if (query.includes("salary")) {
-              response = `${item.role} salary ranges: ${item.salary}. By experience: ${Object.entries(item.salaryExperience).map(([exp, sal]) => `${exp}: ${sal}`).join(', ')}.`;
-            } else if (query.includes("skills")) {
-              response = `${item.role} requires skills: ${item.skills}.`;
-            } else if (query.includes("tools")) {
-              response = `${item.role} uses tools: ${item.tools.join(', ')}.`;
-            } else if (query.includes("roadmap")) {
-              response = `${item.role} roadmap: ${item.roadmap ? item.roadmap.join(', ') : 'Coming soon'}.`;
-            } else if (query.includes("description") || query.includes("what does")) {
-              response = `${item.role} description: ${item.description}`;
-            } else if (query.includes("tips")) {
-              response = `${item.role} additional tips: ${item.additionalTips ? item.additionalTips.join(', ') : 'Coming soon'}.`;
-            } else if (query.includes("trend") || query.includes("demand")) {
-              const trendText = item.trend === 'up' ? 'growing demand' : item.trend === 'down' ? 'declining demand' : 'stable demand';
-              response = `Current market trend for ${item.role} shows ${trendText}.`;
-            } else if (query.includes("responsibilities")) {
-              response = `${item.role} key responsibilities:\n${item.responsibilities.join('\n')}`;
-            } else {
-              response = `For ${item.role}, here's a summary: Salary: ${item.salary}, Skills: ${item.skills}, Tools: ${item.tools.join(', ')}. Click the ${item.role} card for more details!`;
-            }
-          }
-        });
-        // General queries
-        if (!found) {
-          if (query.includes("data career") || query.includes("careers")) {
-            response = `Available data careers: ${data.map(item => item.role).join(', ')}. Click any card or ask me about a specific role!`;
-          } else if (query.includes("highest salary") || query.includes("highest paid")) {
-            const highestPaid = data.reduce((prev, curr) => {
-              const prevMax = parseInt(prev.salary.split(' - ')[1].replace('₹', '').replace('L+', '').replace('L', '')) || 0;
-              const currMax = parseInt(curr.salary.split(' - ')[1].replace('₹', '').replace('L+', '').replace('L', '')) || 0;
-              return currMax > prevMax ? curr : prev;
-            });
-            response = `The highest-paid role is ${highestPaid.role} with a salary range of ${highestPaid.salary}.`;
-          } else if (query.includes("tools")) {
-            const allTools = [...new Set(data.flatMap(item => item.tools))];
-            response = `Common tools in data careers: ${allTools.join(', ')}. Ask about tools for a specific role!`;
-          } else if (query.includes("skills")) {
-            const allSkills = [...new Set(data.flatMap(item => item.skills.split(', ')))];
-            response = `Common skills in data careers: ${allSkills.join(', ')}. Ask about skills for a specific role!`;
-          } else if (query.includes("update") || query.includes("refresh")) {
-            response = `I can update career information with the latest trends! Click the "Update All Roles with AI" button to refresh all data, or "Simulate AI Analysis" to see a demo.`;
-          }
-          // --- New Condition for Trend Queries ---
-          else if (query.includes("trend") || query.includes("demand") || query.includes("growing") || query.includes("declining") || query.includes("stable")) {
-            let trendFilter = null;
-            if (query.includes("growing")) {
-              trendFilter = "up";
-              response = "Roles with Growing demand:\n";
-            } else if (query.includes("declining")) {
-              trendFilter = "down";
-              response = "Roles with Declining demand:\n";
-            } else if (query.includes("stable")) {
-              trendFilter = "neutral";
-              response = "Roles with Stable demand:\n";
-            } else {
-               // General trend/demand query without specific state
-               response = "Here are the current market trends:\n";
-               response += data.map(item => {
-                   const trendText = item.trend === 'up' ? '📈 Growing' : item.trend === 'down' ? '📉 Declining' : '↔️ Stable';
-                   return `- ${item.role}: ${trendText}`;
-               }).join('\n');
-               addMessage(response);
-               return; // Important: Exit after handling the general trend query
-            }
-
-            // Filter data based on trend
-            const filteredRoles = trendFilter ? data.filter(item => item.trend === trendFilter) : data;
-
-            if (filteredRoles.length > 0) {
-              response += filteredRoles.map(item => `- ${item.role}`).join('\n');
-            } else {
-              response = "No roles found matching that specific trend filter.";
-            }
-          }
-          // --- End of New Condition ---
+        let response = "Sorry, I couldn't get a response from the AI agent.";
+        if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
+          response = data[0].generated_text;
+        } else if (data.generated_text) {
+          response = data.generated_text;
+        } else if (data.error) {
+          response = `AI agent error: ${data.error}`;
         }
         addMessage(response);
-      }, 1000);
+      })
+      .catch(err => {
+        processing.remove();
+        addMessage("AI agent request failed. Please check your API key or try again later.");
+      });
     }
     // Event listeners
     closePanelBtn.addEventListener('click', closePanel);
@@ -1588,8 +1530,11 @@
       }
     });
     // Initialize
+    // Compare Roles functionality
+    // ...existing code...
+
     populateCards();
   </script>
 </body>
 </html>
-```
+
