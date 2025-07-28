@@ -382,14 +382,19 @@
     body.light-mode .modal-section-content {
       color: var(--text-secondary-light);
     }
-    .tool-row {
+    .tools-list {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #2a2a2a;
+      border-radius: 6px;
       font-size: 0.9rem;
       color: #66c2ff;
-      margin-top: 4px;
-      padding: 4px 0;
-      border-top: 1px dashed #444;
     }
-    .tool-row strong {
+    body.light-mode .tools-list {
+      background-color: #f0f8ff;
+      color: #0055aa;
+    }
+    .tools-list strong {
       color: var(--primary);
     }
     @media (max-width: 768px) {
@@ -467,41 +472,42 @@
         panelImage: "https://img.icons8.com/?size=96&id=16772&format=png",
         levels: {
           beginner: [
-            { topic: "Introduction", concepts: ["What is SQL?", "RDBMS vs DBMS", "Tables, Rows, Columns"], description: "Learn the fundamentals of SQL and relational databases.", tools: ["MySQL Workbench", "pgAdmin", "SQLite Browser"] },
-            { topic: "Data Types", concepts: ["INT", "VARCHAR", "DATE", "BOOLEAN"], description: "Understand SQL data types for storing various kinds of data.", tools: ["DBeaver", "DataGrip"] },
-            { topic: "Basic Queries", concepts: ["SELECT", "FROM", "WHERE", "ORDER BY", "LIMIT / TOP"], description: "Write basic SQL queries to retrieve data.", tools: ["SQL Fiddle", "Mode Analytics"] },
-            { topic: "Filtering", concepts: ["AND, OR, NOT", "BETWEEN", "IN", "LIKE", "IS NULL"], description: "Filter query results using various conditions.", tools: ["Tableau Prep", "Power BI Query Editor"] },
-            { topic: "Aliases", concepts: ["Column alias (AS)", "Table alias"], description: "Use aliases to simplify and clarify SQL queries.", tools: ["BigQuery", "Snowflake"] },
-            { topic: "Aggregate Functions", concepts: ["COUNT", "SUM", "AVG", "MIN / MAX"], description: "Perform calculations on data sets using aggregates.", tools: ["Redshift", "ClickHouse"] },
-            { topic: "Grouping", concepts: ["GROUP BY", "HAVING"], description: "Group data for summarized reporting.", tools: ["Metabase", "Superset"] },
-            { topic: "Others", concepts: ["DISTINCT"], description: "Remove duplicates from query results.", tools: ["dbForge Studio", "HeidiSQL"] }
+            { topic: "Introduction", concepts: ["What is SQL?", "RDBMS vs DBMS", "Tables, Rows, Columns"], description: "Learn the fundamentals of SQL and relational databases." },
+            { topic: "Data Types", concepts: ["INT", "VARCHAR", "DATE", "BOOLEAN"], description: "Understand SQL data types for storing various kinds of data." },
+            { topic: "Basic Queries", concepts: ["SELECT", "FROM", "WHERE", "ORDER BY", "LIMIT / TOP"], description: "Write basic SQL queries to retrieve data." },
+            { topic: "Filtering", concepts: ["AND, OR, NOT", "BETWEEN", "IN", "LIKE", "IS NULL"], description: "Filter query results using various conditions." },
+            { topic: "Aliases", concepts: ["Column alias (AS)", "Table alias"], description: "Use aliases to simplify and clarify SQL queries." },
+            { topic: "Aggregate Functions", concepts: ["COUNT", "SUM", "AVG", "MIN / MAX"], description: "Perform calculations on data sets using aggregates." },
+            { topic: "Grouping", concepts: ["GROUP BY", "HAVING"], description: "Group data for summarized reporting." },
+            { topic: "Others", concepts: ["DISTINCT"], description: "Remove duplicates from query results." }
           ],
           intermediate: [
-            { topic: "Table Relationships", concepts: ["Primary & Foreign Keys", "One-to-Many", "Many-to-Many"], description: "Understand and implement table relationships.", tools: ["ERD Tools", "Lucidchart"] },
-            { topic: "Joins", concepts: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "CROSS JOIN", "SELF JOIN"], description: "Combine data from multiple tables using joins.", tools: ["SQL Server Management Studio", "Oracle SQL Developer"] },
-            { topic: "Subqueries", concepts: ["Scalar", "Correlated", "Subqueries in WHERE / FROM / SELECT"], description: "Use nested queries for complex data retrieval.", tools: ["DBeaver", "Aqua Data Studio"] },
-            { topic: "Set Operations", concepts: ["UNION", "UNION ALL", "INTERSECT", "EXCEPT"], description: "Combine or compare result sets with set operations.", tools: ["Snowflake", "BigQuery"] },
-            { topic: "Data Manipulation", concepts: ["INSERT", "UPDATE", "DELETE"], description: "Modify data within tables.", tools: ["phpMyAdmin", "Navicat"] },
-            { topic: "Constraints", concepts: ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"], description: "Enforce data integrity with constraints.", tools: ["PostgreSQL", "MySQL"] },
-            { topic: "Conditional Logic", concepts: ["CASE Statements"], description: "Implement conditional logic in queries.", tools: ["Vertica", "Amazon Redshift"] },
-            { topic: "Functions", concepts: ["String Functions: CONCAT, SUBSTRING, TRIM, LENGTH, UPPER, LOWER", "Date Functions: NOW(), DATE(), DATEDIFF()"], description: "Use built-in functions for string and date manipulation.", tools: ["Oracle", "MariaDB"] }
+            { topic: "Table Relationships", concepts: ["Primary & Foreign Keys", "One-to-Many", "Many-to-Many"], description: "Understand and implement table relationships." },
+            { topic: "Joins", concepts: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "CROSS JOIN", "SELF JOIN"], description: "Combine data from multiple tables using joins." },
+            { topic: "Subqueries", concepts: ["Scalar", "Correlated", "Subqueries in WHERE / FROM / SELECT"], description: "Use nested queries for complex data retrieval." },
+            { topic: "Set Operations", concepts: ["UNION", "UNION ALL", "INTERSECT", "EXCEPT"], description: "Combine or compare result sets with set operations." },
+            { topic: "Data Manipulation", concepts: ["INSERT", "UPDATE", "DELETE"], description: "Modify data within tables." },
+            { topic: "Constraints", concepts: ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"], description: "Enforce data integrity with constraints." },
+            { topic: "Conditional Logic", concepts: ["CASE Statements"], description: "Implement conditional logic in queries." },
+            { topic: "Functions", concepts: ["String Functions: CONCAT, SUBSTRING, TRIM, LENGTH, UPPER, LOWER", "Date Functions: NOW(), DATE(), DATEDIFF()"], description: "Use built-in functions for string and date manipulation." }
           ],
           advanced: [
-            { topic: "Views", concepts: ["Creating and Using Views"], description: "Create virtual tables for simplified querying.", tools: ["SQL Server", "Snowflake"] },
-            { topic: "CTEs", concepts: ["Non-recursive", "Recursive"], description: "Use Common Table Expressions for modular queries.", tools: ["BigQuery", "PostgreSQL"] },
-            { topic: "Window Functions", concepts: ["ROW_NUMBER()", "RANK(), DENSE_RANK()", "LEAD(), LAG()", "PARTITION BY"], description: "Perform advanced calculations across rows.", tools: ["Redshift", "Vertica"] },
-            { topic: "Indexes & Performance", concepts: ["Creating Indexes", "EXPLAIN / ANALYZE"], description: "Optimize query performance with indexes.", tools: ["pgAdmin", "SQL Profiler"] },
-            { topic: "Stored Procedures", concepts: ["Creating and Managing"], description: "Automate repetitive tasks with stored procedures.", tools: ["MySQL", "SQL Server"] },
-            { topic: "Triggers", concepts: ["Event-driven Logic"], description: "Execute logic automatically on database events.", tools: ["Oracle", "PostgreSQL"] },
-            { topic: "Transactions", concepts: ["BEGIN", "COMMIT", "ROLLBACK"], description: "Ensure data consistency with transactions.", tools: ["ACID-compliant DBs", "JDBC"] },
-            { topic: "Error Handling", concepts: ["TRY/CATCH (DBMS-specific)"], description: "Manage errors in SQL scripts.", tools: ["SQL Server", "Oracle"] },
-            { topic: "Normalization", concepts: ["1NF, 2NF, 3NF, BCNF"], description: "Design efficient and normalized databases.", tools: ["ER/Studio", "Toad Data Modeler"] },
-            { topic: "Permissions", concepts: ["GRANT", "REVOKE"], description: "Control access with permissions.", tools: ["IAM", "Role-based Access"] },
-            { topic: "JSON in SQL", concepts: ["Querying JSON fields"], description: "Work with JSON data in SQL.", tools: ["PostgreSQL", "MySQL 8+"] },
-            { topic: "Temporary Tables", concepts: ["Creating and Using Temporary Tables"], description: "Use temporary tables for intermediate data storage.", tools: ["SQL Server", "Snowflake"] },
-            { topic: "Pivot/Unpivot", concepts: ["Data transformation techniques"], description: "Transform data for reporting purposes.", tools: ["Power BI", "Tableau"] }
+            { topic: "Views", concepts: ["Creating and Using Views"], description: "Create virtual tables for simplified querying." },
+            { topic: "CTEs", concepts: ["Non-recursive", "Recursive"], description: "Use Common Table Expressions for modular queries." },
+            { topic: "Window Functions", concepts: ["ROW_NUMBER()", "RANK(), DENSE_RANK()", "LEAD(), LAG()", "PARTITION BY"], description: "Perform advanced calculations across rows." },
+            { topic: "Indexes & Performance", concepts: ["Creating Indexes", "EXPLAIN / ANALYZE"], description: "Optimize query performance with indexes." },
+            { topic: "Stored Procedures", concepts: ["Creating and Managing"], description: "Automate repetitive tasks with stored procedures." },
+            { topic: "Triggers", concepts: ["Event-driven Logic"], description: "Execute logic automatically on database events." },
+            { topic: "Transactions", concepts: ["BEGIN", "COMMIT", "ROLLBACK"], description: "Ensure data consistency with transactions." },
+            { topic: "Error Handling", concepts: ["TRY/CATCH (DBMS-specific)"], description: "Manage errors in SQL scripts." },
+            { topic: "Normalization", concepts: ["1NF, 2NF, 3NF, BCNF"], description: "Design efficient and normalized databases." },
+            { topic: "Permissions", concepts: ["GRANT", "REVOKE"], description: "Control access with permissions." },
+            { topic: "JSON in SQL", concepts: ["Querying JSON fields"], description: "Work with JSON data in SQL." },
+            { topic: "Temporary Tables", concepts: ["Creating and Using Temporary Tables"], description: "Use temporary tables for intermediate data storage." },
+            { topic: "Pivot/Unpivot", concepts: ["Data transformation techniques"], description: "Transform data for reporting purposes." }
           ]
-        }
+        },
+        tools: ["MySQL Workbench"]
       },
       {
         title: "Power BI Roadmap",
@@ -510,44 +516,45 @@
         panelImage: "https://img.icons8.com/?size=96&id=59885&format=png",
         levels: {
           beginner: [
-            { topic: "Power BI Overview", concepts: ["What is Power BI", "Components", "Use Cases"], description: "Understand what Power BI is and where it fits in business intelligence.", tools: ["Power BI Desktop", "Power BI Service"] },
-            { topic: "Installing Power BI", concepts: ["Power BI Desktop", "Power BI Service"], description: "Learn how to install and set up Power BI Desktop for development.", tools: ["Microsoft Store", "Download Center"] },
-            { topic: "Connecting to Data", concepts: ["Excel", "CSV", "SQL Server", "Web", "APIs"], description: "Learn how to import and connect various data sources.", tools: ["Power Query", "DirectQuery"] },
-            { topic: "Data Loading & Preview", concepts: ["Navigator pane", "Selecting tables/sheets"], description: "Understand how to load and preview data before modeling.", tools: ["Data Preview Mode", "Query Editor"] },
-            { topic: "Power Query Editor Basics", concepts: ["Remove columns", "Change data types", "Filter rows"], description: "Use Power Query to shape and clean data.", tools: ["Power BI", "Excel"] },
-            { topic: "Basic Visualizations", concepts: ["Bar", "Pie", "Line", "Cards", "Tables"], description: "Learn to create common visuals for dashboards and reports.", tools: ["Power BI Visuals Gallery", "Default visuals"] },
-            { topic: "Working with Fields", concepts: ["Drag & drop fields", "Axes", "Values"], description: "Understand field well usage in visualizations.", tools: ["Fields Pane", "Visualizations Pane"] },
-            { topic: "Publishing to Power BI Service", concepts: ["Publish", "Workspaces", "Dashboard creation"], description: "Share reports to the cloud-based Power BI service.", tools: ["Power BI Service", "Teams Integration"] }
+            { topic: "Power BI Overview", concepts: ["What is Power BI", "Components", "Use Cases"], description: "Understand what Power BI is and where it fits in business intelligence." },
+            { topic: "Installing Power BI", concepts: ["Power BI Desktop", "Power BI Service"], description: "Learn how to install and set up Power BI Desktop for development." },
+            { topic: "Connecting to Data", concepts: ["Excel", "CSV", "SQL Server", "Web", "APIs"], description: "Learn how to import and connect various data sources." },
+            { topic: "Data Loading & Preview", concepts: ["Navigator pane", "Selecting tables/sheets"], description: "Understand how to load and preview data before modeling." },
+            { topic: "Power Query Editor Basics", concepts: ["Remove columns", "Change data types", "Filter rows"], description: "Use Power Query to shape and clean data." },
+            { topic: "Basic Visualizations", concepts: ["Bar", "Pie", "Line", "Cards", "Tables"], description: "Learn to create common visuals for dashboards and reports." },
+            { topic: "Working with Fields", concepts: ["Drag & drop fields", "Axes", "Values"], description: "Understand field well usage in visualizations." },
+            { topic: "Publishing to Power BI Service", concepts: ["Publish", "Workspaces", "Dashboard creation"], description: "Share reports to the cloud-based Power BI service." }
           ],
           intermediate: [
-            { topic: "Data Model Design", concepts: ["Relationships", "Star vs snowflake schema", "Active/inactive"], description: "Structure your data model for optimal performance and analysis.", tools: ["Model View", "Relationships View"] },
-            { topic: "Managing Relationships", concepts: ["One-to-many", "Many-to-one", "Cardinality"], description: "Create and troubleshoot table relationships.", tools: ["Power BI", "DAX Studio"] },
-            { topic: "Introduction to DAX", concepts: ["Calculated columns", "Measures", "Syntax"], description: "Write DAX formulas for custom calculations.", tools: ["DAX Formatter", "Measure Editor"] },
-            { topic: "Common DAX Functions", concepts: ["SUM()", "COUNT()", "AVERAGE()", "IF()", "SWITCH()"], description: "Perform basic aggregations and logic-based operations.", tools: ["DAX Guide", "DAX Studio"] },
-            { topic: "Time Intelligence in DAX", concepts: ["TOTALYTD()", "DATEADD()", "SAMEPERIODLASTYEAR()"], description: "Create time-based metrics like YOY and YTD analysis.", tools: ["Calendar Tables", "DAX Patterns"] },
-            { topic: "Data Transformation (Power Query)", concepts: ["Merge", "Append", "Group by", "Pivot/Unpivot"], description: "Use Power Query to clean, reshape, and consolidate data sources.", tools: ["Power Query M", "Advanced Editor"] },
-            { topic: "Drillthrough & Tooltips", concepts: ["Report page tooltips", "Detailed drillthrough pages"], description: "Add depth and interactivity to visual reports.", tools: ["Tooltip Pages", "Drillthrough Filters"] },
-            { topic: "Bookmarks & Selection Pane", concepts: ["Bookmarks", "Toggle views", "Storytelling"], description: "Create dynamic, interactive reports for presentations.", tools: ["Selection Pane", "Bookmark Pane"] }
+            { topic: "Data Model Design", concepts: ["Relationships", "Star vs snowflake schema", "Active/inactive"], description: "Structure your data model for optimal performance and analysis." },
+            { topic: "Managing Relationships", concepts: ["One-to-many", "Many-to-one", "Cardinality"], description: "Create and troubleshoot table relationships." },
+            { topic: "Introduction to DAX", concepts: ["Calculated columns", "Measures", "Syntax"], description: "Write DAX formulas for custom calculations." },
+            { topic: "Common DAX Functions", concepts: ["SUM()", "COUNT()", "AVERAGE()", "IF()", "SWITCH()"], description: "Perform basic aggregations and logic-based operations." },
+            { topic: "Time Intelligence in DAX", concepts: ["TOTALYTD()", "DATEADD()", "SAMEPERIODLASTYEAR()"], description: "Create time-based metrics like YOY and YTD analysis." },
+            { topic: "Data Transformation (Power Query)", concepts: ["Merge", "Append", "Group by", "Pivot/Unpivot"], description: "Use Power Query to clean, reshape, and consolidate data sources." },
+            { topic: "Drillthrough & Tooltips", concepts: ["Report page tooltips", "Detailed drillthrough pages"], description: "Add depth and interactivity to visual reports." },
+            { topic: "Bookmarks & Selection Pane", concepts: ["Bookmarks", "Toggle views", "Storytelling"], description: "Create dynamic, interactive reports for presentations." }
           ],
           advanced: [
-            { topic: "Advanced DAX Functions", concepts: ["CALCULATE()", "FILTER()", "ALL()", "VALUES()", "RELATED()"], description: "Write more powerful and context-sensitive DAX measures.", tools: ["DAX Studio", "Tabular Editor"] },
-            { topic: "Row-Level Security (RLS)", concepts: ["Roles", "DAX filters", "Dynamic RLS"], description: "Secure data access for different users.", tools: ["Power BI Admin Portal", "Azure AD"] },
-            { topic: "Performance Optimization", concepts: ["DAX optimization", "Model size", "Performance analyzer"], description: "Improve report responsiveness and resource efficiency.", tools: ["Performance Analyzer", "VertiPaq Analyzer"] },
-            { topic: "Custom Visuals", concepts: ["Import from AppSource", "Use cases"], description: "Enhance reports with third-party visuals.", tools: ["AppSource", "Custom Visual SDK"] },
-            { topic: "Advanced Power Query M", concepts: ["Custom functions", "M language basics"], description: "Write custom data transformation logic in M.", tools: ["Power Query M Reference", "Advanced Editor"] },
-            { topic: "Paginated Reports", concepts: ["Power BI Report Builder", "Formatted tables"], description: "Generate printable, pixel-perfect reports.", tools: ["Power BI Report Builder", "SSRS"] },
-            { topic: "Drill Down & Hierarchies", concepts: ["Creating hierarchies", "Drill up/down"], description: "Add intuitive navigation to complex datasets.", tools: ["Hierarchy Builder", "Tree Maps"] },
-            { topic: "Themes & Branding", concepts: ["JSON themes", "Custom color palettes"], description: "Maintain consistent branding across reports.", tools: ["Power BI Theme Generator", "Theme Files"] }
+            { topic: "Advanced DAX Functions", concepts: ["CALCULATE()", "FILTER()", "ALL()", "VALUES()", "RELATED()"], description: "Write more powerful and context-sensitive DAX measures." },
+            { topic: "Row-Level Security (RLS)", concepts: ["Roles", "DAX filters", "Dynamic RLS"], description: "Secure data access for different users." },
+            { topic: "Performance Optimization", concepts: ["DAX optimization", "Model size", "Performance analyzer"], description: "Improve report responsiveness and resource efficiency." },
+            { topic: "Custom Visuals", concepts: ["Import from AppSource", "Use cases"], description: "Enhance reports with third-party visuals." },
+            { topic: "Advanced Power Query M", concepts: ["Custom functions", "M language basics"], description: "Write custom data transformation logic in M." },
+            { topic: "Paginated Reports", concepts: ["Power BI Report Builder", "Formatted tables"], description: "Generate printable, pixel-perfect reports." },
+            { topic: "Drill Down & Hierarchies", concepts: ["Creating hierarchies", "Drill up/down"], description: "Add intuitive navigation to complex datasets." },
+            { topic: "Themes & Branding", concepts: ["JSON themes", "Custom color palettes"], description: "Maintain consistent branding across reports." }
           ],
           expert: [
-            { topic: "Power BI Service Deep Dive", concepts: ["Workspaces", "Apps", "Sharing", "Data refresh"], description: "Manage deployments and dataflows in production.", tools: ["Power BI Service", "Premium Capacity"] },
-            { topic: "Power BI Gateway", concepts: ["On-premises data access", "Scheduled refresh"], description: "Bridge on-prem data with Power BI service securely.", tools: ["On-premises Data Gateway", "Personal Mode"] },
-            { topic: "Dataflows", concepts: ["Reusable ETL pipelines", "Power Query Online"], description: "Centralize data transformations for consistency across reports.", tools: ["Power Query Online", "Dataflow Refresh"] },
-            { topic: "Integration with Excel, Teams, SharePoint", concepts: ["Analyze in Excel", "Embedding", "Teams tabs"], description: "Collaborate and distribute reports effectively.", tools: ["Teams", "SharePoint", "Excel"] },
-            { topic: "Power Automate Integration", concepts: ["Automate alerts", "Report sharing", "Flows"], description: "Add workflow automation triggered by data changes.", tools: ["Power Automate", "Flow Triggers"] },
-            { topic: "Power BI REST API & Dev", concepts: ["Embed APIs", "Refresh APIs", "Custom dev tools"], description: "Automate and embed Power BI into custom applications.", tools: ["Power BI API", "Azure AD Auth"] }
+            { topic: "Power BI Service Deep Dive", concepts: ["Workspaces", "Apps", "Sharing", "Data refresh"], description: "Manage deployments and dataflows in production." },
+            { topic: "Power BI Gateway", concepts: ["On-premises data access", "Scheduled refresh"], description: "Bridge on-prem data with Power BI service securely." },
+            { topic: "Dataflows", concepts: ["Reusable ETL pipelines", "Power Query Online"], description: "Centralize data transformations for consistency across reports." },
+            { topic: "Integration with Excel, Teams, SharePoint", concepts: ["Analyze in Excel", "Embedding", "Teams tabs"], description: "Collaborate and distribute reports effectively." },
+            { topic: "Power Automate Integration", concepts: ["Automate alerts", "Report sharing", "Flows"], description: "Add workflow automation triggered by data changes." },
+            { topic: "Power BI REST API & Dev", concepts: ["Embed APIs", "Refresh APIs", "Custom dev tools"], description: "Automate and embed Power BI into custom applications." }
           ]
-        }
+        },
+        tools: ["Power BI Desktop", "DAX Studio", "Power BI Service", "Power Query", "Tabular Editor"]
       },
       {
         title: "Python Roadmap",
@@ -556,44 +563,45 @@
         panelImage: "https://img.icons8.com/?size=96&id=30596&format=png",
         levels: {
           beginner: [
-            { topic: "Python Basics", concepts: ["Installation", "REPL", "Variables", "print()", "Comments"], description: "Set up Python, write first programs, and understand the development flow.", tools: ["Python.org", "IDLE", "Thonny"] },
-            { topic: "Data Types", concepts: ["int", "float", "str", "bool", "Type checking", "Type conversion"], description: "Learn Python's core data types and how to convert between them.", tools: ["type()", "isinstance()"] },
-            { topic: "Operators", concepts: ["Arithmetic", "Comparison", "Logical", "Assignment", "Membership", "Identity"], description: "Perform calculations and make decisions using operators.", tools: ["Operators in Python", "Interactive Shell"] },
-            { topic: "Strings", concepts: ["Indexing", "Slicing", "Methods", "f-strings", "Escape characters"], description: "Handle and manipulate text-based data effectively.", tools: ["str methods", "re module"] },
-            { topic: "Control Flow", concepts: ["if", "elif", "else", "Nested conditions"], description: "Write logic to control the flow of your program.", tools: ["Conditional statements", "Debugging"] },
-            { topic: "Loops", concepts: ["for", "while", "break", "continue", "range()"], description: "Repeat tasks efficiently and loop through data structures.", tools: ["Loop constructs", "List comprehensions"] },
-            { topic: "Functions", concepts: ["def", "Parameters", "Return values", "Scope", "*args", "**kwargs"], description: "Organize code into reusable blocks with custom behavior.", tools: ["Function definitions", "Built-in functions"] },
-            { topic: "Lists & Tuples", concepts: ["Creation", "Indexing", "Slicing", "Methods", "List Comprehension"], description: "Store and manage ordered collections of data.", tools: ["list methods", "tuple packing"] },
-            { topic: "Dictionaries & Sets", concepts: ["dict creation", "Methods", "set", "set() operations"], description: "Store key-value pairs and handle unique items efficiently.", tools: ["dict methods", "set operations"] }
+            { topic: "Python Basics", concepts: ["Installation", "REPL", "Variables", "print()", "Comments"], description: "Set up Python, write first programs, and understand the development flow." },
+            { topic: "Data Types", concepts: ["int", "float", "str", "bool", "Type checking", "Type conversion"], description: "Learn Python's core data types and how to convert between them." },
+            { topic: "Operators", concepts: ["Arithmetic", "Comparison", "Logical", "Assignment", "Membership", "Identity"], description: "Perform calculations and make decisions using operators." },
+            { topic: "Strings", concepts: ["Indexing", "Slicing", "Methods", "f-strings", "Escape characters"], description: "Handle and manipulate text-based data effectively." },
+            { topic: "Control Flow", concepts: ["if", "elif", "else", "Nested conditions"], description: "Write logic to control the flow of your program." },
+            { topic: "Loops", concepts: ["for", "while", "break", "continue", "range()"], description: "Repeat tasks efficiently and loop through data structures." },
+            { topic: "Functions", concepts: ["def", "Parameters", "Return values", "Scope", "*args", "**kwargs"], description: "Organize code into reusable blocks with custom behavior." },
+            { topic: "Lists & Tuples", concepts: ["Creation", "Indexing", "Slicing", "Methods", "List Comprehension"], description: "Store and manage ordered collections of data." },
+            { topic: "Dictionaries & Sets", concepts: ["dict creation", "Methods", "set", "set() operations"], description: "Store key-value pairs and handle unique items efficiently." }
           ],
           intermediate: [
-            { topic: "File Handling", concepts: ["open()", "read()", "write()", "with", "Working with .txt and .csv"], description: "Read/write files to persist or process data.", tools: ["open()", "csv module", "json module"] },
-            { topic: "Exception Handling", concepts: ["try", "except", "finally", "raise", "Custom exceptions"], description: "Handle errors gracefully and write more reliable code.", tools: ["try-except blocks", "logging module"] },
-            { topic: "Modules & Packages", concepts: ["import", "Creating your own modules", "__name__ == '__main__'"], description: "Organize code into reusable and maintainable components.", tools: ["pip", "PyPI", "virtualenv"] },
-            { topic: "Python Libraries", concepts: ["math", "random", "datetime", "collections", "itertools"], description: "Leverage built-in tools to solve common programming problems.", tools: ["Standard Library", "Documentation"] },
-            { topic: "Object-Oriented Programming (OOP)", concepts: ["class", "__init__", "self", "Methods", "Inheritance", "super()"], description: "Build complex programs using real-world modeling concepts.", tools: ["OOP principles", "UML diagrams"] },
-            { topic: "Lambda & Functional Tools", concepts: ["lambda", "map()", "filter()", "reduce()", "zip()"], description: "Write concise, efficient data-processing code.", tools: ["Functional programming", "Higher-order functions"] },
-            { topic: "Working with JSON & CSV", concepts: ["json", "csv libraries", "Parsing & writing"], description: "Read and write structured data formats for APIs and datasets.", tools: ["json.load/dump", "csv.DictReader"] }
+            { topic: "File Handling", concepts: ["open()", "read()", "write()", "with", "Working with .txt and .csv"], description: "Read/write files to persist or process data." },
+            { topic: "Exception Handling", concepts: ["try", "except", "finally", "raise", "Custom exceptions"], description: "Handle errors gracefully and write more reliable code." },
+            { topic: "Modules & Packages", concepts: ["import", "Creating your own modules", "__name__ == '__main__'"], description: "Organize code into reusable and maintainable components." },
+            { topic: "Python Libraries", concepts: ["math", "random", "datetime", "collections", "itertools"], description: "Leverage built-in tools to solve common programming problems." },
+            { topic: "Object-Oriented Programming (OOP)", concepts: ["class", "__init__", "self", "Methods", "Inheritance", "super()"], description: "Build complex programs using real-world modeling concepts." },
+            { topic: "Lambda & Functional Tools", concepts: ["lambda", "map()", "filter()", "reduce()", "zip()"], description: "Write concise, efficient data-processing code." },
+            { topic: "Working with JSON & CSV", concepts: ["json", "csv libraries", "Parsing & writing"], description: "Read and write structured data formats for APIs and datasets." }
           ],
           advanced: [
-            { topic: "Comprehensions", concepts: ["List", "Dict", "Set comprehensions", "Nested comprehensions"], description: "Write cleaner and faster data transformation logic.", tools: ["List comprehensions", "Generator expressions"] },
-            { topic: "Decorators", concepts: ["Function decorators", "@wraps", "Common use-cases"], description: "Extend functionality of functions in a clean and reusable way.", tools: ["@property", "functools.wraps"] },
-            { topic: "Generators & Iterators", concepts: ["yield", "Generator expressions", "iter()", "next()"], description: "Handle large data streams efficiently with lazy evaluation.", tools: ["yield keyword", "itertools"] },
-            { topic: "Regular Expressions", concepts: ["re module", "search()", "match()", "findall()", "Groups", "Patterns"], description: "Extract patterns and validate formats in strings.", tools: ["re module", "regex101.com"] },
-            { topic: "Virtual Environments", concepts: ["venv", "pip", "requirements.txt", "Dependencies"], description: "Manage project dependencies in isolated environments.", tools: ["venv", "conda", "pipenv"] },
-            { topic: "Unit Testing", concepts: ["unittest", "pytest", "Assertions", "Fixtures"], description: "Write testable and bug-free code for production environments.", tools: ["pytest", "unittest", "coverage.py"] },
-            { topic: "Logging", concepts: ["Logging levels", "basicConfig", "Writing logs to file"], description: "Track application behavior and debug production issues.", tools: ["logging module", "Log handlers"] },
-            { topic: "Working with APIs", concepts: ["requests", "Parsing JSON", "Error handling", "Real API calls"], description: "Fetch and process data from web APIs for automation and data pipelines.", tools: ["requests", "FastAPI", "Postman"] }
+            { topic: "Comprehensions", concepts: ["List", "Dict", "Set comprehensions", "Nested comprehensions"], description: "Write cleaner and faster data transformation logic." },
+            { topic: "Decorators", concepts: ["Function decorators", "@wraps", "Common use-cases"], description: "Extend functionality of functions in a clean and reusable way." },
+            { topic: "Generators & Iterators", concepts: ["yield", "Generator expressions", "iter()", "next()"], description: "Handle large data streams efficiently with lazy evaluation." },
+            { topic: "Regular Expressions", concepts: ["re module", "search()", "match()", "findall()", "Groups", "Patterns"], description: "Extract patterns and validate formats in strings." },
+            { topic: "Virtual Environments", concepts: ["venv", "pip", "requirements.txt", "Dependencies"], description: "Manage project dependencies in isolated environments." },
+            { topic: "Unit Testing", concepts: ["unittest", "pytest", "Assertions", "Fixtures"], description: "Write testable and bug-free code for production environments." },
+            { topic: "Logging", concepts: ["Logging levels", "basicConfig", "Writing logs to file"], description: "Track application behavior and debug production issues." },
+            { topic: "Working with APIs", concepts: ["requests", "Parsing JSON", "Error handling", "Real API calls"], description: "Fetch and process data from web APIs for automation and data pipelines." }
           ],
           expert: [
-            { topic: "NumPy & Pandas", concepts: ["Arrays", "Series", "DataFrames", "Indexing", "Filtering", "Aggregation"], description: "Perform powerful data analysis and manipulation.", tools: ["Jupyter Notebook", "Google Colab"] },
-            { topic: "Matplotlib & Seaborn", concepts: ["Data visualization: plots", "Charts", "Customizations"], description: "Create visual representations of data for analysis and storytelling.", tools: ["Matplotlib", "Seaborn", "Plotly"] },
-            { topic: "Flask / FastAPI", concepts: ["Building APIs", "Endpoints", "Routing", "Templates"], description: "Build web apps and APIs for real-world services and products.", tools: ["Flask", "FastAPI", "Swagger UI"] },
-            { topic: "Multithreading & Multiprocessing", concepts: ["threading", "multiprocessing", "GIL", "Concurrency"], description: "Speed up tasks with parallel processing and thread management.", tools: ["threading", "concurrent.futures"] },
-            { topic: "Profiling & Optimization", concepts: ["timeit", "cProfile", "Big-O basics", "Memory usage"], description: "Identify performance bottlenecks and write efficient code.", tools: ["cProfile", "memory_profiler"] },
-            { topic: "Advanced OOP & Design Patterns", concepts: ["SOLID principles", "Singleton", "Factory", "Observer"], description: "Design scalable and maintainable applications using proven patterns.", tools: ["Design Patterns", "UML"] }
+            { topic: "NumPy & Pandas", concepts: ["Arrays", "Series", "DataFrames", "Indexing", "Filtering", "Aggregation"], description: "Perform powerful data analysis and manipulation." },
+            { topic: "Matplotlib & Seaborn", concepts: ["Data visualization: plots", "Charts", "Customizations"], description: "Create visual representations of data for analysis and storytelling." },
+            { topic: "Flask / FastAPI", concepts: ["Building APIs", "Endpoints", "Routing", "Templates"], description: "Build web apps and APIs for real-world services and products." },
+            { topic: "Multithreading & Multiprocessing", concepts: ["threading", "multiprocessing", "GIL", "Concurrency"], description: "Speed up tasks with parallel processing and thread management." },
+            { topic: "Profiling & Optimization", concepts: ["timeit", "cProfile", "Big-O basics", "Memory usage"], description: "Identify performance bottlenecks and write efficient code." },
+            { topic: "Advanced OOP & Design Patterns", concepts: ["SOLID principles", "Singleton", "Factory", "Observer"], description: "Design scalable and maintainable applications using proven patterns." }
           ]
-        }
+        },
+        tools: ["PyCharm", "Jupyter Notebook", "VS Code", "Git", "Docker"]
       },
       {
         title: "Excel Roadmap",
@@ -602,40 +610,41 @@
         panelImage: "https://img.icons8.com/?size=96&id=51218&format=png",
         levels: {
           beginner: [
-            { topic: "Excel Basics", concepts: ["Interface", "Workbooks", "Worksheets", "Cells", "Ribbons"], description: "Understand the Excel interface and basic navigation.", tools: ["Excel Desktop", "Online"] },
-            { topic: "Data Entry", concepts: ["Entering data", "Auto-fill", "Data validation"], description: "Learn how to input and validate data efficiently.", tools: ["Data Validation", "Drop-down lists"] },
-            { topic: "Basic Formulas", concepts: ["SUM", "AVERAGE", "MIN", "MAX", "COUNT"], description: "Perform basic calculations using Excel formulas.", tools: ["Formula Bar", "AutoSum"] },
-            { topic: "Formatting", concepts: ["Cell formatting", "Conditional formatting", "Borders", "Number formats"], description: "Enhance spreadsheet readability with formatting techniques.", tools: ["Format Cells", "Styles"] },
-            { topic: "Basic Charts", concepts: ["Bar", "Pie", "Line", "Column"], description: "Create simple visualizations to represent data.", tools: ["Insert Chart", "Chart Tools"] },
-            { topic: "Sorting & Filtering", concepts: ["Sort A-Z", "Custom sort", "Filter by value"], description: "Organize and narrow down data for analysis.", tools: ["Sort & Filter", "Advanced Filter"] },
-            { topic: "Tables", concepts: ["Creating tables", "Table styles", "Total row"], description: "Use Excel tables for structured data management.", tools: ["Ctrl+T", "Structured References"] }
+            { topic: "Excel Basics", concepts: ["Interface", "Workbooks", "Worksheets", "Cells", "Ribbons"], description: "Understand the Excel interface and basic navigation." },
+            { topic: "Data Entry", concepts: ["Entering data", "Auto-fill", "Data validation"], description: "Learn how to input and validate data efficiently." },
+            { topic: "Basic Formulas", concepts: ["SUM", "AVERAGE", "MIN", "MAX", "COUNT"], description: "Perform basic calculations using Excel formulas." },
+            { topic: "Formatting", concepts: ["Cell formatting", "Conditional formatting", "Borders", "Number formats"], description: "Enhance spreadsheet readability with formatting techniques." },
+            { topic: "Basic Charts", concepts: ["Bar", "Pie", "Line", "Column"], description: "Create simple visualizations to represent data." },
+            { topic: "Sorting & Filtering", concepts: ["Sort A-Z", "Custom sort", "Filter by value"], description: "Organize and narrow down data for analysis." },
+            { topic: "Tables", concepts: ["Creating tables", "Table styles", "Total row"], description: "Use Excel tables for structured data management." }
           ],
           intermediate: [
-            { topic: "Advanced Formulas", concepts: ["VLOOKUP", "HLOOKUP", "IF", "AND", "OR"], description: "Use lookup and logical functions for complex calculations.", tools: ["Formula Auditing", "Name Manager"] },
-            { topic: "Pivot Tables", concepts: ["Creating pivots", "Grouping", "Slicers", "Calculated fields"], description: "Summarize and analyze large datasets with pivot tables.", tools: ["PivotTable", "PivotChart"] },
-            { topic: "Data Validation", concepts: ["Drop-down lists", "Custom rules", "Error messages"], description: "Ensure data integrity with advanced validation.", tools: ["Data Validation Rules", "Input Messages"] },
-            { topic: "Text Functions", concepts: ["LEFT", "RIGHT", "MID", "CONCAT", "TEXT"], description: "Manipulate and clean text data effectively.", tools: ["Text to Columns", "Flash Fill"] },
-            { topic: "Charts & Sparklines", concepts: ["Combo charts", "Trendlines", "Sparklines"], description: "Create advanced visualizations for insights.", tools: ["Chart Design", "Format Pane"] },
-            { topic: "Named Ranges", concepts: ["Creating named ranges", "Using in formulas"], description: "Simplify formulas with named ranges.", tools: ["Name Manager", "Go To"] },
-            { topic: "Data Import", concepts: ["From CSV", "From text", "From databases"], description: "Import external data into Excel for analysis.", tools: ["Get & Transform", "Power Query"] }
+            { topic: "Advanced Formulas", concepts: ["VLOOKUP", "HLOOKUP", "IF", "AND", "OR"], description: "Use lookup and logical functions for complex calculations." },
+            { topic: "Pivot Tables", concepts: ["Creating pivots", "Grouping", "Slicers", "Calculated fields"], description: "Summarize and analyze large datasets with pivot tables." },
+            { topic: "Data Validation", concepts: ["Drop-down lists", "Custom rules", "Error messages"], description: "Ensure data integrity with advanced validation." },
+            { topic: "Text Functions", concepts: ["LEFT", "RIGHT", "MID", "CONCAT", "TEXT"], description: "Manipulate and clean text data effectively." },
+            { topic: "Charts & Sparklines", concepts: ["Combo charts", "Trendlines", "Sparklines"], description: "Create advanced visualizations for insights." },
+            { topic: "Named Ranges", concepts: ["Creating named ranges", "Using in formulas"], description: "Simplify formulas with named ranges." },
+            { topic: "Data Import", concepts: ["From CSV", "From text", "From databases"], description: "Import external data into Excel for analysis." }
           ],
           advanced: [
-            { topic: "Advanced Pivot Tables", concepts: ["Pivot charts", "GETPIVOTDATA", "Data model"], description: "Enhance pivot table functionality for complex reporting.", tools: ["Power Pivot", "DAX"] },
-            { topic: "Power Query", concepts: ["Importing data", "Transforming", "Merging", "Appending"], description: "Automate data cleaning and transformation with Power Query.", tools: ["Power Query Editor", "M Language"] },
-            { topic: "Advanced Formulas", concepts: ["INDEX", "MATCH", "IFERROR", "ARRAY formulas"], description: "Write powerful formulas for dynamic calculations.", tools: ["Dynamic Arrays", "Spill Ranges"] },
-            { topic: "Macros & VBA", concepts: ["Recording macros", "VBA basics", "Automating tasks"], description: "Automate repetitive tasks using macros and VBA.", tools: ["Developer Tab", "VBA Editor"] },
-            { topic: "What-If Analysis", concepts: ["Goal Seek", "Data Tables", "Scenario Manager"], description: "Perform scenario-based analysis for decision-making.", tools: ["Data Tools", "Solver"] },
-            { topic: "Conditional Formatting", concepts: ["Custom rules", "Formula-based formatting"], description: "Apply dynamic formatting based on complex conditions.", tools: ["Conditional Formatting Rules", "Formulas"] },
-            { topic: "Data Connections", concepts: ["ODBC", "External data refresh"], description: "Connect Excel to external databases for real-time data.", tools: ["ODBC", "OLE DB"] }
+            { topic: "Advanced Pivot Tables", concepts: ["Pivot charts", "GETPIVOTDATA", "Data model"], description: "Enhance pivot table functionality for complex reporting." },
+            { topic: "Power Query", concepts: ["Importing data", "Transforming", "Merging", "Appending"], description: "Automate data cleaning and transformation with Power Query." },
+            { topic: "Advanced Formulas", concepts: ["INDEX", "MATCH", "IFERROR", "ARRAY formulas"], description: "Write powerful formulas for dynamic calculations." },
+            { topic: "Macros & VBA", concepts: ["Recording macros", "VBA basics", "Automating tasks"], description: "Automate repetitive tasks using macros and VBA." },
+            { topic: "What-If Analysis", concepts: ["Goal Seek", "Data Tables", "Scenario Manager"], description: "Perform scenario-based analysis for decision-making." },
+            { topic: "Conditional Formatting", concepts: ["Custom rules", "Formula-based formatting"], description: "Apply dynamic formatting based on complex conditions." },
+            { topic: "Data Connections", concepts: ["ODBC", "External data refresh"], description: "Connect Excel to external databases for real-time data." }
           ],
           expert: [
-            { topic: "Advanced VBA", concepts: ["User forms", "Event handling", "Custom functions"], description: "Build complex automation scripts with VBA.", tools: ["VBA", "Class Modules"] },
-            { topic: "Power Pivot", concepts: ["DAX formulas", "Data models", "Relationships"], description: "Create advanced data models for business intelligence.", tools: ["Power Pivot", "Data Model"] },
-            { topic: "Excel Online & Collaboration", concepts: ["Co-authoring", "Sharing", "Cloud integration"], description: "Collaborate on spreadsheets in real-time using Excel Online.", tools: ["OneDrive", "Teams"] },
-            { topic: "Dynamic Arrays", concepts: ["FILTER", "SORT", "UNIQUE", "SEQUENCE"], description: "Leverage Excel's dynamic array formulas for efficient data processing.", tools: ["Spill Range", "Dynamic Formulas"] },
-            { topic: "Integration with Power BI", concepts: ["Export to Power BI", "Data sharing"], description: "Connect Excel with Power BI for enhanced reporting.", tools: ["Power BI", "Get Data"] }
+            { topic: "Advanced VBA", concepts: ["User forms", "Event handling", "Custom functions"], description: "Build complex automation scripts with VBA." },
+            { topic: "Power Pivot", concepts: ["DAX formulas", "Data models", "Relationships"], description: "Create advanced data models for business intelligence." },
+            { topic: "Excel Online & Collaboration", concepts: ["Co-authoring", "Sharing", "Cloud integration"], description: "Collaborate on spreadsheets in real-time using Excel Online." },
+            { topic: "Dynamic Arrays", concepts: ["FILTER", "SORT", "UNIQUE", "SEQUENCE"], description: "Leverage Excel's dynamic array formulas for efficient data processing." },
+            { topic: "Integration with Power BI", concepts: ["Export to Power BI", "Data sharing"], description: "Connect Excel with Power BI for enhanced reporting." }
           ]
-        }
+        },
+        tools: ["Excel", "Power Query", "Power Pivot", "VBA Editor", "Office 365"]
       },
       {
         title: "Git Roadmap",
@@ -644,37 +653,38 @@
         panelImage: "https://img.icons8.com/?size=96&id=108283&format=png",
         levels: {
           beginner: [
-            { topic: "Git Basics", concepts: ["What is Git?", "Version control", "Repositories"], description: "Understand Git and its role in version control.", tools: ["Git", "GitHub", "GitLab"] },
-            { topic: "Setup", concepts: ["Installing Git", "Configuring user.name", "Configuring user.email"], description: "Set up Git on your system with basic configuration.", tools: ["git config", "SSH Keys"] },
-            { topic: "Basic Commands", concepts: ["git init", "git add", "git commit", "git status"], description: "Learn core commands to start tracking changes.", tools: ["Git Bash", "Terminal"] },
-            { topic: "Working with Repositories", concepts: ["Cloning", "git clone", "Remote vs local"], description: "Create and clone repositories for collaboration.", tools: ["GitHub", "Bitbucket"] },
-            { topic: "Basic Branching", concepts: ["git branch", "git checkout", "Switching branches"], description: "Understand branching for parallel development.", tools: ["Branching", "HEAD"] },
-            { topic: "Viewing History", concepts: ["git log", "git diff"], description: "Inspect commit history and changes in your repository.", tools: ["git log --oneline", "gitk"] }
+            { topic: "Git Basics", concepts: ["What is Git?", "Version control", "Repositories"], description: "Understand Git and its role in version control." },
+            { topic: "Setup", concepts: ["Installing Git", "Configuring user.name", "Configuring user.email"], description: "Set up Git on your system with basic configuration." },
+            { topic: "Basic Commands", concepts: ["git init", "git add", "git commit", "git status"], description: "Learn core commands to start tracking changes." },
+            { topic: "Working with Repositories", concepts: ["Cloning", "git clone", "Remote vs local"], description: "Create and clone repositories for collaboration." },
+            { topic: "Basic Branching", concepts: ["git branch", "git checkout", "Switching branches"], description: "Understand branching for parallel development." },
+            { topic: "Viewing History", concepts: ["git log", "git diff"], description: "Inspect commit history and changes in your repository." }
           ],
           intermediate: [
-            { topic: "Branching & Merging", concepts: ["git merge", "Merge conflicts", "Resolving conflicts"], description: "Manage branches and resolve merge conflicts.", tools: ["git mergetool", "VS Code"] },
-            { topic: "Remote Repositories", concepts: ["git push", "git pull", "git fetch", "Remote branches"], description: "Work with remote repositories like GitHub.", tools: ["GitHub", "GitLab CI"] },
-            { topic: "Stashing", concepts: ["git stash", "git stash apply", "Managing changes"], description: "Temporarily save changes without committing.", tools: ["git stash list", "stash pop"] },
-            { topic: "Rebasing", concepts: ["git rebase", "Interactive rebase"], description: "Rewrite commit history for cleaner workflows.", tools: ["git rebase -i", "Squash"] },
-            { topic: "Undoing Changes", concepts: ["git reset", "git revert", "git checkout"], description: "Undo or modify commits and changes.", tools: ["git reset --hard", "git revert"] },
-            { topic: "Gitignore", concepts: [".gitignore file", "Patterns", "Ignoring files"], description: "Exclude unnecessary files from version control.", tools: ["gitignore.io", ".gitignore templates"] }
+            { topic: "Branching & Merging", concepts: ["git merge", "Merge conflicts", "Resolving conflicts"], description: "Manage branches and resolve merge conflicts." },
+            { topic: "Remote Repositories", concepts: ["git push", "git pull", "git fetch", "Remote branches"], description: "Work with remote repositories like GitHub." },
+            { topic: "Stashing", concepts: ["git stash", "git stash apply", "Managing changes"], description: "Temporarily save changes without committing." },
+            { topic: "Rebasing", concepts: ["git rebase", "Interactive rebase"], description: "Rewrite commit history for cleaner workflows." },
+            { topic: "Undoing Changes", concepts: ["git reset", "git revert", "git checkout"], description: "Undo or modify commits and changes." },
+            { topic: "Gitignore", concepts: [".gitignore file", "Patterns", "Ignoring files"], description: "Exclude unnecessary files from version control." }
           ],
           advanced: [
-            { topic: "Advanced Branching", concepts: ["Gitflow", "Feature branches", "Hotfixes"], description: "Implement structured branching strategies.", tools: ["GitFlow", "GitHub Flow"] },
-            { topic: "Submodules", concepts: ["git submodule add", "Updating submodules"], description: "Manage nested repositories within a project.", tools: ["git submodule", "Nested repos"] },
-            { topic: "Cherry-picking", concepts: ["git cherry-pick", "Selective commits"], description: "Apply specific commits to different branches.", tools: ["git cherry-pick", "Commit hashes"] },
-            { topic: "Reflog", concepts: ["git reflog", "Recovering lost commits"], description: "Recover lost commits and understand repository history.", tools: ["git reflog", "git reset"] },
-            { topic: "Hooks", concepts: ["Pre-commit", "Post-merge", "Custom scripts"], description: "Automate tasks with Git hooks.", tools: ["husky", "pre-commit"] },
-            { topic: "Git Worktrees", concepts: ["git worktree", "Multiple working directories"], description: "Work on multiple branches simultaneously.", tools: ["git worktree add", "Isolated branches"] }
+            { topic: "Advanced Branching", concepts: ["Gitflow", "Feature branches", "Hotfixes"], description: "Implement structured branching strategies." },
+            { topic: "Submodules", concepts: ["git submodule add", "Updating submodules"], description: "Manage nested repositories within a project." },
+            { topic: "Cherry-picking", concepts: ["git cherry-pick", "Selective commits"], description: "Apply specific commits to different branches." },
+            { topic: "Reflog", concepts: ["git reflog", "Recovering lost commits"], description: "Recover lost commits and understand repository history." },
+            { topic: "Hooks", concepts: ["Pre-commit", "Post-merge", "Custom scripts"], description: "Automate tasks with Git hooks." },
+            { topic: "Git Worktrees", concepts: ["git worktree", "Multiple working directories"], description: "Work on multiple branches simultaneously." }
           ],
           expert: [
-            { topic: "Git Internals", concepts: ["Git objects", "Blobs", "Trees", "Commits"], description: "Understand Git's internal data structures.", tools: ["git cat-file", ".git directory"] },
-            { topic: "Advanced Rebasing", concepts: ["Interactive rebase with scripts", "Rewriting history"], description: "Perform complex history rewrites with confidence.", tools: ["git rebase -i", "exec"] },
-            { topic: "Git Server Setup", concepts: ["Bare repositories", "Hosting Git servers"], description: "Set up and manage your own Git server.", tools: ["GitLab", "Gitea"] },
-            { topic: "CI/CD Integration", concepts: ["GitHub Actions", "GitLab CI", "Triggers"], description: "Integrate Git with continuous integration pipelines.", tools: ["GitHub Actions", "Jenkins"] },
-            { topic: "Bisect", concepts: ["git bisect", "Debugging with binary search"], description: "Debug issues by finding problematic commits.", tools: ["git bisect start", "run"] }
+            { topic: "Git Internals", concepts: ["Git objects", "Blobs", "Trees", "Commits"], description: "Understand Git's internal data structures." },
+            { topic: "Advanced Rebasing", concepts: ["Interactive rebase with scripts", "Rewriting history"], description: "Perform complex history rewrites with confidence." },
+            { topic: "Git Server Setup", concepts: ["Bare repositories", "Hosting Git servers"], description: "Set up and manage your own Git server." },
+            { topic: "CI/CD Integration", concepts: ["GitHub Actions", "GitLab CI", "Triggers"], description: "Integrate Git with continuous integration pipelines." },
+            { topic: "Bisect", concepts: ["git bisect", "Debugging with binary search"], description: "Debug issues by finding problematic commits." }
           ]
-        }
+        },
+        tools: ["GitHub", "GitLab", "VS Code", "SourceTree", "Bitbucket"]
       },
       {
         title: "Linux Roadmap",
@@ -683,37 +693,38 @@
         panelImage: "https://img.icons8.com/?size=96&id=30945&format=png",
         levels: {
           beginner: [
-            { topic: "Linux Basics", concepts: ["What is Linux?", "Distributions", "Command line basics"], description: "Understand Linux and its ecosystem.", tools: ["Ubuntu", "Terminal"] },
-            { topic: "File System Navigation", concepts: ["ls", "cd", "pwd", "File hierarchy"], description: "Navigate the Linux file system using basic commands.", tools: ["ls -la", "tree"] },
-            { topic: "File Operations", concepts: ["cp", "mv", "rm", "mkdir", "touch"], description: "Perform basic file and directory operations.", tools: ["cp -r", "rm -rf"] },
-            { topic: "Text Viewing", concepts: ["cat", "less", "more", "head", "tail"], description: "View and manipulate text file contents.", tools: ["less", "tail -f"] },
-            { topic: "Permissions", concepts: ["chmod", "chown", "File permissions"], description: "Understand and manage file permissions.", tools: ["chmod 755", "chown user:group"] },
-            { topic: "Basic Commands", concepts: ["echo", "man", "whoami", "uptime"], description: "Learn essential utility commands.", tools: ["man pages", "help"] }
+            { topic: "Linux Basics", concepts: ["What is Linux?", "Distributions", "Command line basics"], description: "Understand Linux and its ecosystem." },
+            { topic: "File System Navigation", concepts: ["ls", "cd", "pwd", "File hierarchy"], description: "Navigate the Linux file system using basic commands." },
+            { topic: "File Operations", concepts: ["cp", "mv", "rm", "mkdir", "touch"], description: "Perform basic file and directory operations." },
+            { topic: "Text Viewing", concepts: ["cat", "less", "more", "head", "tail"], description: "View and manipulate text file contents." },
+            { topic: "Permissions", concepts: ["chmod", "chown", "File permissions"], description: "Understand and manage file permissions." },
+            { topic: "Basic Commands", concepts: ["echo", "man", "whoami", "uptime"], description: "Learn essential utility commands." }
           ],
           intermediate: [
-            { topic: "Text Processing", concepts: ["grep", "awk", "sed", "cut"], description: "Process and manipulate text data efficiently.", tools: ["grep -i", "awk '{print $1}'"] },
-            { topic: "Pipes & Redirection", concepts: ["|", ">", ">>", "<"], description: "Combine commands and redirect input/output.", tools: ["|", "tee"] },
-            { topic: "Package Management", concepts: ["apt", "yum", "dnf", "Installing software"], description: "Install and manage software packages.", tools: ["apt-get", "yum install"] },
-            { topic: "User Management", concepts: ["useradd", "usermod", "passwd", "sudo"], description: "Manage users and permissions.", tools: ["adduser", "visudo"] },
-            { topic: "Process Management", concepts: ["ps", "top", "kill", "nice"], description: "Monitor and control running processes.", tools: ["htop", "kill -9"] },
-            { topic: "Networking Basics", concepts: ["ping", "netstat", "ifconfig", "curl"], description: "Perform basic network diagnostics.", tools: ["curl", "ping google.com"] }
+            { topic: "Text Processing", concepts: ["grep", "awk", "sed", "cut"], description: "Process and manipulate text data efficiently." },
+            { topic: "Pipes & Redirection", concepts: ["|", ">", ">>", "<"], description: "Combine commands and redirect input/output." },
+            { topic: "Package Management", concepts: ["apt", "yum", "dnf", "Installing software"], description: "Install and manage software packages." },
+            { topic: "User Management", concepts: ["useradd", "usermod", "passwd", "sudo"], description: "Manage users and permissions." },
+            { topic: "Process Management", concepts: ["ps", "top", "kill", "nice"], description: "Monitor and control running processes." },
+            { topic: "Networking Basics", concepts: ["ping", "netstat", "ifconfig", "curl"], description: "Perform basic network diagnostics." }
           ],
           advanced: [
-            { topic: "Shell Scripting", concepts: ["Bash scripts", "Variables", "Loops", "Conditionals"], description: "Automate tasks with shell scripts.", tools: ["#!/bin/bash", "bash script.sh"] },
-            { topic: "System Monitoring", concepts: ["htop", "vmstat", "iostat", "dmesg"], description: "Monitor system performance and logs.", tools: ["top", "journalctl"] },
-            { topic: "Cron Jobs", concepts: ["crontab", "Scheduling tasks"], description: "Automate recurring tasks with cron.", tools: ["crontab -e", "systemd timers"] },
-            { topic: "Networking Advanced", concepts: ["ssh", "scp", "rsync", "nmap"], description: "Manage remote connections and file transfers.", tools: ["ssh user@host", "rsync -av"] },
-            { topic: "File Systems", concepts: ["mount", "umount", "LVM", "RAID"], description: "Manage disk partitions and file systems.", tools: ["fdisk", "mkfs"] },
-            { topic: "Security Basics", concepts: ["firewall-cmd", "ufw", "SELinux basics"], description: "Implement basic system security measures.", tools: ["ufw enable", "iptables"] }
+            { topic: "Shell Scripting", concepts: ["Bash scripts", "Variables", "Loops", "Conditionals"], description: "Automate tasks with shell scripts." },
+            { topic: "System Monitoring", concepts: ["htop", "vmstat", "iostat", "dmesg"], description: "Monitor system performance and logs." },
+            { topic: "Cron Jobs", concepts: ["crontab", "Scheduling tasks"], description: "Automate recurring tasks with cron." },
+            { topic: "Networking Advanced", concepts: ["ssh", "scp", "rsync", "nmap"], description: "Manage remote connections and file transfers." },
+            { topic: "File Systems", concepts: ["mount", "umount", "LVM", "RAID"], description: "Manage disk partitions and file systems." },
+            { topic: "Security Basics", concepts: ["firewall-cmd", "ufw", "SELinux basics"], description: "Implement basic system security measures." }
           ],
           expert: [
-            { topic: "Advanced Shell Scripting", concepts: ["Functions", "Error handling", "Script debugging"], description: "Write robust and complex shell scripts.", tools: ["set -e", "trap"] },
-            { topic: "System Administration", concepts: ["Systemd", "Service management", "Log rotation"], description: "Manage Linux services and system configurations.", tools: ["systemctl", "journalctl"] },
-            { topic: "Containerization", concepts: ["Docker", "Podman", "Container orchestration"], description: "Run and manage containers for applications.", tools: ["Docker", "Kubernetes"] },
-            { topic: "Kernel Basics", concepts: ["Kernel modules", "modprobe", "Kernel parameters"], description: "Understand and configure the Linux kernel.", tools: ["uname -r", "sysctl"] },
-            { topic: "Advanced Security", concepts: ["AppArmor", "Auditd", "Intrusion detection"], description: "Implement advanced security practices.", tools: ["fail2ban", "OSSEC"] }
+            { topic: "Advanced Shell Scripting", concepts: ["Functions", "Error handling", "Script debugging"], description: "Write robust and complex shell scripts." },
+            { topic: "System Administration", concepts: ["Systemd", "Service management", "Log rotation"], description: "Manage Linux services and system configurations." },
+            { topic: "Containerization", concepts: ["Docker", "Podman", "Container orchestration"], description: "Run and manage containers for applications." },
+            { topic: "Kernel Basics", concepts: ["Kernel modules", "modprobe", "Kernel parameters"], description: "Understand and configure the Linux kernel." },
+            { topic: "Advanced Security", concepts: ["AppArmor", "Auditd", "Intrusion detection"], description: "Implement advanced security practices." }
           ]
-        }
+        },
+        tools: ["Ubuntu", "VS Code", "Terminal", "Docker", "SSH"]
       },
       {
         title: "NoSQL Roadmap",
@@ -722,26 +733,27 @@
         panelImage: "https://img.icons8.com/?size=96&id=16772&format=png",
         levels: {
           beginner: [
-            { topic: "Introduction to NoSQL", concepts: ["SQL vs NoSQL", "CAP Theorem", "Use Cases"], description: "Understand when and why to use NoSQL over relational databases.", tools: ["MongoDB Atlas", "Redis CLI"] },
-            { topic: "Types of NoSQL", concepts: ["Document", "Key-Value", "Column-Family", "Graph"], description: "Explore the four main categories of NoSQL databases.", tools: ["MongoDB", "Redis", "Cassandra", "Neo4j"] },
-            { topic: "Basic CRUD Operations", concepts: ["Insert", "Query", "Update", "Delete"], description: "Perform basic operations in a NoSQL database.", tools: ["MongoDB Compass", "Redis Desktop Manager"] }
+            { topic: "Introduction to NoSQL", concepts: ["SQL vs NoSQL", "CAP Theorem", "Use Cases"], description: "Understand when and why to use NoSQL over relational databases." },
+            { topic: "Types of NoSQL", concepts: ["Document", "Key-Value", "Column-Family", "Graph"], description: "Explore the four main categories of NoSQL databases." },
+            { topic: "Basic CRUD Operations", concepts: ["Insert", "Query", "Update", "Delete"], description: "Perform basic operations in a NoSQL database." }
           ],
           intermediate: [
-            { topic: "Indexing & Query Optimization", concepts: ["Secondary Indexes", "TTL Indexes", "Explain Query Plan"], description: "Improve read performance with proper indexing.", tools: ["MongoDB Atlas Performance Advisor", "Cassandra SSTable Tools"] },
-            { topic: "Data Modeling", concepts: ["Embedding vs Referencing", "Denormalization", "Schema Design"], description: "Design efficient schemas tailored to access patterns.", tools: ["MongoDB Schema Designer", "Hackolade"] },
-            { topic: "Replication & Sharding", concepts: ["Master-Slave", "Leader-Follower", "Horizontal Scaling"], description: "Scale NoSQL databases across nodes and regions.", tools: ["MongoDB Replica Sets", "Cassandra Ring Architecture"] }
+            { topic: "Indexing & Query Optimization", concepts: ["Secondary Indexes", "TTL Indexes", "Explain Query Plan"], description: "Improve read performance with proper indexing." },
+            { topic: "Data Modeling", concepts: ["Embedding vs Referencing", "Denormalization", "Schema Design"], description: "Design efficient schemas tailored to access patterns." },
+            { topic: "Replication & Sharding", concepts: ["Master-Slave", "Leader-Follower", "Horizontal Scaling"], description: "Scale NoSQL databases across nodes and regions." }
           ],
           advanced: [
-            { topic: "Consistency & Transactions", concepts: ["Eventual Consistency", "Multi-Document ACID", "Read/Write Concerns"], description: "Manage trade-offs between consistency, availability, and performance.", tools: ["MongoDB Transactions", "Cassandra Lightweight Transactions"] },
-            { topic: "Aggregation Pipelines", concepts: ["$match", "$group", "$lookup", "$facet"], description: "Process and analyze data directly in the database.", tools: ["MongoDB Aggregation Pipeline", "ArangoDB AQL"] },
-            { topic: "Security & Access Control", concepts: ["Authentication", "Role-Based Access", "Encryption"], description: "Secure your NoSQL deployments in production.", tools: ["MongoDB Atlas RBAC", "Hashicorp Vault"] }
+            { topic: "Consistency & Transactions", concepts: ["Eventual Consistency", "Multi-Document ACID", "Read/Write Concerns"], description: "Manage trade-offs between consistency, availability, and performance." },
+            { topic: "Aggregation Pipelines", concepts: ["$match", "$group", "$lookup", "$facet"], description: "Process and analyze data directly in the database." },
+            { topic: "Security & Access Control", concepts: ["Authentication", "Role-Based Access", "Encryption"], description: "Secure your NoSQL deployments in production." }
           ],
           expert: [
-            { topic: "Cloud-Native NoSQL", concepts: ["Serverless Databases", "Auto-Scaling", "Global Distribution"], description: "Deploy and manage fully managed NoSQL services.", tools: ["AWS DynamoDB", "Google Cloud Firestore", "Azure Cosmos DB"] },
-            { topic: "Change Data Capture (CDC)", concepts: ["Oplog Tailing", "WAL Streaming", "Real-Time Sync"], description: "Capture and stream data changes for downstream systems.", tools: ["MongoDB Change Streams", "Debezium"] },
-            { topic: "Backup & Disaster Recovery", concepts: ["Point-in-Time Restore", "Cross-Region Replication"], description: "Ensure data durability and recoverability.", tools: ["MongoDB Cloud Manager", "AWS Backup"] }
+            { topic: "Cloud-Native NoSQL", concepts: ["Serverless Databases", "Auto-Scaling", "Global Distribution"], description: "Deploy and manage fully managed NoSQL services." },
+            { topic: "Change Data Capture (CDC)", concepts: ["Oplog Tailing", "WAL Streaming", "Real-Time Sync"], description: "Capture and stream data changes for downstream systems." },
+            { topic: "Backup & Disaster Recovery", concepts: ["Point-in-Time Restore", "Cross-Region Replication"], description: "Ensure data durability and recoverability." }
           ]
-        }
+        },
+        tools: ["MongoDB Atlas", "Redis", "Cassandra", "Neo4j", "DynamoDB"]
       },
       {
         title: "Apache Kafka Roadmap",
@@ -750,26 +762,27 @@
         panelImage: "https://cdn.simpleicons.org/apachekafka",
         levels: {
           beginner: [
-            { topic: "Kafka Basics", concepts: ["Producers", "Consumers", "Topics", "Brokers"], description: "Understand the core components of Kafka architecture.", tools: ["Kafka CLI", "Confluent Control Center"] },
-            { topic: "Setting Up Kafka", concepts: ["Local Setup", "ZooKeeper vs KRaft", "Single Node Cluster"], description: "Run Kafka locally for development and testing.", tools: ["Docker", "Confluent Platform", "kcat"] },
-            { topic: "Publish & Subscribe", concepts: ["Message Publishing", "Consumer Groups", "Offsets"], description: "Send and receive messages using Kafka’s pub/sub model.", tools: ["kafka-console-producer", "kafka-console-consumer"] }
+            { topic: "Kafka Basics", concepts: ["Producers", "Consumers", "Topics", "Brokers"], description: "Understand the core components of Kafka architecture." },
+            { topic: "Setting Up Kafka", concepts: ["Local Setup", "ZooKeeper vs KRaft", "Single Node Cluster"], description: "Run Kafka locally for development and testing." },
+            { topic: "Publish & Subscribe", concepts: ["Message Publishing", "Consumer Groups", "Offsets"], description: "Send and receive messages using Kafka’s pub/sub model." }
           ],
           intermediate: [
-            { topic: "Partitioning & Replication", concepts: ["Partition Keys", "ISR", "Replication Factor"], description: "Scale and replicate data across brokers for fault tolerance.", tools: ["kafka-topics CLI", "Confluent Cloud"] },
-            { topic: "Kafka Connect", concepts: ["Sources", "Sinks", "Connectors"], description: "Integrate Kafka with external systems like databases and cloud services.", tools: ["Debezium", "JDBC Connector", "S3 Sink Connector"] },
-            { topic: "Schema Management", concepts: ["Avro", "Schema Registry", "Compatibility Rules"], description: "Enforce data contracts using schemas.", tools: ["Confluent Schema Registry", "Apicurio"] }
+            { topic: "Partitioning & Replication", concepts: ["Partition Keys", "ISR", "Replication Factor"], description: "Scale and replicate data across brokers for fault tolerance." },
+            { topic: "Kafka Connect", concepts: ["Sources", "Sinks", "Connectors"], description: "Integrate Kafka with external systems like databases and cloud services." },
+            { topic: "Schema Management", concepts: ["Avro", "Schema Registry", "Compatibility Rules"], description: "Enforce data contracts using schemas." }
           ],
           advanced: [
-            { topic: "Kafka Streams", concepts: ["Stream Processing", "KTable", "Windowing", "Joins"], description: "Process data in real time using Kafka Streams API.", tools: ["Kafka Streams Java API", "ksqlDB"] },
-            { topic: "Security", concepts: ["SSL/TLS", "SASL Authentication", "ACLs"], description: "Secure communication and access in Kafka clusters.", tools: ["Confluent Security", "Vault"] },
-            { topic: "Monitoring & Observability", concepts: ["Metrics", "Prometheus", "Grafana"], description: "Monitor cluster health and performance.", tools: ["Prometheus", "Grafana", "Confluent Control Center"] }
+            { topic: "Kafka Streams", concepts: ["Stream Processing", "KTable", "Windowing", "Joins"], description: "Process data in real time using Kafka Streams API." },
+            { topic: "Security", concepts: ["SSL/TLS", "SASL Authentication", "ACLs"], description: "Secure communication and access in Kafka clusters." },
+            { topic: "Monitoring & Observability", concepts: ["Metrics", "Prometheus", "Grafana"], description: "Monitor cluster health and performance." }
           ],
           expert: [
-            { topic: "Event-Driven Architecture", concepts: ["CQRS", "Event Sourcing", "Saga Pattern"], description: "Design scalable, decoupled systems using events.", tools: ["Axon Framework", "EventStoreDB"] },
-            { topic: "Multi-Cluster & Federation", concepts: ["Mirrormaker", "Cluster Linking", "Hybrid Cloud"], description: "Connect and manage multiple Kafka clusters.", tools: ["Confluent Cluster Linking", "MirrorMaker 2"] },
-            { topic: "Kubernetes Integration", concepts: ["Strimzi", "Helm Charts", "Operator Pattern"], description: "Run Kafka on Kubernetes at scale.", tools: ["Strimzi", "Kubernetes Operators"] }
+            { topic: "Event-Driven Architecture", concepts: ["CQRS", "Event Sourcing", "Saga Pattern"], description: "Design scalable, decoupled systems using events." },
+            { topic: "Multi-Cluster & Federation", concepts: ["Mirrormaker", "Cluster Linking", "Hybrid Cloud"], description: "Connect and manage multiple Kafka clusters." },
+            { topic: "Kubernetes Integration", concepts: ["Strimzi", "Helm Charts", "Operator Pattern"], description: "Run Kafka on Kubernetes at scale." }
           ]
-        }
+        },
+        tools: ["Confluent Platform", "Kafka CLI", "Kafka Connect", "Kafka Streams", "Prometheus"]
       },
       {
         title: "Apache Spark Roadmap",
@@ -778,26 +791,27 @@
         panelImage: "https://cdn.simpleicons.org/apachespark",
         levels: {
           beginner: [
-            { topic: "Spark Basics", concepts: ["RDD", "Spark Context", "Transformations vs Actions"], description: "Understand the core abstractions of Spark.", tools: ["Spark Shell", "Jupyter Notebook"] },
-            { topic: "Spark SQL", concepts: ["DataFrames", "Datasets", "Catalyst Optimizer"], description: "Query structured data using SQL-like syntax.", tools: ["Spark SQL CLI", "Databricks Notebook"] },
-            { topic: "Running Spark", concepts: ["Local Mode", "Standalone Cluster", "Spark Submit"], description: "Run Spark jobs locally and in clusters.", tools: ["Databricks Community Edition", "Spark UI"] }
+            { topic: "Spark Basics", concepts: ["RDD", "Spark Context", "Transformations vs Actions"], description: "Understand the core abstractions of Spark." },
+            { topic: "Spark SQL", concepts: ["DataFrames", "Datasets", "Catalyst Optimizer"], description: "Query structured data using SQL-like syntax." },
+            { topic: "Running Spark", concepts: ["Local Mode", "Standalone Cluster", "Spark Submit"], description: "Run Spark jobs locally and in clusters." }
           ],
           intermediate: [
-            { topic: "Data Sources", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write various file formats efficiently.", tools: ["Delta Lake", "AWS S3", "HDFS"] },
-            { topic: "Performance Tuning", concepts: ["Caching", "Broadcast Joins", "Partitioning"], description: "Optimize Spark job performance.", tools: ["Spark UI", "Databricks Jobs"] },
-            { topic: "Structured Streaming", concepts: ["Micro-batching", "Watermarking", "Event Time"], description: "Process real-time data streams with Spark.", tools: ["Kafka Source", "Console Sink"] }
+            { topic: "Data Sources", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write various file formats efficiently." },
+            { topic: "Performance Tuning", concepts: ["Caching", "Broadcast Joins", "Partitioning"], description: "Optimize Spark job performance." },
+            { topic: "Structured Streaming", concepts: ["Micro-batching", "Watermarking", "Event Time"], description: "Process real-time data streams with Spark." }
           ],
           advanced: [
-            { topic: "Spark MLlib", concepts: ["Classification", "Clustering", "Pipelines"], description: "Build machine learning models at scale.", tools: ["MLflow", "Databricks AutoML"] },
-            { topic: "Custom UDFs", concepts: ["Python UDFs", "Scala UDFs", "Vectorized UDFs"], description: "Extend Spark with custom functions.", tools: ["PySpark", "Scala"] },
-            { topic: "Cluster Managers", concepts: ["YARN", "Kubernetes", "Mesos"], description: "Deploy Spark on different cluster environments.", tools: ["Databricks", "Amazon EMR", "Google Dataproc"] }
+            { topic: "Spark MLlib", concepts: ["Classification", "Clustering", "Pipelines"], description: "Build machine learning models at scale." },
+            { topic: "Custom UDFs", concepts: ["Python UDFs", "Scala UDFs", "Vectorized UDFs"], description: "Extend Spark with custom functions." },
+            { topic: "Cluster Managers", concepts: ["YARN", "Kubernetes", "Mesos"], description: "Deploy Spark on different cluster environments." }
           ],
           expert: [
-            { topic: "Delta Lake", concepts: ["ACID Transactions", "Time Travel", "Schema Enforcement"], description: "Build reliable data lakes with Delta Lake.", tools: ["Databricks", "Delta Lake OSS"] },
-            { topic: "Spark Internals", concepts: ["DAG Scheduler", "Task Scheduler", "Shuffle Service"], description: "Understand how Spark executes jobs under the hood.", tools: ["Spark History Server", "Metrics System"] },
-            { topic: "CI/CD for Spark", concepts: ["Testing", "Job Orchestration", "Infrastructure as Code"], description: "Automate deployment and testing of Spark applications.", tools: ["GitHub Actions", "Airflow", "Terraform"] }
+            { topic: "Delta Lake", concepts: ["ACID Transactions", "Time Travel", "Schema Enforcement"], description: "Build reliable data lakes with Delta Lake." },
+            { topic: "Spark Internals", concepts: ["DAG Scheduler", "Task Scheduler", "Shuffle Service"], description: "Understand how Spark executes jobs under the hood." },
+            { topic: "CI/CD for Spark", concepts: ["Testing", "Job Orchestration", "Infrastructure as Code"], description: "Automate deployment and testing of Spark applications." }
           ]
-        }
+        },
+        tools: ["Databricks", "Spark UI", "Delta Lake", "Zeppelin", "Jupyter Notebook"]
       },
       {
         title: "Apache Flink Roadmap",
@@ -806,26 +820,27 @@
         panelImage: "https://cdn.simpleicons.org/apacheFlink",
         levels: {
           beginner: [
-            { topic: "Flink Basics", concepts: ["DataStream API", "Execution Environment", "Sources & Sinks"], description: "Get started with Flink’s core stream processing model.", tools: ["Flink CLI", "IntelliJ IDEA"] },
-            { topic: "Event Time & Watermarks", concepts: ["Event Time vs Processing Time", "Watermark Generation"], description: "Handle out-of-order events in streaming pipelines.", tools: ["Kafka Source", "Timestamp Assigners"] },
-            { topic: "State Management", concepts: ["Keyed State", "Operator State", "Checkpointing"], description: "Maintain state reliably in fault-tolerant applications.", tools: ["RocksDB", "FSStateBackend"] }
+            { topic: "Flink Basics", concepts: ["DataStream API", "Execution Environment", "Sources & Sinks"], description: "Get started with Flink’s core stream processing model." },
+            { topic: "Event Time & Watermarks", concepts: ["Event Time vs Processing Time", "Watermark Generation"], description: "Handle out-of-order events in streaming pipelines." },
+            { topic: "State Management", concepts: ["Keyed State", "Operator State", "Checkpointing"], description: "Maintain state reliably in fault-tolerant applications." }
           ],
           intermediate: [
-            { topic: "Windowing", concepts: ["Tumbling", "Sliding", "Session Windows"], description: "Aggregate data over time intervals.", tools: ["TimeWindow", "CountWindow"] },
-            { topic: "Fault Tolerance", concepts: ["Checkpointing", "Savepoints", "Exactly-Once Semantics"], description: "Ensure data consistency and recovery.", tools: ["ZooKeeper", "HDFS"] },
-            { topic: "Flink SQL", concepts: ["Table API", "SQL Queries", "Catalogs"], description: "Write stream processing logic using SQL.", tools: ["Flink SQL CLI", "Apache Hive Catalog"] }
+            { topic: "Windowing", concepts: ["Tumbling", "Sliding", "Session Windows"], description: "Aggregate data over time intervals." },
+            { topic: "Fault Tolerance", concepts: ["Checkpointing", "Savepoints", "Exactly-Once Semantics"], description: "Ensure data consistency and recovery." },
+            { topic: "Flink SQL", concepts: ["Table API", "SQL Queries", "Catalogs"], description: "Write stream processing logic using SQL." }
           ],
           advanced: [
-            { topic: "CEP (Complex Event Processing)", concepts: ["Patterns", "Pattern Streams", "Temporal Conditions"], description: "Detect complex patterns in event streams.", tools: ["Flink CEP Library"] },
-            { topic: "Async I/O", concepts: ["Async Function", "Callback Handling"], description: "Call external services without blocking the pipeline.", tools: ["Redis", "Elasticsearch"] },
-            { topic: "Scaling & Performance", concepts: ["Parallelism", "Backpressure", "Network Buffers"], description: "Optimize Flink jobs for high throughput.", tools: ["Flink Web UI", "Prometheus"] }
+            { topic: "CEP (Complex Event Processing)", concepts: ["Patterns", "Pattern Streams", "Temporal Conditions"], description: "Detect complex patterns in event streams." },
+            { topic: "Async I/O", concepts: ["Async Function", "Callback Handling"], description: "Call external services without blocking the pipeline." },
+            { topic: "Scaling & Performance", concepts: ["Parallelism", "Backpressure", "Network Buffers"], description: "Optimize Flink jobs for high throughput." }
           ],
           expert: [
-            { topic: "Kubernetes Deployment", concepts: ["Flink on K8s", "Session vs Application Mode"], description: "Run Flink clusters on Kubernetes.", tools: ["Flink Kubernetes Operator", "Helm"] },
-            { topic: "Custom Connectors", concepts: ["SourceFunction", "SinkFunction", "Serialization"], description: "Build connectors for proprietary systems.", tools: ["Java/Scala", "Avro"] },
-            { topic: "Integration with Kafka & Kafka Streams", concepts: ["Kafka Consumer", "Transactional Sinks"], description: "Build end-to-end streaming pipelines.", tools: ["Confluent Platform", "Debezium"] }
+            { topic: "Kubernetes Deployment", concepts: ["Flink on K8s", "Session vs Application Mode"], description: "Run Flink clusters on Kubernetes." },
+            { topic: "Custom Connectors", concepts: ["SourceFunction", "SinkFunction", "Serialization"], description: "Build connectors for proprietary systems." },
+            { topic: "Integration with Kafka & Kafka Streams", concepts: ["Kafka Consumer", "Transactional Sinks"], description: "Build end-to-end streaming pipelines." }
           ]
-        }
+        },
+        tools: ["Flink Web UI", "IntelliJ IDEA", "Kafka", "Prometheus", "RocksDB"]
       },
       {
         title: "Apache Airflow Roadmap",
@@ -834,26 +849,27 @@
         panelImage: "https://cdn.simpleicons.org/apacheairflow",
         levels: {
           beginner: [
-            { topic: "Airflow Basics", concepts: ["DAGs", "Operators", "Tasks", "Scheduler"], description: "Understand the core components of Airflow.", tools: ["Airflow CLI", "Web UI"] },
-            { topic: "Writing DAGs", concepts: ["Python DAG Definition", "Dependencies", "Scheduling"], description: "Create workflows using Python code.", tools: ["VS Code", "Astro CLI"] },
-            { topic: "Core Operators", concepts: ["BashOperator", "PythonOperator", "EmailOperator"], description: "Execute common task types.", tools: ["LocalExecutor", "SequentialExecutor"] }
+            { topic: "Airflow Basics", concepts: ["DAGs", "Operators", "Tasks", "Scheduler"], description: "Understand the core components of Airflow." },
+            { topic: "Writing DAGs", concepts: ["Python DAG Definition", "Dependencies", "Scheduling"], description: "Create workflows using Python code." },
+            { topic: "Core Operators", concepts: ["BashOperator", "PythonOperator", "EmailOperator"], description: "Execute common task types." }
           ],
           intermediate: [
-            { topic: "Hooks & Connections", concepts: ["Database Hooks", "API Hooks", "Secrets Backend"], description: "Connect Airflow to external systems securely.", tools: ["PostgresHook", "HttpHook", "Hashicorp Vault"] },
-            { topic: "XComs & Task Communication", concepts: ["Push/Pop Data", "Limitations", "Best Practices"], description: "Share data between tasks.", tools: ["XComs", "Pandas"] },
-            { topic: "Triggers & Sensors", concepts: ["FileSensor", "HttpSensor", "ExternalTaskSensor"], description: "Wait for external conditions before proceeding.", tools: ["Local File System", "S3"] }
+            { topic: "Hooks & Connections", concepts: ["Database Hooks", "API Hooks", "Secrets Backend"], description: "Connect Airflow to external systems securely." },
+            { topic: "XComs & Task Communication", concepts: ["Push/Pop Data", "Limitations", "Best Practices"], description: "Share data between tasks." },
+            { topic: "Triggers & Sensors", concepts: ["FileSensor", "HttpSensor", "ExternalTaskSensor"], description: "Wait for external conditions before proceeding." }
           ],
           advanced: [
-            { topic: "Deployment & Executors", concepts: ["CeleryExecutor", "KubernetesExecutor", "Scaling"], description: "Run Airflow in production environments.", tools: ["Docker", "Kubernetes", "RabbitMQ"] },
-            { topic: "Monitoring & Logging", concepts: ["Task Logs", "Metrics", "Alerting"], description: "Track pipeline health and failures.", tools: ["Grafana", "Prometheus", "Slack Webhook"] },
-            { topic: "Dynamic DAGs", concepts: ["Parametrized DAGs", "DAG Factories"], description: "Generate DAGs programmatically.", tools: ["Jinja Templating", "Configuration Files"] }
+            { topic: "Deployment & Executors", concepts: ["CeleryExecutor", "KubernetesExecutor", "Scaling"], description: "Run Airflow in production environments." },
+            { topic: "Monitoring & Logging", concepts: ["Task Logs", "Metrics", "Alerting"], description: "Track pipeline health and failures." },
+            { topic: "Dynamic DAGs", concepts: ["Parametrized DAGs", "DAG Factories"], description: "Generate DAGs programmatically." }
           ],
           expert: [
-            { topic: "CI/CD for DAGs", concepts: ["Testing", "Linting", "Automated Deployment"], description: "Apply DevOps practices to data pipelines.", tools: ["GitHub Actions", "ArgoCD", "Terraform"] },
-            { topic: "Airflow REST API", concepts: ["Trigger DAGs", "Check Status", "List DAGs"], description: "Integrate Airflow with external tools.", tools: ["curl", "Python requests"] },
-            { topic: "Custom Operators & Plugins", concepts: ["Extending Airflow", "Plugin System"], description: "Build reusable components for your organization.", tools: ["Python", "Airflow Plugins"] }
+            { topic: "CI/CD for DAGs", concepts: ["Testing", "Linting", "Automated Deployment"], description: "Apply DevOps practices to data pipelines." },
+            { topic: "Airflow REST API", concepts: ["Trigger DAGs", "Check Status", "List DAGs"], description: "Integrate Airflow with external tools." },
+            { topic: "Custom Operators & Plugins", concepts: ["Extending Airflow", "Plugin System"], description: "Build reusable components for your organization." }
           ]
-        }
+        },
+        tools: ["Airflow Web UI", "VS Code", "Docker", "Kubernetes", "GitHub Actions"]
       },
       {
         title: "Elasticsearch Roadmap",
@@ -862,26 +878,27 @@
         panelImage: "https://cdn.simpleicons.org/elasticsearch",
         levels: {
           beginner: [
-            { topic: "Elasticsearch Basics", concepts: ["Index", "Document", "Shard", "Node"], description: "Understand the fundamental concepts of Elasticsearch.", tools: ["Kibana Dev Tools", "cURL"] },
-            { topic: "CRUD Operations", concepts: ["Indexing", "Searching", "Updating", "Deleting"], description: "Manage documents in an index.", tools: ["Kibana", "Postman"] },
-            { topic: "REST API", concepts: ["HTTP Methods", "JSON Requests", "Status Codes"], description: "Interact with Elasticsearch using its RESTful API.", tools: ["curl", "Insomnia"] }
+            { topic: "Elasticsearch Basics", concepts: ["Index", "Document", "Shard", "Node"], description: "Understand the fundamental concepts of Elasticsearch." },
+            { topic: "CRUD Operations", concepts: ["Indexing", "Searching", "Updating", "Deleting"], description: "Manage documents in an index." },
+            { topic: "REST API", concepts: ["HTTP Methods", "JSON Requests", "Status Codes"], description: "Interact with Elasticsearch using its RESTful API." }
           ],
           intermediate: [
-            { topic: "Query DSL", concepts: ["Match Query", "Bool Query", "Range Query", "Term Query"], description: "Write complex search queries using Query DSL.", tools: ["Kibana Query Bar", "Dev Tools Console"] },
-            { topic: "Aggregations", concepts: ["Metrics", "Bucket", "Pipeline Aggregations"], description: "Analyze data using aggregations.", tools: ["Kibana Visualize", "Lens"] },
-            { topic: "Mapping & Data Types", concepts: ["Text vs Keyword", "Date", "Nested Objects"], description: "Define how data is indexed and stored.", tools: ["Kibana Index Management", "Mapping API"] }
+            { topic: "Query DSL", concepts: ["Match Query", "Bool Query", "Range Query", "Term Query"], description: "Write complex search queries using Query DSL." },
+            { topic: "Aggregations", concepts: ["Metrics", "Bucket", "Pipeline Aggregations"], description: "Analyze data using aggregations." },
+            { topic: "Mapping & Data Types", concepts: ["Text vs Keyword", "Date", "Nested Objects"], description: "Define how data is indexed and stored." }
           ],
           advanced: [
-            { topic: "Performance Tuning", concepts: ["Refresh Interval", "Replicas", "Bulk API"], description: "Optimize indexing and search performance.", tools: ["Elasticsearch Monitoring", "JVM Tuning"] },
-            { topic: "Security", concepts: ["Authentication", "Authorization", "TLS Encryption"], description: "Secure your cluster and data.", tools: ["Elastic Security", "LDAP", "SSO"] },
-            { topic: "Index Lifecycle Management (ILM)", concepts: ["Hot-Warm-Cold Architecture", "Rolling Indices", "Rollover"], description: "Automate index management based on age and usage.", tools: ["Kibana ILM", "Curator"] }
+            { topic: "Performance Tuning", concepts: ["Refresh Interval", "Replicas", "Bulk API"], description: "Optimize indexing and search performance." },
+            { topic: "Security", concepts: ["Authentication", "Authorization", "TLS Encryption"], description: "Secure your cluster and data." },
+            { topic: "Index Lifecycle Management (ILM)", concepts: ["Hot-Warm-Cold Architecture", "Rolling Indices", "Rollover"], description: "Automate index management based on age and usage." }
           ],
           expert: [
-            { topic: "Elastic Stack Integration", concepts: ["Beats", "Logstash", "APM"], description: "Build end-to-end observability pipelines.", tools: ["Filebeat", "Metricbeat", "Logstash"] },
-            { topic: "Search Relevance Tuning", concepts: ["Scoring", "Boosting", "Synonyms", "Analyzers"], description: "Improve search accuracy and relevance.", tools: ["Kibana Relevance Tuning", "Custom Analyzers"] },
-            { topic: "Scaling & High Availability", concepts: ["Cluster Design", "Shard Allocation", "Cross-Cluster Search"], description: "Deploy Elasticsearch at scale with fault tolerance.", tools: ["Elastic Cloud", "AWS Elasticsearch Service"] }
+            { topic: "Elastic Stack Integration", concepts: ["Beats", "Logstash", "APM"], description: "Build end-to-end observability pipelines." },
+            { topic: "Search Relevance Tuning", concepts: ["Scoring", "Boosting", "Synonyms", "Analyzers"], description: "Improve search accuracy and relevance." },
+            { topic: "Scaling & High Availability", concepts: ["Cluster Design", "Shard Allocation", "Cross-Cluster Search"], description: "Deploy Elasticsearch at scale with fault tolerance." }
           ]
-        }
+        },
+        tools: ["Kibana", "Dev Tools", "Logstash", "Filebeat", "Cerebro"]
       }
     ];
 
@@ -947,14 +964,18 @@
                 <td>${startNum + i}</td>
                 <td class="topic-cell">${level.topic}</td>
                 <td>${level.concepts.join(', ')}</td>
-                <td>
-                  ${level.description}
-                  ${level.tools ? `<div class="tool-row"><strong>Best Tools:</strong> ${level.tools.join(', ')}</div>` : ''}
-                </td>
+                <td>${level.description}</td>
               </tr>
             `).join('')}
           `;
           container.appendChild(table);
+        }
+        // Add Top 5 Tools
+        if (item.tools && container.parentElement) {
+          const toolsDiv = document.createElement('div');
+          toolsDiv.className = 'tools-list';
+          toolsDiv.innerHTML = `<strong>Top 5 Tools:</strong> ${item.tools.slice(0, 5).join(', ')}`;
+          container.parentElement.appendChild(toolsDiv);
         }
       };
 
@@ -963,7 +984,9 @@
       renderSection(item.levels.advanced, advancedContent, 17);
 
       expertContent.style.display = item.levels.expert ? 'block' : 'none';
-      renderSection(item.levels.expert, expertContent.querySelector('.modal-section-content'), 25);
+      if (item.levels.expert) {
+        renderSection(item.levels.expert, expertContent.querySelector('.modal-section-content'), 25);
+      }
 
       modalPanel.classList.add('open');
       overlay.classList.add('visible');
