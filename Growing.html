@@ -95,51 +95,6 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    .search-container {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-    }
-    .search-input {
-      width: 100%;
-      padding: 12px 40px 12px 20px;
-      border-radius: 30px;
-      border: 1px solid var(--primary);
-      background-color: #2a2a2a;
-      color: var(--text-light);
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    .search-input:focus {
-      outline: none;
-      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-      animation: pulseInput 1.5s infinite;
-    }
-    @keyframes pulseInput {
-      0% { box-shadow: 0 0 10px rgba(0, 170, 255, 0.5); }
-      50% { box-shadow: 0 0 15px rgba(0, 170, 255, 0.8); }
-      100% { box-shadow: 0 0 10px rgba(0, 170, 255, 0.5); }
-    }
-    body.light-mode .search-input {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      color: var(--text-dark);
-    }
-    .search-icon {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary);
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
-    .search-icon:hover {
-      transform: translateY(-50%) scale(1.2);
-    }
     .theme-toggle {
       position: fixed;
       top: 20px;
@@ -427,6 +382,16 @@
     body.light-mode .modal-section-content {
       color: var(--text-secondary-light);
     }
+    .tool-row {
+      font-size: 0.9rem;
+      color: #66c2ff;
+      margin-top: 4px;
+      padding: 4px 0;
+      border-top: 1px dashed #444;
+    }
+    .tool-row strong {
+      color: var(--primary);
+    }
     @media (max-width: 768px) {
       .card {
         width: 100%;
@@ -445,9 +410,6 @@
       }
       .modal-section {
         padding: 0 8px;
-      }
-      .search-container {
-        max-width: 100%;
       }
     }
     ::-webkit-scrollbar {
@@ -472,10 +434,6 @@
   <div class="header-container">
     <h1>Data Career Skill Roadmaps</h1>
     <p class="subtitle">Explore structured learning paths for SQL, Power BI, Python, Excel, Git, Linux, NoSQL, Kafka, Spark, Flink, Airflow, and Elasticsearch.</p>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" id="searchInput" placeholder="Search roadmaps..." aria-label="Search roadmaps">
-    <span class="search-icon">🔍</span>
   </div>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
   <div class="card-container" id="cardContainer" tabindex="0"></div>
@@ -505,8 +463,8 @@
       {
         title: "SQL Roadmap",
         description: "A structured path to master SQL from basics to advanced techniques for data management and analysis.",
-        image: "https://img.icons8.com/color/96/000000/database.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/database.png",
+        image: "https://img.icons8.com/?size=96&id=16772&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=16772&format=png",
         levels: {
           beginner: [
             { topic: "Introduction", concepts: ["What is SQL?", "RDBMS vs DBMS", "Tables, Rows, Columns"], description: "Learn the fundamentals of SQL and relational databases.", tools: ["MySQL Workbench", "pgAdmin", "SQLite Browser"] },
@@ -548,8 +506,8 @@
       {
         title: "Power BI Roadmap",
         description: "A comprehensive guide to mastering Power BI for data visualization and business intelligence.",
-        image: "https://img.icons8.com/color/96/000000/dashboard.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/dashboard.png",
+        image: "https://img.icons8.com/?size=96&id=59885&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=59885&format=png",
         levels: {
           beginner: [
             { topic: "Power BI Overview", concepts: ["What is Power BI", "Components", "Use Cases"], description: "Understand what Power BI is and where it fits in business intelligence.", tools: ["Power BI Desktop", "Power BI Service"] },
@@ -594,8 +552,8 @@
       {
         title: "Python Roadmap",
         description: "A complete roadmap to master Python programming for data science, web development, and more.",
-        image: "https://img.icons8.com/color/96/000000/python.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/python.png",
+        image: "https://img.icons8.com/?size=96&id=30596&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=30596&format=png",
         levels: {
           beginner: [
             { topic: "Python Basics", concepts: ["Installation", "REPL", "Variables", "print()", "Comments"], description: "Set up Python, write first programs, and understand the development flow.", tools: ["Python.org", "IDLE", "Thonny"] },
@@ -640,8 +598,8 @@
       {
         title: "Excel Roadmap",
         description: "A comprehensive guide to mastering Excel for data analysis, reporting, and automation.",
-        image: "https://img.icons8.com/color/96/000000/microsoft-excel-2019.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/microsoft-excel-2019.png",
+        image: "https://img.icons8.com/?size=96&id=51218&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=51218&format=png",
         levels: {
           beginner: [
             { topic: "Excel Basics", concepts: ["Interface", "Workbooks", "Worksheets", "Cells", "Ribbons"], description: "Understand the Excel interface and basic navigation.", tools: ["Excel Desktop", "Online"] },
@@ -682,8 +640,8 @@
       {
         title: "Git Roadmap",
         description: "A guide to mastering Git for version control and collaborative software development.",
-        image: "https://img.icons8.com/color/96/000000/git.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/git.png",
+        image: "https://img.icons8.com/?size=96&id=108283&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=108283&format=png",
         levels: {
           beginner: [
             { topic: "Git Basics", concepts: ["What is Git?", "Version control", "Repositories"], description: "Understand Git and its role in version control.", tools: ["Git", "GitHub", "GitLab"] },
@@ -721,8 +679,8 @@
       {
         title: "Linux Roadmap",
         description: "A roadmap to mastering Linux for system administration, development, and data workflows.",
-        image: "https://img.icons8.com/color/96/000000/linux.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/linux.png",
+        image: "https://img.icons8.com/?size=96&id=30945&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=30945&format=png",
         levels: {
           beginner: [
             { topic: "Linux Basics", concepts: ["What is Linux?", "Distributions", "Command line basics"], description: "Understand Linux and its ecosystem.", tools: ["Ubuntu", "Terminal"] },
@@ -760,8 +718,8 @@
       {
         title: "NoSQL Roadmap",
         description: "Master NoSQL databases for scalable, flexible data storage across document, key-value, columnar, and graph models.",
-        image: "https://img.icons8.com/color/96/000000/database.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/database.png",
+        image: "https://img.icons8.com/?size=96&id=16772&format=png",
+        panelImage: "https://img.icons8.com/?size=96&id=16772&format=png",
         levels: {
           beginner: [
             { topic: "Introduction to NoSQL", concepts: ["SQL vs NoSQL", "CAP Theorem", "Use Cases"], description: "Understand when and why to use NoSQL over relational databases.", tools: ["MongoDB Atlas", "Redis CLI"] },
@@ -788,8 +746,8 @@
       {
         title: "Apache Kafka Roadmap",
         description: "Learn Apache Kafka for building real-time data pipelines and event-driven architectures.",
-        image: "https://img.icons8.com/color/96/000000/kafka.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/kafka.png",
+        image: "https://cdn.simpleicons.org/apachekafka",
+        panelImage: "https://cdn.simpleicons.org/apachekafka",
         levels: {
           beginner: [
             { topic: "Kafka Basics", concepts: ["Producers", "Consumers", "Topics", "Brokers"], description: "Understand the core components of Kafka architecture.", tools: ["Kafka CLI", "Confluent Control Center"] },
@@ -816,8 +774,8 @@
       {
         title: "Apache Spark Roadmap",
         description: "Master Apache Spark for large-scale data processing using SQL, streaming, and machine learning.",
-        image: "https://img.icons8.com/color/96/000000/apache-spark.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/apache-spark.png",
+        image: "https://cdn.simpleicons.org/apachespark",
+        panelImage: "https://cdn.simpleicons.org/apachespark",
         levels: {
           beginner: [
             { topic: "Spark Basics", concepts: ["RDD", "Spark Context", "Transformations vs Actions"], description: "Understand the core abstractions of Spark.", tools: ["Spark Shell", "Jupyter Notebook"] },
@@ -844,8 +802,8 @@
       {
         title: "Apache Flink Roadmap",
         description: "Learn Apache Flink for high-throughput, low-latency stream processing and real-time analytics.",
-        image: "https://img.icons8.com/color/96/000000/apache-flink.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/apache-flink.png",
+        image: "https://cdn.simpleicons.org/apacheFlink",
+        panelImage: "https://cdn.simpleicons.org/apacheFlink",
         levels: {
           beginner: [
             { topic: "Flink Basics", concepts: ["DataStream API", "Execution Environment", "Sources & Sinks"], description: "Get started with Flink’s core stream processing model.", tools: ["Flink CLI", "IntelliJ IDEA"] },
@@ -872,8 +830,8 @@
       {
         title: "Apache Airflow Roadmap",
         description: "Master Apache Airflow for orchestrating complex data workflows and ETL pipelines.",
-        image: "https://img.icons8.com/color/96/000000/apache-airflow.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/apache-airflow.png",
+        image: "https://cdn.simpleicons.org/apacheairflow",
+        panelImage: "https://cdn.simpleicons.org/apacheairflow",
         levels: {
           beginner: [
             { topic: "Airflow Basics", concepts: ["DAGs", "Operators", "Tasks", "Scheduler"], description: "Understand the core components of Airflow.", tools: ["Airflow CLI", "Web UI"] },
@@ -900,8 +858,8 @@
       {
         title: "Elasticsearch Roadmap",
         description: "Master Elasticsearch for full-text search, log analysis, and real-time data exploration.",
-        image: "https://img.icons8.com/color/96/000000/elasticsearch.png",
-        panelImage: "https://img.icons8.com/fluency/96/000000/elasticsearch.png",
+        image: "https://cdn.simpleicons.org/elasticsearch",
+        panelImage: "https://cdn.simpleicons.org/elasticsearch",
         levels: {
           beginner: [
             { topic: "Elasticsearch Basics", concepts: ["Index", "Document", "Shard", "Node"], description: "Understand the fundamental concepts of Elasticsearch.", tools: ["Kibana Dev Tools", "cURL"] },
@@ -926,6 +884,7 @@
         }
       }
     ];
+
     let currentPanelIndex = -1;
     const cardContainer = document.getElementById('cardContainer');
     const modalPanel = document.getElementById('modalPanel');
@@ -936,15 +895,11 @@
     const intermediateContent = document.getElementById('intermediateContent');
     const advancedContent = document.getElementById('advancedContent');
     const expertContent = document.getElementById('expertSection');
-    const searchInput = document.getElementById('searchInput');
     const themeToggle = document.getElementById('themeToggle');
-    function populateCards(filter = '') {
+
+    function populateCards() {
       cardContainer.innerHTML = '';
-      const filteredRoadmaps = roadmaps.filter(item =>
-        item.title.toLowerCase().includes(filter.toLowerCase()) ||
-        item.description.toLowerCase().includes(filter.toLowerCase())
-      );
-      filteredRoadmaps.forEach((item, idx) => {
+      roadmaps.forEach((item, idx) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.tabIndex = 0;
@@ -953,7 +908,8 @@
         card.setAttribute('aria-label', `View details about ${item.title}`);
         card.innerHTML = `
           <div class="card-content">
-            <img src="${item.image}" alt="${item.title} icon" class="role-icon-img" onerror="this.src='https://via.placeholder.com/36?text=Image+Not+Found'; this.alt='Image Not Found';" />
+            <img src="${item.image}" alt="${item.title} icon" class="role-icon-img" 
+                 onerror="this.onerror=null;this.src='https://via.placeholder.com/36?text='+encodeURIComponent('${item.title}');this.alt='Image Not Found';" />
             <div>
               <h3>${item.title}</h3>
               <p>${item.description}</p>
@@ -970,99 +926,62 @@
         cardContainer.appendChild(card);
       });
     }
+
     function openPanel(index) {
       currentPanelIndex = index;
       const item = roadmaps[index];
       panelTitle.innerHTML = `
-        <img src="${item.panelImage}" alt="${item.title}" class="role-header-img" onerror="this.src='https://via.placeholder.com/48?text=Image+Not+Found'; this.alt='Image Not Found';" />
+        <img src="${item.panelImage}" alt="${item.title}" class="role-header-img" 
+             onerror="this.onerror=null;this.src='https://via.placeholder.com/48?text='+encodeURIComponent('${item.title}');this.alt='Image Not Found';" />
         <span>${item.title}</span>
       `;
-      beginnerContent.innerHTML = '';
-      if (item.levels.beginner) {
-        const table = document.createElement('table');
-        table.innerHTML = `
-          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th><th>Best Tools</th></tr>
-          ${item.levels.beginner.map((section, i) => `
-            <tr>
-              <td>${i + 1}</td>
-              <td class="topic-cell">${section.topic}</td>
-              <td>${section.concepts.join(', ')}</td>
-              <td>${section.description}</td>
-              <td>${section.tools ? section.tools.join(', ') : '–'}</td>
-            </tr>
-          `).join('')}
-        `;
-        beginnerContent.appendChild(table);
-      }
-      intermediateContent.innerHTML = '';
-      if (item.levels.intermediate) {
-        const table = document.createElement('table');
-        table.innerHTML = `
-          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th><th>Best Tools</th></tr>
-          ${item.levels.intermediate.map((section, i) => `
-            <tr>
-              <td>${i + 9}</td>
-              <td class="topic-cell">${section.topic}</td>
-              <td>${section.concepts.join(', ')}</td>
-              <td>${section.description}</td>
-              <td>${section.tools ? section.tools.join(', ') : '–'}</td>
-            </tr>
-          `).join('')}
-        `;
-        intermediateContent.appendChild(table);
-      }
-      advancedContent.innerHTML = '';
-      if (item.levels.advanced) {
-        const table = document.createElement('table');
-        table.innerHTML = `
-          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th><th>Best Tools</th></tr>
-          ${item.levels.advanced.map((section, i) => `
-            <tr>
-              <td>${i + 17}</td>
-              <td class="topic-cell">${section.topic}</td>
-              <td>${section.concepts.join(', ')}</td>
-              <td>${section.description}</td>
-              <td>${section.tools ? section.tools.join(', ') : '–'}</td>
-            </tr>
-          `).join('')}
-        `;
-        advancedContent.appendChild(table);
-      }
+
+      const renderSection = (section, container, startNum) => {
+        container.innerHTML = '';
+        if (section) {
+          const table = document.createElement('table');
+          table.innerHTML = `
+            <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
+            ${section.map((level, i) => `
+              <tr>
+                <td>${startNum + i}</td>
+                <td class="topic-cell">${level.topic}</td>
+                <td>${level.concepts.join(', ')}</td>
+                <td>
+                  ${level.description}
+                  ${level.tools ? `<div class="tool-row"><strong>Best Tools:</strong> ${level.tools.join(', ')}</div>` : ''}
+                </td>
+              </tr>
+            `).join('')}
+          `;
+          container.appendChild(table);
+        }
+      };
+
+      renderSection(item.levels.beginner, beginnerContent, 1);
+      renderSection(item.levels.intermediate, intermediateContent, 9);
+      renderSection(item.levels.advanced, advancedContent, 17);
+
       expertContent.style.display = item.levels.expert ? 'block' : 'none';
-      expertContent.querySelector('.modal-section-content').innerHTML = '';
-      if (item.levels.expert) {
-        const table = document.createElement('table');
-        table.innerHTML = `
-          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th><th>Best Tools</th></tr>
-          ${item.levels.expert.map((section, i) => `
-            <tr>
-              <td>${i + 25}</td>
-              <td class="topic-cell">${section.topic}</td>
-              <td>${section.concepts.join(', ')}</td>
-              <td>${section.description}</td>
-              <td>${section.tools ? section.tools.join(', ') : '–'}</td>
-            </tr>
-          `).join('')}
-        `;
-        expertContent.querySelector('.modal-section-content').appendChild(table);
-      }
+      renderSection(item.levels.expert, expertContent.querySelector('.modal-section-content'), 25);
+
       modalPanel.classList.add('open');
       overlay.classList.add('visible');
       modalPanel.focus();
     }
+
     function closePanel() {
       modalPanel.classList.remove('open');
       overlay.classList.remove('visible');
       cardContainer.querySelector('.card')?.focus();
     }
+
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
       themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
       themeToggle.setAttribute('aria-label', document.body.classList.contains('light-mode') ? 'Switch to dark mode' : 'Switch to light mode');
     });
-    searchInput.addEventListener('input', () => {
-      populateCards(searchInput.value);
-    });
+
     closePanelBtn.addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
     document.addEventListener('keydown', e => {
@@ -1070,6 +989,7 @@
         closePanel();
       }
     });
+
     populateCards();
   </script>
 </body>
