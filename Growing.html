@@ -970,13 +970,7 @@
           `;
           container.appendChild(table);
         }
-        // Add Top 5 Tools
-        if (item.tools && container.parentElement) {
-          const toolsDiv = document.createElement('div');
-          toolsDiv.className = 'tools-list';
-          toolsDiv.innerHTML = `<strong>Top 5 Tools:</strong> ${item.tools.slice(0, 5).join(', ')}`;
-          container.parentElement.appendChild(toolsDiv);
-        }
+      
       };
 
       renderSection(item.levels.beginner, beginnerContent, 1);
