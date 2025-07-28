@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,6 +80,7 @@
       justify-content: center;
       gap: 15px;
       margin: 20px 0;
+      flex-wrap: wrap;
     }
     .btn {
       background-color: var(--primary);
@@ -122,7 +122,7 @@
       padding: 16px;
       width: 300px;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      opacity: 50;
+      opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.8s ease-out forwards;
       transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -231,26 +231,31 @@
       50% { opacity: 1; }
       100% { opacity: 0.5; }
     }
-    .side-panel {
+    .modal-panel {
       position: fixed;
-      top: 0;
-      right: -100%;
-      width: 450px;
-      max-width: 100%;
-      height: 100vh;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 600px;
+      max-width: 90%;
+      max-height: 80vh;
       background-color: var(--panel-bg);
-      box-shadow: -3px 0 20px rgba(0, 0, 0, 0.8);
-      overflow-y: auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
       padding: 24px;
-      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      transition: transform 0.3s ease, opacity 0.3s ease;
       z-index: 1500;
-      display: flex;
+      display: none;
       flex-direction: column;
+      opacity: 0;
     }
-    .side-panel.open {
-      right: 0;
+    .modal-panel.open {
+      display: flex;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
     }
-    .side-panel h2 {
+    .modal-panel h2 {
       margin-top: 0;
       margin-bottom: 12px;
       font-weight: 700;
@@ -264,24 +269,24 @@
       gap: 10px;
       flex-wrap: nowrap;
     }
-    .panel-section {
+    .modal-section {
       margin-bottom: 20px;
       padding: 0 10px;
       opacity: 0;
-      transform: translateX(20px);
+      transform: translateY(10px);
       transition: all 0.4s ease;
     }
-    .side-panel.open .panel-section {
+    .modal-panel.open .modal-section {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
-    .side-panel.open .panel-section:nth-child(2) { transition-delay: 0.1s; }
-    .side-panel.open .panel-section:nth-child(3) { transition-delay: 0.2s; }
-    .side-panel.open .panel-section:nth-child(4) { transition-delay: 0.3s; }
-    .side-panel.open .panel-section:nth-child(5) { transition-delay: 0.4s; }
-    .side-panel.open .panel-section:nth-child(6) { transition-delay: 0.5s; }
-    .side-panel.open .panel-section:nth-child(7) { transition-delay: 0.6s; }
-    .panel-section h3 {
+    .modal-panel.open .modal-section:nth-child(2) { transition-delay: 0.1s; }
+    .modal-panel.open .modal-section:nth-child(3) { transition-delay: 0.2s; }
+    .modal-panel.open .modal-section:nth-child(4) { transition-delay: 0.3s; }
+    .modal-panel.open .modal-section:nth-child(5) { transition-delay: 0.4s; }
+    .modal-panel.open .modal-section:nth-child(6) { transition-delay: 0.5s; }
+    .modal-panel.open .modal-section:nth-child(7) { transition-delay: 0.6s; }
+    .modal-section h3 {
       margin-bottom: 10px;
       border-bottom: 1px solid #333;
       padding-bottom: 4px;
@@ -290,7 +295,7 @@
       align-items: center;
       gap: 8px;
     }
-    .panel-section h3::before {
+    .modal-section h3::before {
       content: "→";
       color: var(--primary);
       font-weight: bold;
@@ -352,8 +357,8 @@
       font-size: 28px;
       border: none;
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 16px;
+      right: 16px;
       cursor: pointer;
       font-weight: 700;
       transition: all 0.2s ease;
@@ -368,8 +373,10 @@
     }
     .overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-color: rgba(0, 0, 0, 0.7);
       display: none;
       z-index: 1400;
@@ -393,7 +400,6 @@
       50% { filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.8)); }
       100% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
     }
-    /* AI Agent Styles */
     .ai-agent-btn {
       position: fixed;
       bottom: 20px;
@@ -565,31 +571,70 @@
     .notification.show {
       transform: translateX(-50%) translateY(0);
     }
-    .panel-section-content {
+    .modal-section-content {
       padding: 0 10px;
       color: var(--text-secondary);
       font-size: 0.95rem;
       line-height: 1.6;
     }
-    .panel-section-content p {
+    .modal-section-content p {
       margin: 10px 0;
     }
-    .panel-section-content ul {
+    .modal-section-content ul {
       padding-left: 20px;
       margin: 10px 0;
     }
-    .panel-section-content ul li {
+    .modal-section-content ul li {
       margin-bottom: 8px;
+    }
+    .ai-agent-message pre {
+      background-color: #2c2c2c;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    .ai-agent-message code {
+      font-family: monospace;
+      background-color: #2c2c2c;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    .ai-update-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      width: 100%;
+      justify-content: center;
+    }
+    .progress-bar {
+      flex-grow: 1;
+      max-width: 300px;
+      height: 6px;
+      background-color: #333;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
     }
     @media (max-width: 768px) {
       .card {
         width: 100%;
       }
-      .side-panel {
+      .modal-panel {
         width: 100%;
         padding: 16px;
       }
-      .side-panel h2 {
+      .modal-panel h2 {
         font-size: 1.3rem;
         gap: 8px;
       }
@@ -597,7 +642,7 @@
         width: 36px;
         height: 36px;
       }
-      .panel-section {
+      .modal-section {
         padding: 0 8px;
       }
       ul#panelTools {
@@ -628,6 +673,9 @@
         margin-top: 10px;
         top: auto;
         right: auto;
+      }
+      .progress-bar {
+        max-width: 200px;
       }
     }
     @keyframes float {
@@ -668,42 +716,39 @@
     </button>
   </div>
   <div class="card-container" id="cardContainer" tabindex="0"></div>
-  <!-- Compare Roles section removed -->
-  <!-- Side Panel -->
-  <div class="side-panel" id="sidePanel" tabindex="0" aria-live="polite" aria-label="Role Details Panel">
-    <button class="close-btn" id="closePanelBtn" aria-label="Close Details Panel">&times;</button>
+  <div class="modal-panel" id="modalPanel" tabindex="0" aria-live="polite" aria-label="Role Details Modal">
+    <button class="close-btn" id="closePanelBtn" aria-label="Close Details Modal">&times;</button>
     <h2 id="panelTitle"></h2>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Description</h3>
-      <div class="panel-section-content" id="fullDescription"></div>
+      <div class="modal-section-content" id="fullDescription"></div>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Key Responsibilities</h3>
       <ul id="responsibilitiesList"></ul>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Skills</h3>
       <p id="panelSkills"></p>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Tools to Master</h3>
       <ul id="panelTools"></ul>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Salary by Experience</h3>
       <ul id="salaryExpList"></ul>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Roadmap</h3>
       <ul id="roadmapList"></ul>
     </div>
-    <div class="panel-section">
+    <div class="modal-section">
       <h3>Additional Tips</h3>
       <ul id="additionalTipsList"></ul>
     </div>
   </div>
   <div class="overlay" id="overlay" tabindex="-1"></div>
-  <!-- AI Agent -->
   <button class="ai-agent-btn" id="aiAgentBtn" aria-label="Open AI Career Assistant">🤖</button>
   <div class="ai-agent-panel" id="aiAgentPanel" aria-live="polite" aria-label="AI Career Assistant Panel">
     <div class="ai-agent-header">
@@ -712,7 +757,7 @@
     </div>
     <div class="ai-agent-chat" id="aiAgentChat">
       <div class="ai-agent-message bot">
-        Hello! I'm your AI Career Assistant. I can help you explore data careers and provide real-time insights based on current trends. Ask me anything!
+        Hello! I'm your AI Career Assistant specialized in data-related roles. I can help you explore data careers, skills, salaries, and trends. Ask me anything!
       </div>
     </div>
     <div class="ai-agent-input-container">
@@ -725,7 +770,6 @@
     <span id="notificationText">Career data updated with latest trends!</span>
   </div>
   <script>
-    // Base data structure
     const baseData = [
       {
         role: "Data Scientist",
@@ -1128,118 +1172,19 @@
         lastUpdated: new Date()
       }
     ];
-    // AI-simulated updates
-    const aiUpdates = {
-      "Data Scientist": {
-        salary: "₹7L - ₹22L+",
-        skills: "Python, ML, SQL, Statistics, Visualization, GenAI",
-        tools: ["Python", "R", "Tableau", "SQL", "Jupyter", "Scikit-learn", "LangChain"],
-        description: "Data Scientists now increasingly work with Generative AI models and large language models. They build, fine-tune, and deploy AI solutions that create new content and enhance decision-making processes.",
-        responsibilities: [
-          "Collect and clean large datasets from various sources",
-          "Apply statistical analysis and machine learning algorithms",
-          "Create predictive models and machine learning algorithms",
-          "Fine-tune and deploy large language models",
-          "Develop generative AI applications",
-          "Visualize data and present findings to stakeholders",
-          "Communicate results through clear reports and presentations",
-          "Collaborate with cross-functional teams to solve business problems",
-          "Evaluate and interpret the results of GenAI models",
-          "Continuously improve models based on new data and feedback"
-        ],
-        roadmap: [
-          "Learn Python, Pandas, NumPy.",
-          "Understand statistics & machine learning algorithms.",
-          "Practice with real-world datasets and GenAI models.",
-          "Join Kaggle competitions focused on LLMs.",
-          "Master visualization & storytelling with GenAI tools."
-        ],
-        trend: "up"
-      },
-      "Data Analyst": {
-        salary: "₹4L - ₹9L",
-        tools: ["Excel", "SQL", "Tableau", "Power BI", "Google Sheets", "Looker", "Python"],
-        description: "Modern Data Analysts leverage Generative AI tools to enhance their analysis and automate routine tasks. They focus more on insights interpretation and strategic recommendations rather than just data preparation.",
-        responsibilities: [
-          "Extract and analyze data from various sources",
-          "Clean and validate data for accuracy",
-          "Create reports and dashboards for stakeholders",
-          "Use AI tools for automated insights generation",
-          "Identify trends and patterns in datasets",
-          "Present findings to non-technical audiences",
-          "Support business decision-making with data insights",
-          "Document analysis processes and methodologies",
-          "Ensure data quality and integrity",
-          "Collaborate with business teams to understand requirements"
-        ],
-        trend: "neutral"
-      },
-      "Machine Learning Engineer": {
-        salary: "₹10L - ₹28L+",
-        skills: "Python, ML frameworks, Software Development, GenAI",
-        tools: ["TensorFlow", "PyTorch", "Docker", "Keras", "MLflow", "FastAPI", "Hugging Face"],
-        description: "ML Engineers now specialize in deploying Generative AI models and building AI-powered applications. They work with large-scale models and implement MLOps practices for production environments.",
-        responsibilities: [
-          "Design and implement ML systems and pipelines",
-          "Deploy and monitor ML models in production",
-          "Optimize models for performance and scalability",
-          "Collaborate with Data Scientists to productionize models",
-          "Deploy and maintain Generative AI applications",
-          "Ensure model reliability, security, and compliance",
-          "Automate ML workflows and retraining processes",
-          "Troubleshoot and resolve model performance issues",
-          "Implement A/B testing for model improvements"
-        ],
-        trend: "up"
-      },
-      "Data Engineer": {
-        salary: "₹7L - ₹20L",
-        tools: ["Hadoop", "Spark", "AWS", "Kafka", "Airflow", "Snowflake", "dbt"],
-        description: "Data Engineers are building data platforms optimized for AI and machine learning workloads. They implement real-time data pipelines and manage data infrastructure for large-scale analytics.",
-        responsibilities: [
-          "Design and build data pipelines and architectures",
-          "Develop ETL/ELT processes for data integration",
-          "Maintain data warehouses and lakes optimized for ML",
-          "Implement real-time streaming data solutions",
-          "Optimize database performance and scalability",
-          "Ensure data quality, security, and governance",
-          "Collaborate with analysts and scientists on data requirements",
-          "Monitor and troubleshoot data pipeline issues",
-          "Implement data backup and recovery procedures"
-        ],
-        trend: "up"
-      },
-      "AI Research Scientist": {
-        salary: "₹12L - ₹35L+",
-        tools: ["TensorFlow", "PyTorch", "MATLAB", "OpenAI Gym", "CUDA", "Weights & Biases", "Hugging Face"],
-        description: "AI Research Scientists are pioneering breakthroughs in Generative AI, multimodal models, and ethical AI. They work on cutting-edge research that shapes the future of artificial intelligence.",
-        responsibilities: [
-          "Conduct fundamental and applied AI research",
-          "Design and implement novel algorithms and models",
-          "Research Generative AI and large language models",
-          "Perform experiments and analyze results",
-          "Publish research papers and present at conferences",
-          "Collaborate with academic and industry partners",
-          "Stay current with the latest AI developments",
-          "Mentor junior researchers and students",
-          "Secure funding for research projects"
-        ],
-        trend: "up"
-      }
-    };
-    // Current data state
+
     let data = [...baseData];
     let currentPanelIndex = -1;
     let aiProcessing = false;
     const cardContainer = document.getElementById('cardContainer');
-    const sidePanel = document.getElementById('sidePanel');
+    const modalPanel = document.getElementById('modalPanel');
     const overlay = document.getElementById('overlay');
     const closePanelBtn = document.getElementById('closePanelBtn');
     const updateAllBtn = document.getElementById('updateAllBtn');
     const simulateBtn = document.getElementById('simulateBtn');
     const notification = document.getElementById('notification');
     const notificationText = document.getElementById('notificationText');
-    // Panel elements
+    
     const panelTitle = document.getElementById('panelTitle');
     const fullDescription = document.getElementById('fullDescription');
     const responsibilitiesList = document.getElementById('responsibilitiesList');
@@ -1248,14 +1193,14 @@
     const salaryExpList = document.getElementById('salaryExpList');
     const roadmapList = document.getElementById('roadmapList');
     const additionalTipsList = document.getElementById('additionalTipsList');
-    // AI Agent elements
+    
     const aiAgentBtn = document.getElementById('aiAgentBtn');
     const aiAgentPanel = document.getElementById('aiAgentPanel');
     const aiAgentCloseBtn = document.getElementById('aiAgentCloseBtn');
     const aiAgentChat = document.getElementById('aiAgentChat');
     const aiAgentInput = document.getElementById('aiAgentInput');
     const aiAgentSendBtn = document.getElementById('aiAgentSendBtn');
-    // Populate cards
+
     function populateCards() {
       cardContainer.innerHTML = '';
       data.forEach((item, idx) => {
@@ -1293,8 +1238,8 @@
         });
         cardContainer.appendChild(card);
       });
-      // ...existing code...
     }
+
     function openPanel(index) {
       currentPanelIndex = index;
       const item = data[index];
@@ -1344,77 +1289,210 @@
       } else {
         additionalTipsList.innerHTML = '<li>Coming soon</li>';
       }
-      sidePanel.classList.add('open');
+      modalPanel.classList.add('open');
       overlay.classList.add('visible');
-      sidePanel.focus();
+      modalPanel.focus();
     }
+
     function closePanel() {
-      sidePanel.classList.remove('open');
+      modalPanel.classList.remove('open');
       overlay.classList.remove('visible');
       cardContainer.querySelector('.card').focus();
     }
-    // AI Update Functions
-    function updateRoleWithAI(roleName) {
-      return new Promise((resolve) => {
-        if (!aiUpdates[roleName]) {
-          resolve(false);
-          return;
-        }
-        // Simulate AI processing time
-        setTimeout(() => {
-          const roleIndex = data.findIndex(item => item.role === roleName);
-          if (roleIndex !== -1) {
-            const update = aiUpdates[roleName];
-            data[roleIndex] = {
-              ...data[roleIndex],
-              ...update,
-              aiUpdated: true,
-              lastUpdated: new Date()
-            };
-            // Update the panel if it's currently open for this role
-            if (currentPanelIndex === roleIndex) {
-              openPanel(roleIndex);
-            }
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        }, 1500);
-      });
-    }
-    function updateAllRoles() {
-      showNotification("AI is analyzing latest career trends...");
+
+    async function updateRolesWithAIAgent() {
+      if (aiProcessing) return;
+      
+      showNotification("Starting AI analysis of all career roles...");
       aiProcessing = true;
-      const updatePromises = data.map(item => updateRoleWithAI(item.role));
-      Promise.all(updatePromises).then(results => {
-        const updatedCount = results.filter(updated => updated).length;
-        populateCards();
-        showNotification(`Updated ${updatedCount} roles with latest AI insights`);
-        aiProcessing = false;
-      });
+      updateAllBtn.disabled = true;
+      simulateBtn.disabled = true;
+      
+      const statusContainer = document.createElement('div');
+      statusContainer.className = 'ai-update-status';
+      statusContainer.innerHTML = `
+        <span>AI Processing:</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="updateProgress"></div>
+        </div>
+        <span id="updateCount">0/${data.length}</span>
+      `;
+      document.querySelector('.controls').appendChild(statusContainer);
+      
+      const progressFill = document.getElementById('updateProgress');
+      const updateCount = document.getElementById('updateCount');
+      
+      for (let i = 0; i < data.length; i++) {
+        const role = data[i].role;
+        updateCount.textContent = `${i+1}/${data.length}`;
+        progressFill.style.width = `${((i+1) / data.length) * 100}%`;
+        
+        try {
+          const updatedRole = await getAIUpdateForRole(role, data[i]);
+          data[i] = {
+            ...data[i],
+            ...updatedRole,
+            aiUpdated: true,
+            lastUpdated: new Date()
+          };
+          
+          if (currentPanelIndex === i && modalPanel.classList.contains('open')) {
+            openPanel(i);
+          }
+        } catch (error) {
+          console.error(`Failed to update ${role}:`, error);
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+      
+      populateCards();
+      showNotification("All roles updated with latest AI insights!");
+      statusContainer.remove();
+      aiProcessing = false;
+      updateAllBtn.disabled = false;
+      simulateBtn.disabled = false;
     }
+
+    async function getAIUpdateForRole(roleName, currentData) {
+      const prompt = `Analyze the current state of the ${roleName} role in the data industry and provide updated information including:
+      - Current salary range in INR (format like "₹X - ₹Y")
+      - Key skills required today
+      - Main tools/technologies used
+      - Brief description of the role's modern responsibilities
+      - Career growth trend (up, down, or neutral)
+      
+      Current data:
+      ${JSON.stringify({
+        salary: currentData.salary,
+        skills: currentData.skills,
+        tools: currentData.tools,
+        description: currentData.description,
+        trend: currentData.trend
+      }, null, 2)}
+      
+      Return ONLY a JSON object with these properties:
+      {
+        "salary": "string",
+        "skills": "string",
+        "tools": ["array", "of", "strings"],
+        "description": "string",
+        "trend": "string"
+      }`;
+      
+      try {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer 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',
+            'Content-Type': 'application/json',
+            'HTTP-Referer': window.location.href,
+            'X-Title': 'AI Career Explorer'
+          },
+          body: JSON.stringify({
+            model: "qwen/qwen3-coder:free",
+            messages: [
+              {
+                role: "system",
+                content: "You are a career data analyst. Provide accurate, up-to-date information about data roles in JSON format."
+              },
+              {
+                role: "user",
+                content: prompt
+              }
+            ],
+            temperature: 0.3,
+            max_tokens: 1000
+          })
+        });
+        
+        const result = await response.json();
+        if (result.choices && result.choices[0].message.content) {
+          const aiResponse = JSON.parse(result.choices[0].message.content);
+          return aiResponse;
+        }
+      } catch (error) {
+        console.error("AI update error:", error);
+        throw error;
+      }
+      
+      return currentData;
+    }
+
     function simulateAIUpdates() {
       showNotification("Simulating AI analysis of job market data...");
       aiProcessing = true;
-      // Randomly select 3-5 roles to update
+      updateAllBtn.disabled = true;
+      simulateBtn.disabled = true;
+      
       const rolesToUpdate = [...data];
       shuffleArray(rolesToUpdate);
       const updateCount = Math.floor(Math.random() * 3) + 3;
       const selectedRoles = rolesToUpdate.slice(0, updateCount).map(item => item.role);
+      
       let updated = 0;
       selectedRoles.forEach((role, index) => {
         setTimeout(() => {
-          updateRoleWithAI(role).then(success => {
-            if (success) updated++;
-            if (index === selectedRoles.length - 1) {
-              populateCards();
-              showNotification(`Simulated AI update for ${updated} roles`);
-              aiProcessing = false;
+          const roleIndex = data.findIndex(item => item.role === role);
+          if (roleIndex !== -1) {
+            data[roleIndex] = {
+              ...data[roleIndex],
+              salary: increaseSalaryRange(data[roleIndex].salary),
+              skills: addRandomSkill(data[roleIndex].skills),
+              tools: addRandomTool(data[roleIndex].tools),
+              aiUpdated: true,
+              lastUpdated: new Date()
+            };
+            updated++;
+            
+            if (currentPanelIndex === roleIndex && modalPanel.classList.contains('open')) {
+              openPanel(roleIndex);
             }
-          });
+          }
+          
+          if (index === selectedRoles.length - 1) {
+            populateCards();
+            showNotification(`Simulated AI update for ${updated} roles`);
+            aiProcessing = false;
+            updateAllBtn.disabled = false;
+            simulateBtn.disabled = false;
+          }
         }, index * 800);
       });
     }
+
+    function increaseSalaryRange(salary) {
+      const amounts = salary.match(/\d+/g);
+      if (!amounts) return salary;
+      
+      const increased = amounts.map(amount => {
+        const num = parseInt(amount);
+        return Math.floor(num * (1 + (Math.random() * 0.1 + 0.05)));
+      });
+      
+      return salary.replace(/\d+/g, (match, i) => increased[i] || match);
+    }
+
+    function addRandomSkill(skills) {
+      const newSkills = ["AI", "ML", "Generative AI", "Cloud", "Big Data", "Automation"];
+      const randomSkill = newSkills[Math.floor(Math.random() * newSkills.length)];
+      
+      if (skills.includes(randomSkill)) {
+        return skills;
+      }
+      return skills + ", " + randomSkill;
+    }
+
+    function addRandomTool(tools) {
+      const newTools = ["LangChain", "HuggingFace", "OpenAI", "AWS", "Azure", "GCP", "Docker", "Kubernetes"];
+      const randomTool = newTools[Math.floor(Math.random() * newTools.length)];
+      
+      if (tools.includes(randomTool)) {
+        return tools;
+      }
+      return [...tools, randomTool];
+    }
+
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -1422,6 +1500,7 @@
       }
       return array;
     }
+
     function showNotification(message) {
       notificationText.textContent = message;
       notification.classList.add('show');
@@ -1429,17 +1508,19 @@
         notification.classList.remove('show');
       }, 3000);
     }
-    // AI Agent functionality
+
     function openAiAgentPanel() {
       aiAgentPanel.classList.add('open');
       overlay.classList.add('visible');
       aiAgentInput.focus();
     }
+
     function closeAiAgentPanel() {
       aiAgentPanel.classList.remove('open');
       overlay.classList.remove('visible');
       aiAgentBtn.focus();
     }
+
     function addMessage(content, isUser = false) {
       const message = document.createElement('div');
       message.className = `ai-agent-message ${isUser ? 'user' : 'bot'}`;
@@ -1447,6 +1528,7 @@
       aiAgentChat.appendChild(message);
       aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
     }
+
     function handleUserQuery(query) {
       query = query.trim().toLowerCase();
       addMessage(query, true);
@@ -1454,7 +1536,7 @@
         addMessage("Please ask a question about data careers!");
         return;
       }
-      // Show processing indicator
+
       const processing = document.createElement('div');
       processing.className = 'ai-processing';
       processing.innerHTML = `
@@ -1466,42 +1548,61 @@
       aiAgentChat.appendChild(processing);
       aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
 
-      // Hugging Face Inference API integration
-      const HF_API_KEY = 'YOUR_HF_API_KEY'; // <-- Replace with your Hugging Face API key
-      const HF_MODEL = 'gpt2'; // You can change to another supported model
-      fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
+      const config = {
+        apiKey: "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",
+        model: "Nous",
+        endpoint: "https://openrouter.ai/api/v1/chat/completions"
+      };
+
+      fetch(config.endpoint, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${HF_API_KEY}`,
-          'Content-Type': 'application/json'
+          'Authorization': `Bearer ${config.apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.href,
+          'X-Title': 'AI-Powered Data Career Explorer'
         },
-        body: JSON.stringify({ inputs: query })
+        body: JSON.stringify({
+          model: config.model,
+          messages: [
+            {
+              role: "system",
+              content: "You are a helpful AI career assistant specialized in data-related roles. Provide concise, informative answers about data careers, skills, salaries, and trends. Format any code snippets properly."
+            },
+            {
+              role: "user",
+              content: query
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 500
+        })
       })
       .then(res => res.json())
       .then(data => {
         processing.remove();
-        let response = "Sorry, I couldn't get a response from the AI agent.";
-        if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
-          response = data[0].generated_text;
-        } else if (data.generated_text) {
-          response = data.generated_text;
+        if (data.choices && data.choices.length > 0) {
+          const response = data.choices[0].message.content;
+          addMessage(response);
         } else if (data.error) {
-          response = `AI agent error: ${data.error}`;
+          addMessage(`Error: ${data.error.message || 'Failed to get response from AI'}`);
+        } else {
+          addMessage("Sorry, I couldn't process your request. Please try again.");
         }
-        addMessage(response);
       })
       .catch(err => {
         processing.remove();
-        addMessage("AI agent request failed. Please check your API key or try again later.");
+        addMessage("Failed to connect to AI service. Please check your connection and try again.");
+        console.error("API Error:", err);
       });
     }
-    // Event listeners
+
     closePanelBtn.addEventListener('click', closePanel);
     overlay.addEventListener('click', () => {
       closePanel();
       closeAiAgentPanel();
     });
-    updateAllBtn.addEventListener('click', updateAllRoles);
+    updateAllBtn.addEventListener('click', updateRolesWithAIAgent);
     simulateBtn.addEventListener('click', simulateAIUpdates);
     aiAgentBtn.addEventListener('click', openAiAgentPanel);
     aiAgentCloseBtn.addEventListener('click', closeAiAgentPanel);
@@ -1521,7 +1622,7 @@
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        if (sidePanel.classList.contains('open')) {
+        if (modalPanel.classList.contains('open')) {
           closePanel();
         }
         if (aiAgentPanel.classList.contains('open')) {
@@ -1529,12 +1630,8 @@
         }
       }
     });
-    // Initialize
-    // Compare Roles functionality
-    // ...existing code...
 
     populateCards();
   </script>
 </body>
 </html>
-
