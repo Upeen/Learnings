@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Career Skill Roadmaps</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+    :root {
+      --primary: #0af;
+      --primary-dark: #0088cc;
+      --dark-bg: #121212;
+      --light-bg: #f5f5f5;
+      --card-bg: #222;
+      --card-bg-light: #fff;
+      --panel-bg: #1a1a1a;
+      --panel-bg-light: #fff;
+      --text-light: #f1f1f1;
+      --text-dark: #333;
+      --text-secondary: #ddd;
+      --text-secondary-light: #666;
+      --success: #00c853;
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+      transition: var(--transition);
+    }
+    body.light-mode {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+    }
+    body.light-mode .card {
+      background-color: var(--card-bg-light);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    body.light-mode .modal-panel {
+      background-color: var(--panel-bg-light);
+    }
+    body.light-mode .subtitle {
+      color: var(--text-secondary-light);
+    }
+    body.light-mode .card::before {
+      background: linear-gradient(90deg, var(--primary), #00c6ff);
+    }
+    body.light-mode th {
+      background-color: #e0e0e0;
+    }
+    body.light-mode tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      animation: slideDown 1s ease-out;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 170, 255, 0.3); }
+      to { text-shadow: 0 0 15px rgba(0, 170, 255, 0.6), 0 0 20px rgba(0, 170, 255, 0.4); }
+    }
+    .subtitle {
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      animation: fadeIn 1.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 40px 12px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--primary);
+      background-color: #2a2a2a;
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+      animation: pulseInput 1.5s infinite;
+    }
+    @keyframes pulseInput {
+      0% { box-shadow: 0 0 10px rgba(0, 170, 255, 0.5); }
+      50% { box-shadow: 0 0 15px rgba(0, 170, 255, 0.8); }
+      100% { box-shadow: 0 0 10px rgba(0, 170, 255, 0.5); }
+    }
+    body.light-mode .search-input {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      color: var(--text-dark);
+    }
+    .search-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .search-icon:hover {
+      transform: translateY(-50%) scale(1.2);
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .theme-toggle:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.1) rotate(360deg);
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transform: translateY(50px) rotate(-2deg);
+      animation: slideInRotate 0.6s ease-out forwards;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    @keyframes slideInRotate {
+      from { opacity: 0; transform: translateY(50px) rotate(-2deg); }
+      to { opacity: 1; transform: translateY(0) rotate(0); }
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #00c6ff);
+      transform: translateY(-100%);
+      transition: var(--transition);
+    }
+    .card:hover::before {
+      transform: translateY(0);
+    }
+    .card:hover {
+      background-color: #1e1e1e;
+      cursor: pointer;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 170, 255, 0.25);
+    }
+    body.light-mode .card:hover {
+      background-color: #f0f0f0;
+    }
+    .card-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+    .role-icon-img {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 6px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 2px var(--primary));
+      transition: var(--transition);
+    }
+    .card:hover .role-icon-img {
+      transform: scale(1.2) rotate(5deg);
+      filter: drop-shadow(0 0 4px var(--primary)) brightness(1.1);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    body.light-mode .card p {
+      color: var(--text-secondary-light);
+    }
+    .modal-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      width: 600px;
+      max-width: 90%;
+      max-height: 80vh;
+      background-color: var(--panel-bg);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      overflow-y: auto;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 1500;
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      animation: bounceIn 0.5s ease-out forwards;
+    }
+    @keyframes bounceIn {
+      0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .modal-panel.open {
+      display: flex;
+    }
+    .modal-panel h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--primary);
+      text-align: center;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .modal-section {
+      margin-bottom: 20px;
+      padding: 0 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    .modal-panel.open .modal-section {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .modal-panel.open .modal-section:nth-child(2) { transition-delay: 0.1s; }
+    .modal-panel.open .modal-section:nth-child(3) { transition-delay: 0.2s; }
+    .modal-panel.open .modal-section:nth-child(4) { transition-delay: 0.3s; }
+    .modal-panel.open .modal-section:nth-child(5) { transition-delay: 0.4s; }
+    .modal-section h3 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 4px;
+      color: #66c2ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    body.light-mode .modal-section h3 {
+      border-bottom: 1px solid #ccc;
+    }
+    .modal-section h3::before {
+      content: "→";
+      color: var(--primary);
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .modal-section h3:hover::before {
+      transform: translateX(5px);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      color: var(--text-secondary);
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: left;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: tableRowFadeIn 0.5s ease-out forwards;
+    }
+    body.light-mode th, body.light-mode td {
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #2c2c2c;
+      color: var(--primary);
+    }
+    tr:nth-child(even) {
+      background-color: #1e1e1e;
+    }
+    tr:nth-child(1) th, tr:nth-child(1) td { animation-delay: 0.1s; }
+    tr:nth-child(2) th, tr:nth-child(2) td { animation-delay: 0.2s; }
+    tr:nth-child(3) th, tr:nth-child(3) td { animation-delay: 0.3s; }
+    tr:nth-child(4) th, tr:nth-child(4) td { animation-delay: 0.4s; }
+    tr:nth-child(5) th, tr:nth-child(5) td { animation-delay: 0.5s; }
+    tr:nth-child(6) th, tr:nth-child(6) td { animation-delay: 0.6s; }
+    tr:nth-child(7) th, tr:nth-child(7) td { animation-delay: 0.7s; }
+    tr:nth-child(8) th, tr:nth-child(8) td { animation-delay: 0.8s; }
+    @keyframes tableRowFadeIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .topic-cell {
+      transition: var(--transition);
+    }
+    .topic-cell:hover {
+      transform: scale(1.02);
+      color: var(--primary);
+      cursor: default;
+    }
+    body.light-mode .topic-cell:hover {
+      color: var(--primary-dark);
+    }
+    .close-btn {
+      background: none;
+      color: var(--primary);
+      font-size: 28px;
+      border: none;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: var(--transition);
+      user-select: none;
+    }
+    .close-btn:hover {
+      color: #44caff;
+      transform: rotate(90deg) scale(1.1);
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 1400;
+      backdrop-filter: blur(3px);
+      transition: opacity 0.4s ease;
+    }
+    .overlay.visible {
+      display: block;
+      opacity: 1;
+    }
+    .role-header-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5));
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
+      50% { filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.8)); }
+      100% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
+    }
+    .modal-section-content {
+      padding: 0 10px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    body.light-mode .modal-section-content {
+      color: var(--text-secondary-light);
+    }
+    @media (max-width: 768px) {
+      .card {
+        width: 100%;
+      }
+      .modal-panel {
+        width: 100%;
+        padding: 16px;
+      }
+      .modal-panel h2 {
+        font-size: 1.3rem;
+        gap: 8px;
+      }
+      .role-header-img {
+        width: 36px;
+        height: 36px;
+      }
+      .modal-section {
+        padding: 0 8px;
+      }
+      .search-container {
+        max-width: 100%;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--panel-bg);
+    }
+    body.light-mode ::-webkit-scrollbar-track {
+      background: var(--panel-bg-light);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #44caff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <h1>Data Career Skill Roadmaps</h1>
+    <p class="subtitle">Explore structured learning paths for SQL, Power BI, Python, Excel, Git, and Linux to master data-related skills.</p>
+  </div>
+  <div class="search-container">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search roadmaps..." aria-label="Search roadmaps">
+    <span class="search-icon">🔍</span>
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+  <div class="card-container" id="cardContainer" tabindex="0"></div>
+  <div class="modal-panel" id="modalPanel" tabindex="0" aria-live="polite" aria-label="Skill Roadmap Details Modal">
+    <button class="close-btn" id="closePanelBtn" aria-label="Close Details Modal">&times;</button>
+    <h2 id="panelTitle"></h2>
+    <div class="modal-section" id="beginnerSection">
+      <h3>Beginner</h3>
+      <div class="modal-section-content" id="beginnerContent"></div>
+    </div>
+    <div class="modal-section" id="intermediateSection">
+      <h3>Intermediate</h3>
+      <div class="modal-section-content" id="intermediateContent"></div>
+    </div>
+    <div class="modal-section" id="advancedSection">
+      <h3>Advanced</h3>
+      <div class="modal-section-content" id="advancedContent"></div>
+    </div>
+    <div class="modal-section" id="expertSection" style="display: none;">
+      <h3>Expert</h3>
+      <div class="modal-section-content" id="expertContent"></div>
+    </div>
+  </div>
+  <div class="overlay" id="overlay" tabindex="-1"></div>
+  <script>
+    const roadmaps = [
+      {
+        title: "SQL Roadmap",
+        description: "A structured path to master SQL from basics to advanced techniques for data management and analysis.",
+        image: "https://img.icons8.com/color/96/000000/database.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/database.png",
+        levels: {
+          beginner: [
+            { topic: "Introduction", concepts: ["What is SQL?", "RDBMS vs DBMS", "Tables, Rows, Columns"], description: "Learn the fundamentals of SQL and relational databases." },
+            { topic: "Data Types", concepts: ["INT", "VARCHAR", "DATE", "BOOLEAN"], description: "Understand SQL data types for storing various kinds of data." },
+            { topic: "Basic Queries", concepts: ["SELECT", "FROM", "WHERE", "ORDER BY", "LIMIT / TOP"], description: "Write basic SQL queries to retrieve data." },
+            { topic: "Filtering", concepts: ["AND, OR, NOT", "BETWEEN", "IN", "LIKE", "IS NULL"], description: "Filter query results using various conditions." },
+            { topic: "Aliases", concepts: ["Column alias (AS)", "Table alias"], description: "Use aliases to simplify and clarify SQL queries." },
+            { topic: "Aggregate Functions", concepts: ["COUNT", "SUM", "AVG", "MIN / MAX"], description: "Perform calculations on data sets using aggregates." },
+            { topic: "Grouping", concepts: ["GROUP BY", "HAVING"], description: "Group data for summarized reporting." },
+            { topic: "Others", concepts: ["DISTINCT"], description: "Remove duplicates from query results." }
+          ],
+          intermediate: [
+            { topic: "Table Relationships", concepts: ["Primary & Foreign Keys", "One-to-Many", "Many-to-Many"], description: "Understand and implement table relationships." },
+            { topic: "Joins", concepts: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "CROSS JOIN", "SELF JOIN"], description: "Combine data from multiple tables using joins." },
+            { topic: "Subqueries", concepts: ["Scalar", "Correlated", "Subqueries in WHERE / FROM / SELECT"], description: "Use nested queries for complex data retrieval." },
+            { topic: "Set Operations", concepts: ["UNION", "UNION ALL", "INTERSECT", "EXCEPT"], description: "Combine or compare result sets with set operations." },
+            { topic: "Data Manipulation", concepts: ["INSERT", "UPDATE", "DELETE"], description: "Modify data within tables." },
+            { topic: "Constraints", concepts: ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"], description: "Enforce data integrity with constraints." },
+            { topic: "Conditional Logic", concepts: ["CASE Statements"], description: "Implement conditional logic in queries." },
+            { topic: "Functions", concepts: ["String Functions: CONCAT, SUBSTRING, TRIM, LENGTH, UPPER, LOWER", "Date Functions: NOW(), DATE(), DATEDIFF()"], description: "Use built-in functions for string and date manipulation." }
+          ],
+          advanced: [
+            { topic: "Views", concepts: ["Creating and Using Views"], description: "Create virtual tables for simplified querying." },
+            { topic: "CTEs", concepts: ["Non-recursive", "Recursive"], description: "Use Common Table Expressions for modular queries." },
+            { topic: "Window Functions", concepts: ["ROW_NUMBER()", "RANK(), DENSE_RANK()", "LEAD(), LAG()", "PARTITION BY"], description: "Perform advanced calculations across rows." },
+            { topic: "Indexes & Performance", concepts: ["Creating Indexes", "EXPLAIN / ANALYZE"], description: "Optimize query performance with indexes." },
+            { topic: "Stored Procedures", concepts: ["Creating and Managing"], description: "Automate repetitive tasks with stored procedures." },
+            { topic: "Triggers", concepts: ["Event-driven Logic"], description: "Execute logic automatically on database events." },
+            { topic: "Transactions", concepts: ["BEGIN", "COMMIT", "ROLLBACK"], description: "Ensure data consistency with transactions." },
+            { topic: "Error Handling", concepts: ["TRY/CATCH (DBMS-specific)"], description: "Manage errors in SQL scripts." },
+            { topic: "Normalization", concepts: ["1NF, 2NF, 3NF, BCNF"], description: "Design efficient and normalized databases." },
+            { topic: "Permissions", concepts: ["GRANT", "REVOKE"], description: "Control access with permissions." },
+            { topic: "JSON in SQL", concepts: ["Querying JSON fields"], description: "Work with JSON data in SQL." },
+            { topic: "Temporary Tables", concepts: ["Creating and Using Temporary Tables"], description: "Use temporary tables for intermediate data storage." },
+            { topic: "Pivot/Unpivot", concepts: ["Data transformation techniques"], description: "Transform data for reporting purposes." }
+          ]
+        }
+      },
+      {
+        title: "Power BI Roadmap",
+        description: "A comprehensive guide to mastering Power BI for data visualization and business intelligence.",
+        image: "https://img.icons8.com/color/96/000000/dashboard.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/dashboard.png",
+        levels: {
+          beginner: [
+            { topic: "Power BI Overview", concepts: ["What is Power BI", "Components", "Use Cases"], description: "Understand what Power BI is and where it fits in business intelligence." },
+            { topic: "Installing Power BI", concepts: ["Power BI Desktop", "Power BI Service"], description: "Learn how to install and set up Power BI Desktop for development." },
+            { topic: "Connecting to Data", concepts: ["Excel", "CSV", "SQL Server", "Web", "APIs"], description: "Learn how to import and connect various data sources." },
+            { topic: "Data Loading & Preview", concepts: ["Navigator pane", "Selecting tables/sheets"], description: "Understand how to load and preview data before modeling." },
+            { topic: "Power Query Editor Basics", concepts: ["Remove columns", "Change data types", "Filter rows"], description: "Use Power Query to shape and clean data." },
+            { topic: "Basic Visualizations", concepts: ["Bar", "Pie", "Line", "Cards", "Tables"], description: "Learn to create common visuals for dashboards and reports." },
+            { topic: "Working with Fields", concepts: ["Drag & drop fields", "Axes", "Values"], description: "Understand field well usage in visualizations." },
+            { topic: "Publishing to Power BI Service", concepts: ["Publish", "Workspaces", "Dashboard creation"], description: "Share reports to the cloud-based Power BI service." }
+          ],
+          intermediate: [
+            { topic: "Data Model Design", concepts: ["Relationships", "Star vs snowflake schema", "Active/inactive"], description: "Structure your data model for optimal performance and analysis." },
+            { topic: "Managing Relationships", concepts: ["One-to-many", "Many-to-one", "Cardinality"], description: "Create and troubleshoot table relationships." },
+            { topic: "Introduction to DAX", concepts: ["Calculated columns", "Measures", "Syntax"], description: "Write DAX formulas for custom calculations." },
+            { topic: "Common DAX Functions", concepts: ["SUM()", "COUNT()", "AVERAGE()", "IF()", "SWITCH()"], description: "Perform basic aggregations and logic-based operations." },
+            { topic: "Time Intelligence in DAX", concepts: ["TOTALYTD()", "DATEADD()", "SAMEPERIODLASTYEAR()"], description: "Create time-based metrics like YOY and YTD analysis." },
+            { topic: "Data Transformation (Power Query)", concepts: ["Merge", "Append", "Group by", "Pivot/Unpivot"], description: "Use Power Query to clean, reshape, and consolidate data sources." },
+            { topic: "Drillthrough & Tooltips", concepts: ["Report page tooltips", "Detailed drillthrough pages"], description: "Add depth and interactivity to visual reports." },
+            { topic: "Bookmarks & Selection Pane", concepts: ["Bookmarks", "Toggle views", "Storytelling"], description: "Create dynamic, interactive reports for presentations." }
+          ],
+          advanced: [
+            { topic: "Advanced DAX Functions", concepts: ["CALCULATE()", "FILTER()", "ALL()", "VALUES()", "RELATED()"], description: "Write more powerful and context-sensitive DAX measures." },
+            { topic: "Row-Level Security (RLS)", concepts: ["Roles", "DAX filters", "Dynamic RLS"], description: "Secure data access for different users." },
+            { topic: "Performance Optimization", concepts: ["DAX optimization", "Model size", "Performance analyzer"], description: "Improve report responsiveness and resource efficiency." },
+            { topic: "Custom Visuals", concepts: ["Import from AppSource", "Use cases"], description: "Enhance reports with third-party visuals." },
+            { topic: "Advanced Power Query M", concepts: ["Custom functions", "M language basics"], description: "Write custom data transformation logic in M." },
+            { topic: "Paginated Reports", concepts: ["Power BI Report Builder", "Formatted tables"], description: "Generate printable, pixel-perfect reports." },
+            { topic: "Drill Down & Hierarchies", concepts: ["Creating hierarchies", "Drill up/down"], description: "Add intuitive navigation to complex datasets." },
+            { topic: "Themes & Branding", concepts: ["JSON themes", "Custom color palettes"], description: "Maintain consistent branding across reports." }
+          ],
+          expert: [
+            { topic: "Power BI Service Deep Dive", concepts: ["Workspaces", "Apps", "Sharing", "Data refresh"], description: "Manage deployments and dataflows in production." },
+            { topic: "Power BI Gateway", concepts: ["On-premises data access", "Scheduled refresh"], description: "Bridge on-prem data with Power BI service securely." },
+            { topic: "Dataflows", concepts: ["Reusable ETL pipelines", "Power Query Online"], description: "Centralize data transformations for consistency across reports." },
+            { topic: "Integration with Excel, Teams, SharePoint", concepts: ["Analyze in Excel", "Embedding", "Teams tabs"], description: "Collaborate and distribute reports effectively." },
+            { topic: "Power Automate Integration", concepts: ["Automate alerts", "Report sharing", "Flows"], description: "Add workflow automation triggered by data changes." },
+            { topic: "Power BI REST API & Dev", concepts: ["Embed APIs", "Refresh APIs", "Custom dev tools"], description: "Automate and embed Power BI into custom applications." }
+          ]
+        }
+      },
+      {
+        title: "Python Roadmap",
+        description: "A complete roadmap to master Python programming for data science, web development, and more.",
+        image: "https://img.icons8.com/color/96/000000/python.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/python.png",
+        levels: {
+          beginner: [
+            { topic: "Python Basics", concepts: ["Installation", "REPL", "Variables", "print()", "Comments"], description: "Set up Python, write first programs, and understand the development flow." },
+            { topic: "Data Types", concepts: ["int", "float", "str", "bool", "Type checking", "Type conversion"], description: "Learn Python's core data types and how to convert between them." },
+            { topic: "Operators", concepts: ["Arithmetic", "Comparison", "Logical", "Assignment", "Membership", "Identity"], description: "Perform calculations and make decisions using operators." },
+            { topic: "Strings", concepts: ["Indexing", "Slicing", "Methods", "f-strings", "Escape characters"], description: "Handle and manipulate text-based data effectively." },
+            { topic: "Control Flow", concepts: ["if", "elif", "else", "Nested conditions"], description: "Write logic to control the flow of your program." },
+            { topic: "Loops", concepts: ["for", "while", "break", "continue", "range()"], description: "Repeat tasks efficiently and loop through data structures." },
+            { topic: "Functions", concepts: ["def", "Parameters", "Return values", "Scope", "*args", "**kwargs"], description: "Organize code into reusable blocks with custom behavior." },
+            { topic: "Lists & Tuples", concepts: ["Creation", "Indexing", "Slicing", "Methods", "List Comprehension"], description: "Store and manage ordered collections of data." },
+            { topic: "Dictionaries & Sets", concepts: ["dict creation", "Methods", "set", "set() operations"], description: "Store key-value pairs and handle unique items efficiently." }
+          ],
+          intermediate: [
+            { topic: "File Handling", concepts: ["open()", "read()", "write()", "with", "Working with .txt and .csv"], description: "Read/write files to persist or process data." },
+            { topic: "Exception Handling", concepts: ["try", "except", "finally", "raise", "Custom exceptions"], description: "Handle errors gracefully and write more reliable code." },
+            { topic: "Modules & Packages", concepts: ["import", "Creating your own modules", "__name__ == '__main__'"], description: "Organize code into reusable and maintainable components." },
+            { topic: "Python Libraries", concepts: ["math", "random", "datetime", "collections", "itertools"], description: "Leverage built-in tools to solve common programming problems." },
+            { topic: "Object-Oriented Programming (OOP)", concepts: ["class", "__init__", "self", "Methods", "Inheritance", "super()"], description: "Build complex programs using real-world modeling concepts." },
+            { topic: "Lambda & Functional Tools", concepts: ["lambda", "map()", "filter()", "reduce()", "zip()"], description: "Write concise, efficient data-processing code." },
+            { topic: "Working with JSON & CSV", concepts: ["json", "csv libraries", "Parsing & writing"], description: "Read and write structured data formats for APIs and datasets." }
+          ],
+          advanced: [
+            { topic: "Comprehensions", concepts: ["List", "Dict", "Set comprehensions", "Nested comprehensions"], description: "Write cleaner and faster data transformation logic." },
+            { topic: "Decorators", concepts: ["Function decorators", "@wraps", "Common use-cases"], description: "Extend functionality of functions in a clean and reusable way." },
+            { topic: "Generators & Iterators", concepts: ["yield", "Generator expressions", "iter()", "next()"], description: "Handle large data streams efficiently with lazy evaluation." },
+            { topic: "Regular Expressions", concepts: ["re module", "search()", "match()", "findall()", "Groups", "Patterns"], description: "Extract patterns and validate formats in strings." },
+            { topic: "Virtual Environments", concepts: ["venv", "pip", "requirements.txt", "Dependencies"], description: "Manage project dependencies in isolated environments." },
+            { topic: "Unit Testing", concepts: ["unittest", "pytest", "Assertions", "Fixtures"], description: "Write testable and bug-free code for production environments." },
+            { topic: "Logging", concepts: ["Logging levels", "basicConfig", "Writing logs to file"], description: "Track application behavior and debug production issues." },
+            { topic: "Working with APIs", concepts: ["requests", "Parsing JSON", "Error handling", "Real API calls"], description: "Fetch and process data from web APIs for automation and data pipelines." }
+          ],
+          expert: [
+            { topic: "NumPy & Pandas", concepts: ["Arrays", "Series", "DataFrames", "Indexing", "Filtering", "Aggregation"], description: "Perform powerful data analysis and manipulation." },
+            { topic: "Matplotlib & Seaborn", concepts: ["Data visualization: plots", "Charts", "Customizations"], description: "Create visual representations of data for analysis and storytelling." },
+            { topic: "Flask / FastAPI", concepts: ["Building APIs", "Endpoints", "Routing", "Templates"], description: "Build web apps and APIs for real-world services and products." },
+            { topic: "Multithreading & Multiprocessing", concepts: ["threading", "multiprocessing", "GIL", "Concurrency"], description: "Speed up tasks with parallel processing and thread management." },
+            { topic: "Profiling & Optimization", concepts: ["timeit", "cProfile", "Big-O basics", "Memory usage"], description: "Identify performance bottlenecks and write efficient code." },
+            { topic: "Advanced OOP & Design Patterns", concepts: ["SOLID principles", "Singleton", "Factory", "Observer"], description: "Design scalable and maintainable applications using proven patterns." }
+          ]
+        }
+      },
+      {
+        title: "Excel Roadmap",
+        description: "A comprehensive guide to mastering Excel for data analysis, reporting, and automation.",
+        image: "https://img.icons8.com/color/96/000000/microsoft-excel-2019.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/microsoft-excel-2019.png",
+        levels: {
+          beginner: [
+            { topic: "Excel Basics", concepts: ["Interface", "Workbooks", "Worksheets", "Cells", "Ribbons"], description: "Understand the Excel interface and basic navigation." },
+            { topic: "Data Entry", concepts: ["Entering data", "Auto-fill", "Data validation"], description: "Learn how to input and validate data efficiently." },
+            { topic: "Basic Formulas", concepts: ["SUM", "AVERAGE", "MIN", "MAX", "COUNT"], description: "Perform basic calculations using Excel formulas." },
+            { topic: "Formatting", concepts: ["Cell formatting", "Conditional formatting", "Borders", "Number formats"], description: "Enhance spreadsheet readability with formatting techniques." },
+            { topic: "Basic Charts", concepts: ["Bar", "Pie", "Line", "Column"], description: "Create simple visualizations to represent data." },
+            { topic: "Sorting & Filtering", concepts: ["Sort A-Z", "Custom sort", "Filter by value"], description: "Organize and narrow down data for analysis." },
+            { topic: "Tables", concepts: ["Creating tables", "Table styles", "Total row"], description: "Use Excel tables for structured data management." }
+          ],
+          intermediate: [
+            { topic: "Advanced Formulas", concepts: ["VLOOKUP", "HLOOKUP", "IF", "AND", "OR"], description: "Use lookup and logical functions for complex calculations." },
+            { topic: "Pivot Tables", concepts: ["Creating pivots", "Grouping", "Slicers", "Calculated fields"], description: "Summarize and analyze large datasets with pivot tables." },
+            { topic: "Data Validation", concepts: ["Drop-down lists", "Custom rules", "Error messages"], description: "Ensure data integrity with advanced validation." },
+            { topic: "Text Functions", concepts: ["LEFT", "RIGHT", "MID", "CONCAT", "TEXT"], description: "Manipulate and clean text data effectively." },
+            { topic: "Charts & Sparklines", concepts: ["Combo charts", "Trendlines", "Sparklines"], description: "Create advanced visualizations for insights." },
+            { topic: "Named Ranges", concepts: ["Creating named ranges", "Using in formulas"], description: "Simplify formulas with named ranges." },
+            { topic: "Data Import", concepts: ["From CSV", "From text", "From databases"], description: "Import external data into Excel for analysis." }
+          ],
+          advanced: [
+            { topic: "Advanced Pivot Tables", concepts: ["Pivot charts", "GETPIVOTDATA", "Data model"], description: "Enhance pivot table functionality for complex reporting." },
+            { topic: "Power Query", concepts: ["Importing data", "Transforming", "Merging", "Appending"], description: "Automate data cleaning and transformation with Power Query." },
+            { topic: "Advanced Formulas", concepts: ["INDEX", "MATCH", "IFERROR", "ARRAY formulas"], description: "Write powerful formulas for dynamic calculations." },
+            { topic: "Macros & VBA", concepts: ["Recording macros", "VBA basics", "Automating tasks"], description: "Automate repetitive tasks using macros and VBA." },
+            { topic: "What-If Analysis", concepts: ["Goal Seek", "Data Tables", "Scenario Manager"], description: "Perform scenario-based analysis for decision-making." },
+            { topic: "Conditional Formatting", concepts: ["Custom rules", "Formula-based formatting"], description: "Apply dynamic formatting based on complex conditions." },
+            { topic: "Data Connections", concepts: ["ODBC", "External data refresh"], description: "Connect Excel to external databases for real-time data." }
+          ],
+          expert: [
+            { topic: "Advanced VBA", concepts: ["User forms", "Event handling", "Custom functions"], description: "Build complex automation scripts with VBA." },
+            { topic: "Power Pivot", concepts: ["DAX formulas", "Data models", "Relationships"], description: "Create advanced data models for business intelligence." },
+            { topic: "Excel Online & Collaboration", concepts: ["Co-authoring", "Sharing", "Cloud integration"], description: "Collaborate on spreadsheets in real-time using Excel Online." },
+            { topic: "Dynamic Arrays", concepts: ["FILTER", "SORT", "UNIQUE", "SEQUENCE"], description: "Leverage Excel's dynamic array formulas for efficient data processing." },
+            { topic: "Integration with Power BI", concepts: ["Export to Power BI", "Data sharing"], description: "Connect Excel with Power BI for enhanced reporting." }
+          ]
+        }
+      },
+      {
+        title: "Git Roadmap",
+        description: "A guide to mastering Git for version control and collaborative software development.",
+        image: "https://img.icons8.com/color/96/000000/git.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/git.png",
+        levels: {
+          beginner: [
+            { topic: "Git Basics", concepts: ["What is Git?", "Version control", "Repositories"], description: "Understand Git and its role in version control." },
+            { topic: "Setup", concepts: ["Installing Git", "Configuring user.name", "Configuring user.email"], description: "Set up Git on your system with basic configuration." },
+            { topic: "Basic Commands", concepts: ["git init", "git add", "git commit", "git status"], description: "Learn core commands to start tracking changes." },
+            { topic: "Working with Repositories", concepts: ["Cloning", "git clone", "Remote vs local"], description: "Create and clone repositories for collaboration." },
+            { topic: "Basic Branching", concepts: ["git branch", "git checkout", "Switching branches"], description: "Understand branching for parallel development." },
+            { topic: "Viewing History", concepts: ["git log", "git diff"], description: "Inspect commit history and changes in your repository." }
+          ],
+          intermediate: [
+            { topic: "Branching & Merging", concepts: ["git merge", "Merge conflicts", "Resolving conflicts"], description: "Manage branches and resolve merge conflicts." },
+            { topic: "Remote Repositories", concepts: ["git push", "git pull", "git fetch", "Remote branches"], description: "Work with remote repositories like GitHub." },
+            { topic: "Stashing", concepts: ["git stash", "git stash apply", "Managing changes"], description: "Temporarily save changes without committing." },
+            { topic: "Rebasing", concepts: ["git rebase", "Interactive rebase"], description: "Rewrite commit history for cleaner workflows." },
+            { topic: "Undoing Changes", concepts: ["git reset", "git revert", "git checkout"], description: "Undo or modify commits and changes." },
+            { topic: "Gitignore", concepts: [".gitignore file", "Patterns", "Ignoring files"], description: "Exclude unnecessary files from version control." }
+          ],
+          advanced: [
+            { topic: "Advanced Branching", concepts: ["Gitflow", "Feature branches", "Hotfixes"], description: "Implement structured branching strategies." },
+            { topic: "Submodules", concepts: ["git submodule add", "Updating submodules"], description: "Manage nested repositories within a project." },
+            { topic: "Cherry-picking", concepts: ["git cherry-pick", "Selective commits"], description: "Apply specific commits to different branches." },
+            { topic: "Reflog", concepts: ["git reflog", "Recovering lost commits"], description: "Recover lost commits and understand repository history." },
+            { topic: "Hooks", concepts: ["Pre-commit", "Post-merge", "Custom scripts"], description: "Automate tasks with Git hooks." },
+            { topic: "Git Worktrees", concepts: ["git worktree", "Multiple working directories"], description: "Work on multiple branches simultaneously." }
+          ],
+          expert: [
+            { topic: "Git Internals", concepts: ["Git objects", "Blobs", "Trees", "Commits"], description: "Understand Git's internal data structures." },
+            { topic: "Advanced Rebasing", concepts: ["Interactive rebase with scripts", "Rewriting history"], description: "Perform complex history rewrites with confidence." },
+            { topic: "Git Server Setup", concepts: ["Bare repositories", "Hosting Git servers"], description: "Set up and manage your own Git server." },
+            { topic: "CI/CD Integration", concepts: ["GitHub Actions", "GitLab CI", "Triggers"], description: "Integrate Git with continuous integration pipelines." },
+            { topic: "Bisect", concepts: ["git bisect", "Debugging with binary search"], description: "Debug issues by finding problematic commits." }
+          ]
+        }
+      },
+      {
+        title: "Linux Roadmap",
+        description: "A roadmap to mastering Linux for system administration, development, and data workflows.",
+        image: "https://img.icons8.com/color/96/000000/linux.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/linux.png",
+        levels: {
+          beginner: [
+            { topic: "Linux Basics", concepts: ["What is Linux?", "Distributions", "Command line basics"], description: "Understand Linux and its ecosystem." },
+            { topic: "File System Navigation", concepts: ["ls", "cd", "pwd", "File hierarchy"], description: "Navigate the Linux file system using basic commands." },
+            { topic: "File Operations", concepts: ["cp", "mv", "rm", "mkdir", "touch"], description: "Perform basic file and directory operations." },
+            { topic: "Text Viewing", concepts: ["cat", "less", "more", "head", "tail"], description: "View and manipulate text file contents." },
+            { topic: "Permissions", concepts: ["chmod", "chown", "File permissions"], description: "Understand and manage file permissions." },
+            { topic: "Basic Commands", concepts: ["echo", "man", "whoami", "uptime"], description: "Learn essential utility commands." }
+          ],
+          intermediate: [
+            { topic: "Text Processing", concepts: ["grep", "awk", "sed", "cut"], description: "Process and manipulate text data efficiently." },
+            { topic: "Pipes & Redirection", concepts: ["|", ">", ">>", "<"], description: "Combine commands and redirect input/output." },
+            { topic: "Package Management", concepts: ["apt", "yum", "dnf", "Installing software"], description: "Install and manage software packages." },
+            { topic: "User Management", concepts: ["useradd", "usermod", "passwd", "sudo"], description: "Manage users and permissions." },
+            { topic: "Process Management", concepts: ["ps", "top", "kill", "nice"], description: "Monitor and control running processes." },
+            { topic: "Networking Basics", concepts: ["ping", "netstat", "ifconfig", "curl"], description: "Perform basic network diagnostics." }
+          ],
+          advanced: [
+            { topic: "Shell Scripting", concepts: ["Bash scripts", "Variables", "Loops", "Conditionals"], description: "Automate tasks with shell scripts." },
+            { topic: "System Monitoring", concepts: ["htop", "vmstat", "iostat", "dmesg"], description: "Monitor system performance and logs." },
+            { topic: "Cron Jobs", concepts: ["crontab", "Scheduling tasks"], description: "Automate recurring tasks with cron." },
+            { topic: "Networking Advanced", concepts: ["ssh", "scp", "rsync", "nmap"], description: "Manage remote connections and file transfers." },
+            { topic: "File Systems", concepts: ["mount", "umount", "LVM", "RAID"], description: "Manage disk partitions and file systems." },
+            { topic: "Security Basics", concepts: ["firewall-cmd", "ufw", "SELinux basics"], description: "Implement basic system security measures." }
+          ],
+          expert: [
+            { topic: "Advanced Shell Scripting", concepts: ["Functions", "Error handling", "Script debugging"], description: "Write robust and complex shell scripts." },
+            { topic: "System Administration", concepts: ["Systemd", "Service management", "Log rotation"], description: "Manage Linux services and system configurations." },
+            { topic: "Containerization", concepts: ["Docker", "Podman", "Container orchestration"], description: "Run and manage containers for applications." },
+            { topic: "Kernel Basics", concepts: ["Kernel modules", "modprobe", "Kernel parameters"], description: "Understand and configure the Linux kernel." },
+            { topic: "Advanced Security", concepts: ["AppArmor", "Auditd", "Intrusion detection"], description: "Implement advanced security practices." }
+          ]
+        }
+      }
+    ];
+
+    let currentPanelIndex = -1;
+    const cardContainer = document.getElementById('cardContainer');
+    const modalPanel = document.getElementById('modalPanel');
+    const overlay = document.getElementById('overlay');
+    const closePanelBtn = document.getElementById('closePanelBtn');
+    const panelTitle = document.getElementById('panelTitle');
+    const beginnerContent = document.getElementById('beginnerContent');
+    const intermediateContent = document.getElementById('intermediateContent');
+    const advancedContent = document.getElementById('advancedContent');
+    const expertContent = document.getElementById('expertSection');
+    const searchInput = document.getElementById('searchInput');
+    const themeToggle = document.getElementById('themeToggle');
+
+    function populateCards(filter = '') {
+      cardContainer.innerHTML = '';
+      const filteredRoadmaps = roadmaps.filter(item =>
+        item.title.toLowerCase().includes(filter.toLowerCase()) ||
+        item.description.toLowerCase().includes(filter.toLowerCase())
+      );
+      
+      filteredRoadmaps.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-pressed', 'false');
+        card.setAttribute('aria-label', `View details about ${item.title}`);
+        card.innerHTML = `
+          <div class="card-content">
+            <img src="${item.image}" alt="${item.title} icon" class="role-icon-img" onerror="this.src='https://via.placeholder.com/36?text=Image+Not+Found'; this.alt='Image Not Found';" />
+            <div>
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+            </div>
+          </div>
+        `;
+        card.addEventListener('click', () => openPanel(roadmaps.indexOf(item)));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openPanel(roadmaps.indexOf(item));
+          }
+        });
+        cardContainer.appendChild(card);
+      });
+    }
+
+    function openPanel(index) {
+      currentPanelIndex = index;
+      const item = roadmaps[index];
+      panelTitle.innerHTML = `
+        <img src="${item.panelImage}" alt="${item.title}" class="role-header-img" onerror="this.src='https://via.placeholder.com/48?text=Image+Not+Found'; this.alt='Image Not Found';" />
+        <span>${item.title}</span>
+      `;
+      
+      beginnerContent.innerHTML = '';
+      if (item.levels.beginner) {
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
+          ${item.levels.beginner.map((section, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td class="topic-cell">${section.topic}</td>
+              <td>${section.concepts.join(', ')}</td>
+              <td>${section.description}</td>
+            </tr>
+          `).join('')}
+        `;
+        beginnerContent.appendChild(table);
+      }
+
+      intermediateContent.innerHTML = '';
+      if (item.levels.intermediate) {
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
+          ${item.levels.intermediate.map((section, i) => `
+            <tr>
+              <td>${i + 9}</td>
+              <td class="topic-cell">${section.topic}</td>
+              <td>${section.concepts.join(', ')}</td>
+              <td>${section.description}</td>
+            </tr>
+          `).join('')}
+        `;
+        intermediateContent.appendChild(table);
+      }
+
+      advancedContent.innerHTML = '';
+      if (item.levels.advanced) {
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
+          ${item.levels.advanced.map((section, i) => `
+            <tr>
+              <td>${i + 17}</td>
+              <td class="topic-cell">${section.topic}</td>
+              <td>${section.concepts.join(', ')}</td>
+              <td>${section.description}</td>
+            </tr>
+          `).join('')}
+        `;
+        advancedContent.appendChild(table);
+      }
+
+      expertContent.style.display = item.levels.expert ? 'block' : 'none';
+      expertContent.querySelector('.modal-section-content').innerHTML = '';
+      if (item.levels.expert) {
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
+          ${item.levels.expert.map((section, i) => `
+            <tr>
+              <td>${i + 25}</td>
+              <td class="topic-cell">${section.topic}</td>
+              <td>${section.concepts.join(', ')}</td>
+              <td>${section.description}</td>
+            </tr>
+          `).join('')}
+        `;
+        expertContent.querySelector('.modal-section-content').appendChild(table);
+      }
+
+      modalPanel.classList.add('open');
+      overlay.classList.add('visible');
+      modalPanel.focus();
+    }
+
+    function closePanel() {
+      modalPanel.classList.remove('open');
+      overlay.classList.remove('visible');
+      cardContainer.querySelector('.card')?.focus();
+    }
+
+    // Theme toggle
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+      themeToggle.setAttribute('aria-label', document.body.classList.contains('light-mode') ? 'Switch to dark mode' : 'Switch to light mode');
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', () => {
+      populateCards(searchInput.value);
+    });
+
+    // Keyboard navigation
+    closePanelBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalPanel.classList.contains('open')) {
+        closePanel();
+      }
+    });
+
+    populateCards();
+  </script>
+</body>
+</html>
