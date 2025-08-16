@@ -412,7 +412,7 @@
       height: 60px;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5));
       transition: all 0.3s ease;
       z-index: 1600;
       display: flex;
@@ -422,7 +422,7 @@
     .ai-agent-btn:hover {
       background-color: #44caff;
       transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+      box-shadow: 0 0 15px rgba(0, 170, 255, 0.7));
     }
     .ai-agent-panel {
       position: fixed;
@@ -514,7 +514,7 @@
       outline: none;
     }
     .ai-agent-input:focus {
-      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5));
     }
     .ai-agent-send-btn {
       background-color: var(--primary);
@@ -773,38 +773,46 @@
     const baseData = [
       {
         role: "Data Scientist",
-        salary: "₹6L - ₹20L+",
+        salary: "₹8L - ₹30L+",
         salaryExperience: {
-          "0-2 years": "₹6L - ₹10L",
-          "3-5 years": "₹11L - ₹15L",
-          "6+ years": "₹16L - ₹20L+"
+          "Entry Level (0-2 years)": "₹8L - ₹14L",
+          "Mid Level (3-5 years)": "₹15L - ₹22L",
+          "Senior Level (6-8 years)": "₹23L - ₹28L",
+          "Lead/Principal (9+ years)": "₹29L - ₹30L+"
         },
-        skills: "Python, ML, SQL, Statistics, Visualization",
-        tools: ["Python", "R", "Tableau", "SQL", "Jupyter", "Scikit-learn"],
-        description: "Data Scientists are analytical experts who use statistical methods to interpret and analyze large datasets. They build predictive models, uncover hidden patterns, and provide actionable insights to drive business decisions.",
+        skills: "Python, ML, Deep Learning, Statistics, Data Visualization, Cloud Platforms",
+        tools: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Jupyter", "Tableau", "Power BI", "AWS", "Azure", "GCP", "Pandas", "NumPy"],
+        description: "Data Scientists are analytical experts who use statistical methods and machine learning to interpret complex datasets. They build predictive models, uncover hidden patterns, and provide actionable insights to drive business decisions. Modern Data Scientists increasingly work with deep learning, generative AI, and cloud-based data platforms.",
         responsibilities: [
-          "Collect and clean large datasets from various sources",
-          "Apply statistical analysis and machine learning algorithms",
-          "Create predictive models and machine learning algorithms",
-          "Visualize data and present findings to stakeholders",
-          "Communicate results through clear reports and presentations",
+          "Collect, clean, and preprocess large datasets from various sources",
+          "Apply advanced statistical analysis and machine learning algorithms",
+          "Develop and train deep learning models for complex problems",
+          "Create predictive and prescriptive analytics models",
+          "Visualize data and present findings to stakeholders using storytelling techniques",
           "Collaborate with cross-functional teams to solve business problems",
-          "Evaluate and interpret the results of models",
-          "Continuously improve models based on new data",
-          "Stay updated with the latest industry trends and technologies"
+          "Evaluate and interpret the results of models with statistical rigor",
+          "Deploy models into production environments",
+          "Stay updated with the latest industry trends and technologies including generative AI",
+          "Implement MLOps practices for model monitoring and maintenance"
         ],
         roadmap: [
-          "Learn Python, Pandas, NumPy.",
-          "Understand statistics & machine learning algorithms.",
-          "Practice with real-world datasets.",
-          "Join Kaggle competitions.",
-          "Master visualization & storytelling."
+          "Master Python programming with Pandas, NumPy, and data visualization libraries",
+          "Build strong foundation in statistics, probability, and linear algebra",
+          "Learn machine learning algorithms and implement them from scratch",
+          "Gain hands-on experience with deep learning frameworks (TensorFlow/PyTorch)",
+          "Practice with real-world datasets on platforms like Kaggle and DrivenData",
+          "Learn cloud platforms (AWS, Azure, or GCP) and their machine learning services",
+          "Understand MLOps principles and model deployment",
+          "Work on end-to-end projects that solve real business problems",
+          "Develop strong communication skills to present technical findings to non-technical stakeholders"
         ],
         additionalTips: [
-          "Stay updated with ML research (e.g., arXiv, Google Scholar).",
-          "Practice on Kaggle regularly.",
-          "Contribute to open-source data science projects.",
-          "Develop storytelling and visualization skills."
+          "Stay updated with ML research through arXiv, Google Scholar, and conference proceedings",
+          "Participate in Kaggle competitions to build portfolio and learn from others",
+          "Contribute to open-source data science projects on GitHub",
+          "Develop strong data storytelling and visualization skills",
+          "Learn about ethical AI and responsible machine learning practices",
+          "Network with other data professionals through meetups and conferences"
         ],
         image: "https://img.icons8.com/color/96/000000/data-configuration.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/data-configuration.png",
@@ -813,78 +821,94 @@
       },
       {
         role: "Data Analyst",
-        salary: "₹3L - ₹8L",
+        salary: "₹4L - ₹12L",
         salaryExperience: {
-          "0-2 years": "₹3L - ₹5L",
-          "3-5 years": "₹5L - ₹7L",
-          "6+ years": "₹7L - ₹8L"
+          "Junior (0-2 years)": "₹4L - ₹7L",
+          "Intermediate (3-5 years)": "₹8L - ₹10L",
+          "Senior (6-8 years)": "₹11L - ₹12L",
+          "Specialist (9+ years)": "₹12L - ₹15L"
         },
-        skills: "Excel, SQL, Python (basic), Visualization",
-        tools: ["Excel", "SQL", "Tableau", "Power BI", "Google Sheets", "Looker"],
-        description: "Data Analysts collect, process, and perform statistical analyses on large datasets. They create visualizations and reports to help organizations make data-driven decisions and identify business opportunities.",
+        skills: "SQL, Excel, Data Visualization, Python (basic), Business Intelligence",
+        tools: ["SQL", "Excel", "Power BI", "Tableau", "Google Data Studio", "Python", "Pandas", "Looker", "Snowflake", "BigQuery"],
+        description: "Data Analysts collect, process, and perform statistical analyses on large datasets. They create visualizations and reports to help organizations make data-driven decisions and identify business opportunities. Modern Data Analysts increasingly work with self-service BI tools, SQL-based data warehouses, and automated reporting systems.",
         responsibilities: [
-          "Extract and analyze data from various sources",
-          "Clean and validate data for accuracy",
-          "Create reports and dashboards for stakeholders",
-          "Identify trends and patterns in datasets",
-          "Present findings to non-technical audiences",
-          "Support business decision-making with data insights",
+          "Extract and analyze data from various sources including databases and APIs",
+          "Clean and validate data for accuracy and consistency",
+          "Create interactive dashboards and reports for stakeholders",
+          "Identify trends, patterns, and insights in datasets",
+          "Present findings to non-technical audiences with clear visualizations",
+          "Support business decision-making with timely data insights",
           "Document analysis processes and methodologies",
-          "Ensure data quality and integrity",
-          "Collaborate with business teams to understand requirements"
+          "Ensure data quality and integrity across reporting systems",
+          "Collaborate with business teams to understand requirements and deliver solutions",
+          "Automate routine reporting tasks using scripting and scheduling tools"
         ],
         roadmap: [
-          "Master Excel and SQL basics.",
-          "Learn Python fundamentals.",
-          "Practice data cleaning and visualization.",
-          "Build dashboards using Tableau or Power BI.",
-          "Improve presentation and communication skills."
+          "Master advanced Excel functions and data manipulation techniques",
+          "Become proficient in SQL for data extraction and analysis",
+          "Learn data visualization best practices and tools (Power BI/Tableau)",
+          "Develop basic Python skills for data analysis with Pandas",
+          "Practice creating compelling data stories and dashboards",
+          "Understand database concepts and data warehousing",
+          "Learn about data modeling and dimensional modeling",
+          "Gain experience with cloud data platforms (Snowflake, BigQuery, Redshift)",
+          "Improve presentation and communication skills for business stakeholders"
         ],
         additionalTips: [
-          "Focus on clear communication of results.",
-          "Practice storyboarding insights.",
-          "Take online courses on data visualization.",
-          "Collaborate with business teams."
+          "Focus on clear communication of results and business impact",
+          "Practice storyboarding insights before creating visualizations",
+          "Take online courses on data visualization principles",
+          "Collaborate with business teams to understand their needs",
+          "Learn basic statistical concepts for proper data interpretation",
+          "Stay updated with new features in BI tools"
         ],
         image: "https://img.icons8.com/color/96/000000/analytics.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/analytics.png",
-        trend: "neutral",
+        trend: "up",
         lastUpdated: new Date()
       },
       {
         role: "Machine Learning Engineer",
-        salary: "₹8L - ₹25L+",
+        salary: "₹10L - ₹35L+",
         salaryExperience: {
-          "0-2 years": "₹8L - ₹12L",
-          "3-5 years": "₹13L - ₹20L",
-          "6+ years": "₹21L - ₹25L+"
+          "Junior (0-2 years)": "₹10L - ₹16L",
+          "Mid Level (3-5 years)": "₹18L - ₹25L",
+          "Senior (6-8 years)": "₹26L - ₹30L",
+          "Principal (9+ years)": "₹32L - ₹35L+"
         },
-        skills: "Python, ML frameworks, Software Development",
-        tools: ["TensorFlow", "PyTorch", "Docker", "Keras", "MLflow", "FastAPI"],
-        description: "Machine Learning Engineers design, build, and deploy machine learning models into production systems. They bridge the gap between Data Scientists' prototypes and scalable, reliable applications.",
+        skills: "Python, ML frameworks, Software Development, MLOps, Cloud Platforms",
+        tools: ["TensorFlow", "PyTorch", "Keras", "Scikit-learn", "Docker", "Kubernetes", "MLflow", "Airflow", "FastAPI", "Flask", "AWS SageMaker", "Azure ML", "Google Vertex AI"],
+        description: "Machine Learning Engineers design, build, and deploy machine learning models into production systems. They bridge the gap between Data Scientists' prototypes and scalable, reliable applications. Modern MLEs work extensively with MLOps, containerization, and cloud-based ML platforms to ensure models are reliable, scalable, and maintainable.",
         responsibilities: [
-          "Design and implement ML systems and pipelines",
-          "Deploy and monitor ML models in production",
-          "Optimize models for performance and scalability",
-          "Collaborate with Data Scientists to productionize models",
-          "Ensure model reliability, security, and compliance",
-          "Automate ML workflows and retraining processes",
-          "Troubleshoot and resolve model performance issues",
-          "Implement A/B testing for model improvements",
-          "Document ML system architectures and processes"
+          "Design and implement ML systems and pipelines for production use",
+          "Deploy, monitor, and maintain ML models in production environments",
+          "Optimize models for performance, scalability, and cost-efficiency",
+          "Collaborate with Data Scientists to productionize models and algorithms",
+          "Ensure model reliability, security, compliance, and explainability",
+          "Automate ML workflows, retraining processes, and CI/CD pipelines",
+          "Troubleshoot and resolve model performance and infrastructure issues",
+          "Implement A/B testing and experimentation frameworks for model improvements",
+          "Document ML system architectures, processes, and best practices",
+          "Work with MLOps tools for model versioning, monitoring, and governance"
         ],
         roadmap: [
-          "Learn Python and software engineering fundamentals.",
-          "Understand ML algorithms deeply.",
-          "Get hands-on with TensorFlow and PyTorch.",
-          "Practice containerization with Docker.",
-          "Build end-to-end ML projects and deploy them."
+          "Master Python programming with strong software engineering principles",
+          "Deepen understanding of ML algorithms and their mathematical foundations",
+          "Gain extensive hands-on experience with TensorFlow and PyTorch",
+          "Learn containerization with Docker and orchestration with Kubernetes",
+          "Practice building end-to-end ML projects and deploying them to cloud platforms",
+          "Learn MLOps principles and tools (MLflow, Kubeflow, etc.)",
+          "Understand cloud infrastructure and services (AWS, Azure, or GCP)",
+          "Develop skills in API development for model serving",
+          "Study distributed computing concepts for scaling ML systems"
         ],
         additionalTips: [
-          "Follow latest ML research and frameworks.",
-          "Contribute to open-source ML projects.",
-          "Understand cloud deployment basics.",
-          "Practice collaborative coding (Git, CI/CD)."
+          "Follow latest ML research and framework developments",
+          "Contribute to open-source ML projects and tools",
+          "Understand cloud deployment and infrastructure as code",
+          "Practice collaborative coding with Git and CI/CD workflows",
+          "Learn about model monitoring, drift detection, and retraining strategies",
+          "Study ethical AI considerations and model governance"
         ],
         image: "https://img.icons8.com/color/96/000000/artificial-intelligence.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/artificial-intelligence.png",
@@ -893,38 +917,46 @@
       },
       {
         role: "Data Engineer",
-        salary: "₹6L - ₹18L",
+        salary: "₹8L - ₹25L",
         salaryExperience: {
-          "0-2 years": "₹6L - ₹9L",
-          "3-5 years": "₹10L - ₹14L",
-          "6+ years": "₹15L - ₹18L"
+          "Junior (0-2 years)": "₹8L - ₹12L",
+          "Mid Level (3-5 years)": "₹14L - ₹18L",
+          "Senior (6-8 years)": "₹20L - ₹23L",
+          "Principal (9+ years)": "₹24L - ₹25L+"
         },
-        skills: "SQL, Python/Java, Big Data, Cloud",
-        tools: ["Hadoop", "Spark", "AWS", "Kafka", "Airflow", "Snowflake"],
-        description: "Data Engineers build and maintain the infrastructure and systems that collect, process, and store large volumes of data. They ensure data is accessible and reliable for Data Scientists and Analysts.",
+        skills: "SQL, Python/Java, Big Data, Cloud Platforms, Data Pipeline Design",
+        tools: ["Python", "SQL", "Spark", "Hadoop", "Kafka", "Airflow", "Snowflake", "BigQuery", "Redshift", "Databricks", "dbt", "Fivetran", "AWS", "Azure", "GCP"],
+        description: "Data Engineers build and maintain the infrastructure and systems that collect, process, and store large volumes of data. They ensure data is accessible, reliable, and performant for Data Scientists and Analysts. Modern Data Engineers work with cloud data platforms, streaming architectures, and automated data pipelines using modern tools and frameworks.",
         responsibilities: [
-          "Design and build data pipelines and architectures",
-          "Develop ETL/ELT processes for data integration",
-          "Maintain data warehouses and lakes",
-          "Optimize database performance and scalability",
-          "Ensure data quality, security, and governance",
-          "Collaborate with analysts and scientists on data requirements",
-          "Monitor and troubleshoot data pipeline issues",
-          "Implement data backup and recovery procedures",
-          "Stay current with emerging data technologies"
+          "Design and build scalable data pipelines and architectures",
+          "Develop ETL/ELT processes for efficient data integration",
+          "Maintain and optimize data warehouses, data lakes, and lakehouses",
+          "Ensure data quality, security, governance, and compliance",
+          "Collaborate with analysts and scientists on data requirements and access",
+          "Monitor and troubleshoot data pipeline issues and performance bottlenecks",
+          "Implement data backup, recovery, and disaster recovery procedures",
+          "Stay current with emerging data technologies and best practices",
+          "Work with modern data stack tools (dbt, Fivetran, Snowflake, etc.)",
+          "Design and implement real-time data streaming pipelines"
         ],
         roadmap: [
-          "Learn SQL and Python or Java.",
-          "Understand big data ecosystems (Hadoop, Spark).",
-          "Get hands-on with AWS cloud services.",
-          "Learn Kafka and real-time data processing.",
-          "Build and monitor robust data pipelines."
+          "Master SQL and programming with Python or Java",
+          "Understand big data ecosystems including Hadoop and Spark",
+          "Get hands-on experience with cloud data services (AWS, Azure, GCP)",
+          "Learn data pipeline orchestration with Airflow or Prefect",
+          "Practice building and monitoring robust data pipelines",
+          "Learn about data modeling and schema design",
+          "Understand data warehousing concepts and modern data stack tools",
+          "Gain experience with real-time data processing (Kafka, Flink)",
+          "Study data governance, security, and compliance requirements"
         ],
         additionalTips: [
-          "Focus on data reliability and scalability.",
-          "Automate monitoring and alerting.",
-          "Keep up with cloud innovations.",
-          "Practice infrastructure as code."
+          "Focus on data reliability, scalability, and performance",
+          "Automate monitoring, alerting, and pipeline testing",
+          "Keep up with cloud innovations and serverless architectures",
+          "Practice infrastructure as code principles",
+          "Learn about data mesh and data fabric architectures",
+          "Understand data privacy regulations (GDPR, CCPA, etc.)"
         ],
         image: "https://img.icons8.com/color/96/000000/database.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/database.png",
@@ -933,78 +965,94 @@
       },
       {
         role: "BI Developer",
-        salary: "₹4L - ₹12L",
+        salary: "₹5L - ₹18L",
         salaryExperience: {
-          "0-2 years": "₹4L - ₹7L",
-          "3-5 years": "₹8L - ₹10L",
-          "6+ years": "₹11L - ₹12L"
+          "Junior (0-2 years)": "₹5L - ₹9L",
+          "Mid Level (3-5 years)": "₹10L - ₹14L",
+          "Senior (6-8 years)": "₹15L - ₹17L",
+          "Lead (9+ years)": "₹18L - ₹20L"
         },
-        skills: "SQL, BI tools, Data Warehousing",
-        tools: ["Tableau", "Power BI", "SQL", "Looker", "Qlik", "MicroStrategy"],
-        description: "BI Developers design, develop, and maintain business intelligence solutions that transform raw data into meaningful insights. They create dashboards, reports, and data models to support business decision-making.",
+        skills: "SQL, BI tools, Data Warehousing, Data Modeling, Dashboard Design",
+        tools: ["Power BI", "Tableau", "Looker", "Qlik", "SQL", "Snowflake", "BigQuery", "Redshift", "dbt", "Excel", "SSRS"],
+        description: "BI Developers design, develop, and maintain business intelligence solutions that transform raw data into meaningful insights. They create dashboards, reports, and data models to support business decision-making. Modern BI Developers work with cloud data warehouses, self-service analytics platforms, and semantic modeling tools to enable data democratization across organizations.",
         responsibilities: [
-          "Design and develop BI dashboards and reports",
-          "Create data models and semantic layers",
-          "Implement ETL processes for data integration",
-          "Optimize query performance and data models",
-          "Collaborate with business users to gather requirements",
-          "Provide training and support for BI tools",
-          "Ensure data accuracy and consistency across reports",
-          "Maintain and update existing BI solutions",
-          "Document BI system specifications and processes"
+          "Design and develop interactive BI dashboards and reports",
+          "Create data models and semantic layers for consistent metrics",
+          "Implement ETL processes for data integration and transformation",
+          "Optimize query performance and data model efficiency",
+          "Collaborate with business users to gather requirements and deliver solutions",
+          "Provide training and support for BI tools and self-service analytics",
+          "Ensure data accuracy, consistency, and governance across reports",
+          "Maintain and update existing BI solutions and documentation",
+          "Document BI system specifications, data dictionaries, and processes",
+          "Work with modern analytics platforms and data modeling tools"
         ],
         roadmap: [
-          "Master SQL querying.",
-          "Learn Tableau and Power BI thoroughly.",
-          "Understand data warehousing concepts.",
-          "Build dashboards that answer business questions.",
-          "Improve storytelling with data."
+          "Master advanced SQL querying and optimization techniques",
+          "Learn BI tools thoroughly (Power BI and/or Tableau)",
+          "Understand data warehousing concepts and dimensional modeling",
+          "Practice building dashboards that answer specific business questions",
+          "Improve data storytelling and visualization skills",
+          "Learn about semantic modeling with tools like dbt",
+          "Gain experience with cloud data platforms (Snowflake, BigQuery, etc.)",
+          "Understand data governance and metrics consistency",
+          "Develop skills in requirements gathering and stakeholder management"
         ],
         additionalTips: [
-          "Get feedback from end-users frequently.",
-          "Practice optimizing query performance.",
-          "Keep up with BI tool updates.",
-          "Learn basic data modeling."
+          "Get feedback from end-users frequently to improve usability",
+          "Practice optimizing query performance and data model design",
+          "Keep up with BI tool updates and new features",
+          "Learn basic data modeling principles and best practices",
+          "Focus on creating consistent metrics across the organization",
+          "Understand the business domain you're supporting"
         ],
         image: "https://img.icons8.com/color/96/000000/dashboard.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/dashboard.png",
-        trend: "neutral",
+        trend: "up",
         lastUpdated: new Date()
       },
       {
         role: "AI Research Scientist",
-        salary: "₹10L - ₹30L+",
+        salary: "₹15L - ₹50L+",
         salaryExperience: {
-          "0-2 years": "₹10L - ₹15L",
-          "3-5 years": "₹16L - ₹25L",
-          "6+ years": "₹26L - ₹30L+"
+          "Junior (0-2 years)": "₹15L - ₹25L",
+          "Mid Level (3-5 years)": "₹28L - ₹40L",
+          "Senior (6-8 years)": "₹42L - ₹48L",
+          "Principal (9+ years)": "₹50L+"
         },
-        skills: "Deep Learning, Research, Python",
-        tools: ["TensorFlow", "PyTorch", "MATLAB", "OpenAI Gym", "CUDA", "Weights & Biases"],
-        description: "AI Research Scientists push the boundaries of artificial intelligence through innovative research. They develop new algorithms, conduct experiments, and publish findings to advance the field of AI.",
+        skills: "Deep Learning, Research Methodology, Mathematics, Python, Scientific Computing",
+        tools: ["PyTorch", "TensorFlow", "JAX", "CUDA", "Weights & Biases", "MLflow", "Git", "LaTeX", "MATLAB", "Hugging Face", "LangChain", "OpenAI API"],
+        description: "AI Research Scientists push the boundaries of artificial intelligence through innovative research. They develop new algorithms, conduct experiments, and publish findings to advance the field of AI. Modern AI Researchers work extensively with deep learning, transformer architectures, generative models, and large language models, often collaborating with industry and academic partners.",
         responsibilities: [
-          "Conduct fundamental and applied AI research",
-          "Design and implement novel algorithms and models",
-          "Perform experiments and analyze results",
-          "Publish research papers and present at conferences",
-          "Collaborate with academic and industry partners",
-          "Stay current with the latest AI developments",
-          "Mentor junior researchers and students",
-          "Secure funding for research projects",
-          "Evaluate and critique existing AI methodologies"
+          "Conduct fundamental and applied AI research in specialized domains",
+          "Design and implement novel algorithms, models, and architectures",
+          "Perform rigorous experiments and analyze results with statistical methods",
+          "Publish research papers in top conferences and journals",
+          "Present findings at conferences and to stakeholders",
+          "Collaborate with academic and industry partners on research projects",
+          "Stay current with the latest AI developments and research trends",
+          "Mentor junior researchers, students, and engineers",
+          "Secure funding for research projects through proposals and grants",
+          "Evaluate and critique existing AI methodologies and approaches"
         ],
         roadmap: [
-          "Build a strong math and ML foundation.",
-          "Get involved in research projects.",
-          "Publish papers in conferences/journals.",
-          "Master deep learning frameworks.",
-          "Stay connected with academic communities."
+          "Build a strong foundation in mathematics (linear algebra, calculus, probability)",
+          "Gain deep understanding of machine learning and deep learning concepts",
+          "Get involved in research projects during academic studies",
+          "Publish papers in conferences and journals (NeurIPS, ICML, CVPR, etc.)",
+          "Master deep learning frameworks and research tools",
+          "Specialize in a particular domain (NLP, CV, RL, etc.)",
+          "Develop strong programming and experimental skills",
+          "Learn about reproducible research practices",
+          "Network with other researchers and attend conferences"
         ],
         additionalTips: [
-          "Attend AI conferences and workshops.",
-          "Collaborate internationally.",
-          "Focus on reproducibility and rigor.",
-          "Explore interdisciplinary applications."
+          "Attend major AI conferences and workshops",
+          "Collaborate with researchers internationally",
+          "Focus on reproducibility, rigor, and scientific integrity",
+          "Explore interdisciplinary applications of AI",
+          "Learn to write clear research papers and proposals",
+          "Stay updated with preprint servers like arXiv"
         ],
         image: "https://img.icons8.com/color/96/000000/artificial-intelligence.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/artificial-intelligence.png",
@@ -1013,118 +1061,142 @@
       },
       {
         role: "Data Architect",
-        salary: "₹12L - ₹25L+",
+        salary: "₹15L - ₹35L+",
         salaryExperience: {
-          "0-2 years": "₹12L - ₹16L",
-          "3-5 years": "₹17L - ₹22L",
-          "6+ years": "₹23L - ₹25L+"
+          "Associate (0-2 years)": "₹15L - ₹20L",
+          "Mid Level (3-5 years)": "₹22L - ₹30L",
+          "Senior (6-8 years)": "₹32L - ₹34L",
+          "Principal (9+ years)": "₹35L+"
         },
-        skills: "Data Modeling, Cloud, Big Data",
-        tools: ["Redshift", "BigQuery", "Snowflake", "Data Vault", "ERwin", "Apache Atlas"],
-        description: "Data Architects design the overall data strategy and architecture for organizations. They create blueprints for data management, ensuring data flows efficiently and securely across systems.",
+        skills: "Data Modeling, Cloud Architecture, Big Data, Data Governance, System Design",
+        tools: ["Snowflake", "BigQuery", "Redshift", "Databricks", "ERwin", "ER/Studio", "Apache Atlas", "Alation", "Collibra", "dbt", "Airflow", "Kafka", "AWS", "Azure", "GCP"],
+        description: "Data Architects design the overall data strategy and architecture for organizations. They create blueprints for data management, ensuring data flows efficiently, securely, and compliantly across systems. Modern Data Architects work with cloud-native architectures, data mesh concepts, and comprehensive data governance frameworks to enable data-driven organizations.",
         responsibilities: [
-          "Design enterprise data architecture and strategy",
-          "Create data models and database designs",
-          "Define data integration and ETL strategies",
-          "Ensure data quality, security, and governance",
-          "Evaluate and recommend database technologies",
-          "Collaborate with stakeholders on data requirements",
+          "Design enterprise data architecture and strategic roadmap",
+          "Create data models, database designs, and schema standards",
+          "Define data integration, ETL/ELT, and data sharing strategies",
+          "Ensure data quality, security, governance, compliance, and privacy",
+          "Evaluate and recommend database technologies and data platforms",
+          "Collaborate with stakeholders on data requirements and strategy",
           "Oversee implementation of data architecture solutions",
-          "Establish data standards and best practices",
-          "Monitor compliance with data architecture policies"
+          "Establish data standards, best practices, and governance policies",
+          "Monitor compliance with data architecture and governance policies",
+          "Design data mesh or data fabric architectures for decentralized data"
         ],
         roadmap: [
-          "Learn data modeling and database design.",
-          "Master cloud data warehouse platforms.",
-          "Understand data governance and security.",
-          "Work on enterprise-scale data projects.",
-          "Develop cross-functional collaboration skills."
+          "Learn data modeling and database design principles",
+          "Master cloud data warehouse platforms and services",
+          "Understand data governance, security, and compliance requirements",
+          "Work on enterprise-scale data projects and transformations",
+          "Develop cross-functional collaboration and leadership skills",
+          "Study modern data architectures (data lakehouse, data mesh)",
+          "Gain experience with data catalog and governance tools",
+          "Learn about data privacy regulations and security best practices",
+          "Develop skills in strategic planning and technology evaluation"
         ],
         additionalTips: [
-          "Stay updated on cloud technologies.",
-          "Document architecture decisions thoroughly.",
-          "Engage in data governance committees.",
-          "Focus on scalability and maintainability."
+          "Stay updated on cloud technologies and serverless architectures",
+          "Document architecture decisions and rationale thoroughly",
+          "Engage in data governance committees and cross-functional teams",
+          "Focus on scalability, maintainability, and future-proofing",
+          "Understand business strategy and how data enables it",
+          "Learn about data ethics and responsible data use"
         ],
         image: "https://img.icons8.com/color/96/000000/database-export.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/database-export.png",
-        trend: "neutral",
+        trend: "up",
         lastUpdated: new Date()
       },
       {
         role: "Statistician",
-        salary: "₹5L - ₹15L",
+        salary: "₹6L - ₹18L",
         salaryExperience: {
-          "0-2 years": "₹5L - ₹8L",
-          "3-5 years": "₹9L - ₹12L",
-          "6+ years": "₹13L - ₹15L"
+          "Junior (0-2 years)": "₹6L - ₹10L",
+          "Mid Level (3-5 years)": "₹12L - ₹15L",
+          "Senior (6-8 years)": "₹16L - ₹18L",
+          "Principal (9+ years)": "₹18L - ₹22L"
         },
-        skills: "Statistics, R, SAS, Python",
-        tools: ["R", "SAS", "SPSS", "Stata", "Minitab", "JMP"],
-        description: "Statisticians apply mathematical theories and techniques to collect, analyze, and interpret numerical data. They design surveys and experiments to solve real-world problems across various industries.",
+        skills: "Statistics, R, Python, Experimental Design, Data Analysis",
+        tools: ["R", "Python", "SAS", "SPSS", "JMP", "Stata", "Minitab", "Jupyter", "Shiny", "ggplot2", "dplyr", "tidyverse"],
+        description: "Statisticians apply mathematical theories and techniques to collect, analyze, and interpret numerical data. They design surveys and experiments to solve real-world problems across various industries. Modern Statisticians increasingly work with programming languages, reproducible research practices, and collaborate on data science teams to provide rigorous statistical foundations for analyses.",
         responsibilities: [
-          "Design surveys and experiments",
-          "Collect and analyze numerical data",
-          "Apply statistical models and tests",
-          "Interpret results and draw conclusions",
-          "Create reports and visualizations",
-          "Communicate findings to stakeholders",
-          "Validate data collection methods",
-          "Ensure statistical accuracy in research",
-          "Collaborate with research teams on study design"
+          "Design statistically valid surveys, experiments, and clinical trials",
+          "Collect and analyze numerical data using appropriate statistical methods",
+          "Apply statistical models, hypothesis tests, and inference techniques",
+          "Interpret results and draw valid conclusions with confidence intervals",
+          "Create reports, visualizations, and presentations of findings",
+          "Communicate complex statistical concepts to non-technical stakeholders",
+          "Validate data collection methods and ensure data quality",
+          "Ensure statistical accuracy and rigor in research and analyses",
+          "Collaborate with research teams on study design and analysis plans",
+          "Stay current with statistical methodologies and software"
         ],
         roadmap: [
-          "Master statistical theories and methods.",
-          "Learn R and SAS software.",
-          "Practice designing experiments and tests.",
-          "Develop data visualization skills.",
-          "Apply statistics to real-world problems."
+          "Master statistical theories, methods, and mathematical foundations",
+          "Learn statistical software thoroughly (R and/or SAS)",
+          "Practice designing experiments and statistical tests",
+          "Develop data visualization skills for statistical results",
+          "Apply statistics to real-world problems in various domains",
+          "Learn reproducible research practices and literate programming",
+          "Gain experience with statistical consulting and collaboration",
+          "Study advanced topics like Bayesian statistics and multivariate analysis",
+          "Develop communication skills for explaining statistical concepts"
         ],
         additionalTips: [
-          "Keep updated with statistical software versions.",
-          "Join professional statistics communities.",
-          "Practice communicating complex results simply.",
-          "Explore interdisciplinary applications."
+          "Keep updated with statistical software versions and new packages",
+          "Join professional statistics communities and associations",
+          "Practice communicating complex results in simple terms",
+          "Explore interdisciplinary applications in healthcare, finance, etc.",
+          "Learn basic programming for data manipulation and analysis",
+          "Stay current with best practices in statistical reporting"
         ],
         image: "https://img.icons8.com/color/96/000000/statistics.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/statistics.png",
-        trend: "down",
+        trend: "neutral",
         lastUpdated: new Date()
       },
       {
         role: "Analytics Manager",
-        salary: "₹12L - ₹25L+",
+        salary: "₹15L - ₹35L+",
         salaryExperience: {
-          "0-2 years": "₹12L - ₹16L",
-          "3-5 years": "₹17L - ₹22L",
-          "6+ years": "₹23L - ₹25L+"
+          "Associate (0-2 years)": "₹15L - ₹22L",
+          "Mid Level (3-5 years)": "₹24L - ₹30L",
+          "Senior (6-8 years)": "₹32L - ₹34L",
+          "Director (9+ years)": "₹35L+"
         },
-        skills: "Leadership, SQL, Python, Business Acumen",
-        tools: ["SQL", "Tableau", "Power BI", "Google Analytics", "Mixpanel", "Amplitude"],
-        description: "Analytics Managers lead teams of data professionals to drive business value through data insights. They develop analytics strategies, manage projects, and communicate findings to executive leadership.",
+        skills: "Leadership, Strategic Thinking, Data Analysis, Communication, Business Acumen",
+        tools: ["SQL", "Python", "R", "Tableau", "Power BI", "Looker", "Google Analytics", "Adobe Analytics", "Mixpanel", "Amplitude", "Excel", "Jira", "Asana"],
+        description: "Analytics Managers lead teams of data professionals to drive business value through data insights. They develop analytics strategies, manage projects, and communicate findings to executive leadership. Modern Analytics Managers focus on building data-driven cultures, aligning analytics with business strategy, and enabling self-service analytics across organizations.",
         responsibilities: [
-          "Lead and mentor analytics teams",
-          "Develop and execute analytics strategies",
-          "Manage analytics projects and resources",
-          "Communicate insights to executive leadership",
-          "Align analytics initiatives with business goals",
-          "Foster a data-driven culture in the organization",
-          "Define KPIs and success metrics for analytics",
-          "Evaluate and implement new analytics tools",
-          "Prepare and present analytics reports to stakeholders"
+          "Lead, mentor, and develop analytics teams and talent",
+          "Develop and execute analytics strategy aligned with business goals",
+          "Manage analytics projects, resources, and budgets",
+          "Communicate insights and recommendations to executive leadership",
+          "Align analytics initiatives with organizational objectives",
+          "Foster a data-driven culture and promote data literacy",
+          "Define KPIs, success metrics, and measurement frameworks",
+          "Evaluate and implement new analytics tools and platforms",
+          "Prepare and present analytics reports and dashboards to stakeholders",
+          "Manage relationships with business partners and stakeholders"
         ],
         roadmap: [
-          "Gain strong SQL and Python skills.",
-          "Develop leadership and project management abilities.",
-          "Master business intelligence tools.",
-          "Build communication and presentation skills.",
-          "Drive organizational data culture."
+          "Gain strong technical skills in data analysis and visualization",
+          "Develop leadership and people management abilities",
+          "Master business intelligence and analytics tools",
+          "Build communication and presentation skills for executives",
+          "Study business strategy and domain knowledge",
+          "Learn project and portfolio management",
+          "Develop skills in talent development and team building",
+          "Understand organizational change management",
+          "Focus on driving business impact through analytics"
         ],
         additionalTips: [
-          "Focus on mentorship and team growth.",
-          "Stay business strategy-oriented.",
-          "Encourage cross-department collaboration.",
-          "Promote best analytics practices."
+          "Focus on mentorship and career development of team members",
+          "Stay oriented toward business strategy and value creation",
+          "Encourage cross-department collaboration and knowledge sharing",
+          "Promote best practices in analytics and data use",
+          "Balance technical depth with strategic thinking",
+          "Develop executive presence and communication skills"
         ],
         image: "https://img.icons8.com/color/96/000000/manager.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/manager.png",
@@ -1133,38 +1205,142 @@
       },
       {
         role: "Big Data Engineer",
-        salary: "₹8L - ₹20L+",
+        salary: "₹10L - ₹30L+",
         salaryExperience: {
-          "0-2 years": "₹8L - ₹12L",
-          "3-5 years": "₹13L - ₹17L",
-          "6+ years": "₹18L - ₹20L+"
+          "Junior (0-2 years)": "₹10L - ₹16L",
+          "Mid Level (3-5 years)": "₹18L - ₹24L",
+          "Senior (6-8 years)": "₹26L - ₹28L",
+          "Principal (9+ years)": "₹30L+"
         },
-        skills: "Hadoop, Spark, Kafka, SQL, Python",
-        tools: ["Hadoop", "Spark", "Kafka", "Cassandra", "HBase", "Flink"],
-        description: "Big Data Engineers design, build, and manage large-scale data processing systems. They work with distributed computing frameworks to handle massive datasets and enable real-time analytics.",
+        skills: "Distributed Systems, Scala/Java/Python, Streaming Technologies, Cloud Platforms, Performance Optimization",
+        tools: ["Spark", "Kafka", "Flink", "Hadoop", "Cassandra", "HBase", "Redis", "Elasticsearch", "Databricks", "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Airflow", "dbt"],
+        description: "Big Data Engineers design, build, and manage large-scale data processing systems. They work with distributed computing frameworks to handle massive datasets and enable real-time analytics. Modern Big Data Engineers focus on cloud-native architectures, streaming data platforms, and automated data pipelines to process petabytes of data efficiently and reliably.",
         responsibilities: [
-          "Design and implement big data architectures",
-          "Develop and maintain distributed data processing systems",
-          "Optimize performance of large-scale data pipelines",
-          "Ensure reliability and scalability of big data platforms",
-          "Integrate various data sources and systems",
-          "Troubleshoot complex distributed system issues",
-          "Implement data security and access controls",
-          "Monitor system performance and resource utilization",
-          "Collaborate with data scientists on infrastructure needs"
+          "Design and implement scalable big data architectures and systems",
+          "Develop and maintain distributed data processing systems and pipelines",
+          "Optimize performance, reliability, and cost-efficiency of big data platforms",
+          "Ensure scalability, fault tolerance, and high availability of systems",
+          "Integrate various data sources and systems across the organization",
+          "Troubleshoot complex distributed system issues and performance bottlenecks",
+          "Implement data security, access controls, and compliance measures",
+          "Monitor system performance, resource utilization, and costs",
+          "Collaborate with data scientists and analysts on infrastructure needs",
+          "Work with modern data stack tools and cloud-native services"
         ],
         roadmap: [
-          "Learn Hadoop and Spark ecosystems.",
-          "Master Kafka for streaming data.",
-          "Understand NoSQL databases like Cassandra.",
-          "Practice building scalable pipelines.",
-          "Stay updated with big data tools."
+          "Learn distributed systems concepts and big data ecosystems",
+          "Master programming with Scala, Java, or Python for big data",
+          "Gain hands-on experience with Spark and Kafka ecosystems",
+          "Understand NoSQL databases and their use cases",
+          "Practice building scalable, fault-tolerant data pipelines",
+          "Learn cloud platforms and their big data services",
+          "Study streaming data processing with Flink or Spark Streaming",
+          "Develop skills in performance optimization and cost management",
+          "Understand data governance and security in distributed systems"
         ],
         additionalTips: [
-          "Focus on performance optimization.",
-          "Implement robust monitoring.",
-          "Collaborate with data scientists early.",
-          "Adopt best security practices."
+          "Focus on performance optimization and cost-efficiency",
+          "Implement robust monitoring, alerting, and observability",
+          "Collaborate with data scientists and analysts early in design",
+          "Adopt security best practices for data and infrastructure",
+          "Stay updated with emerging big data tools and frameworks",
+          "Learn about serverless architectures for big data"
+        ],
+        image: "https://img.icons8.com/color/96/000000/server.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/server.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "Generative AI Engineer",
+        salary: "₹12L - ₹40L+",
+        salaryExperience: {
+          "Junior (0-2 years)": "₹12L - ₹20L",
+          "Mid Level (3-5 years)": "₹25L - ₹35L",
+          "Senior (6-8 years)": "₹36L - ₹38L",
+          "Principal (9+ years)": "₹40L+"
+        },
+        skills: "LLMs, Prompt Engineering, AI Frameworks, Python, Cloud Platforms, MLOps",
+        tools: ["OpenAI API", "Anthropic", "Hugging Face", "LangChain", "LlamaIndex", "PyTorch", "TensorFlow", "Transformers", "Vector Databases", "AWS", "Azure", "GCP", "Docker", "Kubernetes"],
+        description: "Generative AI Engineers specialize in developing applications and systems using large language models and generative AI technologies. They design, implement, and optimize LLM-powered solutions for various use cases including chatbots, content generation, code assistance, and enterprise knowledge systems. This rapidly growing field combines NLP expertise with software engineering and AI deployment skills.",
+        responsibilities: [
+          "Design and implement applications using large language models",
+          "Develop and optimize prompt engineering strategies and techniques",
+          "Build RAG (Retrieval-Augmented Generation) systems for enterprise knowledge",
+          "Create fine-tuning pipelines for domain-specific LLM adaptation",
+          "Implement LLM security, safety, and alignment measures",
+          "Optimize LLM performance, cost, and latency for production use",
+          "Develop evaluation frameworks for generative AI outputs",
+          "Integrate generative AI capabilities into existing applications",
+          "Stay current with the rapid advancements in generative AI",
+          "Ensure ethical use and compliance with AI regulations"
+        ],
+        roadmap: [
+          "Build strong foundation in NLP and deep learning concepts",
+          "Learn about transformer architectures and LLM internals",
+          "Gain hands-on experience with popular LLM APIs and open-source models",
+          "Master prompt engineering techniques and best practices",
+          "Learn frameworks like LangChain and LlamaIndex for LLM applications",
+          "Practice building RAG systems with vector databases",
+          "Understand LLM fine-tuning and parameter-efficient methods",
+          "Develop skills in deploying and monitoring LLM applications",
+          "Study ethical AI considerations and responsible generative AI"
+        ],
+        additionalTips: [
+          "Stay updated with the fast-moving generative AI landscape",
+          "Experiment with new models and techniques regularly",
+          "Focus on practical applications that solve real business problems",
+          "Learn about LLM evaluation metrics and testing methodologies",
+          "Understand the costs and limitations of different LLM approaches",
+          "Network with other generative AI practitioners"
+        ],
+        image: "https://img.icons8.com/color/96/000000/brain.png",
+        panelImage: "https://img.icons8.com/fluency/96/000000/brain.png",
+        trend: "up",
+        lastUpdated: new Date()
+      },
+      {
+        role: "MLOps Engineer",
+        salary: "₹10L - ₹30L+",
+        salaryExperience: {
+          "Junior (0-2 years)": "₹10L - ₹16L",
+          "Mid Level (3-5 years)": "₹18L - ₹24L",
+          "Senior (6-8 years)": "₹26L - ₹28L",
+          "Principal (9+ years)": "₹30L+"
+        },
+        skills: "MLOps, CI/CD, Cloud Platforms, Containerization, Monitoring, Automation",
+        tools: ["MLflow", "Kubeflow", "TFX", "Seldon", "BentoML", "Docker", "Kubernetes", "Airflow", "Argo", "Prometheus", "Grafana", "AWS", "Azure", "GCP", "Git", "Jenkins"],
+        description: "MLOps Engineers specialize in the deployment, monitoring, and maintenance of machine learning models in production environments. They bridge the gap between data science and operations, implementing CI/CD pipelines, automated testing, monitoring systems, and infrastructure as code to ensure ML systems are reliable, scalable, and maintainable. This critical role has emerged as organizations scale their AI/ML initiatives.",
+        responsibilities: [
+          "Design and implement MLOps pipelines for model deployment and monitoring",
+          "Develop CI/CD workflows for machine learning models and code",
+          "Implement automated testing for data, models, and predictions",
+          "Set up monitoring systems for model performance, data drift, and system health",
+          "Create infrastructure as code for ML environments and services",
+          "Optimize resource utilization and cost-efficiency of ML systems",
+          "Ensure security, compliance, and governance of ML pipelines",
+          "Troubleshoot production ML system issues and outages",
+          "Collaborate with data scientists and engineers on MLOps best practices",
+          "Stay current with MLOps tools and methodologies"
+        ],
+        roadmap: [
+          "Learn software engineering and DevOps principles",
+          "Master containerization with Docker and orchestration with Kubernetes",
+          "Gain experience with CI/CD tools and practices",
+          "Learn MLOps platforms and frameworks (MLflow, Kubeflow, etc.)",
+          "Understand cloud infrastructure and services",
+          "Practice building automated testing for ML systems",
+          "Develop monitoring and observability skills",
+          "Study model versioning, registry, and lineage",
+          "Understand the full ML lifecycle from development to production"
+        ],
+        additionalTips: [
+          "Focus on reliability, reproducibility, and automation",
+          "Learn about model monitoring and drift detection",
+          "Stay updated with new MLOps tools and best practices",
+          "Understand the business impact of ML system downtime",
+          "Develop strong collaboration skills with data scientists",
+          "Study incident response and disaster recovery for ML systems"
         ],
         image: "https://img.icons8.com/color/96/000000/server.png",
         panelImage: "https://img.icons8.com/fluency/96/000000/server.png",
@@ -1172,10 +1348,11 @@
         lastUpdated: new Date()
       }
     ];
-
     let data = [...baseData];
     let currentPanelIndex = -1;
     let aiProcessing = false;
+    
+    // DOM elements
     const cardContainer = document.getElementById('cardContainer');
     const modalPanel = document.getElementById('modalPanel');
     const overlay = document.getElementById('overlay');
@@ -1184,7 +1361,6 @@
     const simulateBtn = document.getElementById('simulateBtn');
     const notification = document.getElementById('notification');
     const notificationText = document.getElementById('notificationText');
-    
     const panelTitle = document.getElementById('panelTitle');
     const fullDescription = document.getElementById('fullDescription');
     const responsibilitiesList = document.getElementById('responsibilitiesList');
@@ -1193,13 +1369,51 @@
     const salaryExpList = document.getElementById('salaryExpList');
     const roadmapList = document.getElementById('roadmapList');
     const additionalTipsList = document.getElementById('additionalTipsList');
-    
     const aiAgentBtn = document.getElementById('aiAgentBtn');
     const aiAgentPanel = document.getElementById('aiAgentPanel');
     const aiAgentCloseBtn = document.getElementById('aiAgentCloseBtn');
     const aiAgentChat = document.getElementById('aiAgentChat');
     const aiAgentInput = document.getElementById('aiAgentInput');
     const aiAgentSendBtn = document.getElementById('aiAgentSendBtn');
+
+    // Initialize the application
+    function init() {
+      populateCards();
+      
+      // Add event listeners
+      closePanelBtn.addEventListener('click', closePanel);
+      overlay.addEventListener('click', () => {
+        closePanel();
+        closeAiAgentPanel();
+      });
+      
+      updateAllBtn.addEventListener('click', () => {
+        showNotification("This feature requires a valid API key. Using simulated data instead.");
+        simulateAIUpdates();
+      });
+      
+      simulateBtn.addEventListener('click', simulateAIUpdates);
+      aiAgentBtn.addEventListener('click', openAiAgentPanel);
+      aiAgentCloseBtn.addEventListener('click', closeAiAgentPanel);
+      
+      aiAgentSendBtn.addEventListener('click', handleUserQuery);
+      aiAgentInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleUserQuery();
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (modalPanel.classList.contains('open')) {
+            closePanel();
+          }
+          if (aiAgentPanel.classList.contains('open')) {
+            closeAiAgentPanel();
+          }
+        }
+      });
+    }
 
     function populateCards() {
       cardContainer.innerHTML = '';
@@ -1211,9 +1425,10 @@
         card.setAttribute('role', 'button');
         card.setAttribute('aria-pressed', 'false');
         card.setAttribute('aria-label', `View details about ${item.role}`);
+        
         const trendIcon = item.trend === 'up' ? '📈' : item.trend === 'down' ? '📉' : '↔️';
         const trendClass = item.trend === 'up' ? 'trend-up' : item.trend === 'down' ? 'trend-down' : 'trend-neutral';
-        const updatedDate = item.lastUpdated ? new Date(item.lastUpdated).toLocaleDateString() : 'N/A';
+        
         card.innerHTML = `
           <div class="card-content">
             <img src="${item.image}" alt="${item.role} icon" class="role-icon-img" onerror="this.src='https://via.placeholder.com/36?text=Image+Not+Found'; this.alt='Image Not Found';" />
@@ -1229,6 +1444,7 @@
           </div>
           <div class="ai-updated-badge">AI Updated</div>
         `;
+        
         card.addEventListener('click', () => openPanel(idx));
         card.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -1236,6 +1452,7 @@
             openPanel(idx);
           }
         });
+        
         cardContainer.appendChild(card);
       });
     }
@@ -1243,10 +1460,12 @@
     function openPanel(index) {
       currentPanelIndex = index;
       const item = data[index];
+      
       panelTitle.innerHTML = `
         <img src="${item.panelImage}" alt="${item.role}" class="role-header-img" onerror="this.src='https://via.placeholder.com/48?text=Image+Not+Found'; this.alt='Image Not Found';" />
         <span>${item.role}</span>
       `;
+      
       fullDescription.innerHTML = `<p>${item.description}</p>`;
       
       responsibilitiesList.innerHTML = '';
@@ -1257,18 +1476,21 @@
       });
       
       panelSkills.textContent = item.skills;
+      
       panelTools.innerHTML = '';
       item.tools.forEach(tool => {
         const li = document.createElement('li');
         li.textContent = tool;
         panelTools.appendChild(li);
       });
+      
       salaryExpList.innerHTML = '';
       for (const [exp, sal] of Object.entries(item.salaryExperience)) {
         const li = document.createElement('li');
         li.textContent = `${exp}: ${sal}`;
         salaryExpList.appendChild(li);
       }
+      
       roadmapList.innerHTML = '';
       if(item.roadmap) {
         item.roadmap.forEach(step => {
@@ -1279,6 +1501,7 @@
       } else {
         roadmapList.innerHTML = '<li>Coming soon</li>';
       }
+      
       additionalTipsList.innerHTML = '';
       if(item.additionalTips) {
         item.additionalTips.forEach(tip => {
@@ -1289,6 +1512,7 @@
       } else {
         additionalTipsList.innerHTML = '<li>Coming soon</li>';
       }
+      
       modalPanel.classList.add('open');
       overlay.classList.add('visible');
       modalPanel.focus();
@@ -1297,200 +1521,96 @@
     function closePanel() {
       modalPanel.classList.remove('open');
       overlay.classList.remove('visible');
-      cardContainer.querySelector('.card').focus();
-    }
-
-    async function updateRolesWithAIAgent() {
-      if (aiProcessing) return;
-      
-      showNotification("Starting AI analysis of all career roles...");
-      aiProcessing = true;
-      updateAllBtn.disabled = true;
-      simulateBtn.disabled = true;
-      
-      const statusContainer = document.createElement('div');
-      statusContainer.className = 'ai-update-status';
-      statusContainer.innerHTML = `
-        <span>AI Processing:</span>
-        <div class="progress-bar">
-          <div class="progress-fill" id="updateProgress"></div>
-        </div>
-        <span id="updateCount">0/${data.length}</span>
-      `;
-      document.querySelector('.controls').appendChild(statusContainer);
-      
-      const progressFill = document.getElementById('updateProgress');
-      const updateCount = document.getElementById('updateCount');
-      
-      for (let i = 0; i < data.length; i++) {
-        const role = data[i].role;
-        updateCount.textContent = `${i+1}/${data.length}`;
-        progressFill.style.width = `${((i+1) / data.length) * 100}%`;
-        
-        try {
-          const updatedRole = await getAIUpdateForRole(role, data[i]);
-          data[i] = {
-            ...data[i],
-            ...updatedRole,
-            aiUpdated: true,
-            lastUpdated: new Date()
-          };
-          
-          if (currentPanelIndex === i && modalPanel.classList.contains('open')) {
-            openPanel(i);
-          }
-        } catch (error) {
-          console.error(`Failed to update ${role}:`, error);
-        }
-        
-        await new Promise(resolve => setTimeout(resolve, 1000));
+      if (cardContainer.querySelector('.card')) {
+        cardContainer.querySelector('.card').focus();
       }
-      
-      populateCards();
-      showNotification("All roles updated with latest AI insights!");
-      statusContainer.remove();
-      aiProcessing = false;
-      updateAllBtn.disabled = false;
-      simulateBtn.disabled = false;
-    }
-
-    async function getAIUpdateForRole(roleName, currentData) {
-      const prompt = `Analyze the current state of the ${roleName} role in the data industry and provide updated information including:
-      - Current salary range in INR (format like "₹X - ₹Y")
-      - Key skills required today
-      - Main tools/technologies used
-      - Brief description of the role's modern responsibilities
-      - Career growth trend (up, down, or neutral)
-      
-      Current data:
-      ${JSON.stringify({
-        salary: currentData.salary,
-        skills: currentData.skills,
-        tools: currentData.tools,
-        description: currentData.description,
-        trend: currentData.trend
-      }, null, 2)}
-      
-      Return ONLY a JSON object with these properties:
-      {
-        "salary": "string",
-        "skills": "string",
-        "tools": ["array", "of", "strings"],
-        "description": "string",
-        "trend": "string"
-      }`;
-      
-      try {
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer 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',
-            'Content-Type': 'application/json',
-            'HTTP-Referer': window.location.href,
-            'X-Title': 'AI Career Explorer'
-          },
-          body: JSON.stringify({
-            model: "qwen/qwen3-coder:free",
-            messages: [
-              {
-                role: "system",
-                content: "You are a career data analyst. Provide accurate, up-to-date information about data roles in JSON format."
-              },
-              {
-                role: "user",
-                content: prompt
-              }
-            ],
-            temperature: 0.3,
-            max_tokens: 1000
-          })
-        });
-        
-        const result = await response.json();
-        if (result.choices && result.choices[0].message.content) {
-          const aiResponse = JSON.parse(result.choices[0].message.content);
-          return aiResponse;
-        }
-      } catch (error) {
-        console.error("AI update error:", error);
-        throw error;
-      }
-      
-      return currentData;
     }
 
     function simulateAIUpdates() {
+      if (aiProcessing) return;
+      
       showNotification("Simulating AI analysis of job market data...");
       aiProcessing = true;
       updateAllBtn.disabled = true;
       simulateBtn.disabled = true;
       
+      // Select random roles to update
       const rolesToUpdate = [...data];
       shuffleArray(rolesToUpdate);
       const updateCount = Math.floor(Math.random() * 3) + 3;
-      const selectedRoles = rolesToUpdate.slice(0, updateCount).map(item => item.role);
+      const selectedRoles = rolesToUpdate.slice(0, updateCount);
       
-      let updated = 0;
+      let updatedCount = 0;
+      
       selectedRoles.forEach((role, index) => {
         setTimeout(() => {
-          const roleIndex = data.findIndex(item => item.role === role);
+          const roleIndex = data.findIndex(item => item.role === role.role);
           if (roleIndex !== -1) {
-            data[roleIndex] = {
-              ...data[roleIndex],
-              salary: increaseSalaryRange(data[roleIndex].salary),
-              skills: addRandomSkill(data[roleIndex].skills),
-              tools: addRandomTool(data[roleIndex].tools),
-              aiUpdated: true,
-              lastUpdated: new Date()
-            };
-            updated++;
+            // Simulate salary increase
+            const currentSalary = data[roleIndex].salary;
+            const salaryMatch = currentSalary.match(/₹(\d+)L - ₹(\d+)L/);
             
-            if (currentPanelIndex === roleIndex && modalPanel.classList.contains('open')) {
-              openPanel(roleIndex);
+            if (salaryMatch) {
+              const min = parseInt(salaryMatch[1]);
+              const max = parseInt(salaryMatch[2]);
+              const newMin = Math.floor(min * (1 + Math.random() * 0.1 + 0.05));
+              const newMax = Math.floor(max * (1 + Math.random() * 0.1 + 0.05));
+              
+              const newSalary = `₹${newMin}L - ₹${newMax}L+`;
+              
+              // Update salary experience based on new salary
+              const newSalaryExperience = {};
+              const expLevels = Object.keys(data[roleIndex].salaryExperience);
+              const minSal = newMin;
+              const maxSal = newMax;
+              
+              expLevels.forEach((level, i) => {
+                if (i === 0) {
+                  newSalaryExperience[level] = `₹${minSal}L - ₹${Math.floor(minSal * 1.6)}L`;
+                } else if (i === expLevels.length - 1) {
+                  newSalaryExperience[level] = `₹${Math.floor(maxSal * 0.8)}L - ₹${maxSal}L+`;
+                } else {
+                  const rangeMin = Math.floor(minSal * (1.7 + i * 0.2));
+                  const rangeMax = Math.floor(maxSal * (0.6 + i * 0.1));
+                  newSalaryExperience[level] = `₹${rangeMin}L - ₹${rangeMax}L`;
+                }
+              });
+              
+              // Add a new tool randomly
+              const newTools = ["LangChain", "HuggingFace", "OpenAI", "AWS", "Azure", "GCP", "Docker", "Kubernetes"];
+              const randomTool = newTools[Math.floor(Math.random() * newTools.length)];
+              const updatedTools = [...data[roleIndex].tools];
+              if (!updatedTools.includes(randomTool)) {
+                updatedTools.push(randomTool);
+              }
+              
+              data[roleIndex] = {
+                ...data[roleIndex],
+                salary: newSalary,
+                salaryExperience: newSalaryExperience,
+                tools: updatedTools,
+                aiUpdated: true,
+                lastUpdated: new Date()
+              };
+              
+              updatedCount++;
+              
+              // Refresh the card if it's currently displayed
+              if (currentPanelIndex === roleIndex && modalPanel.classList.contains('open')) {
+                openPanel(roleIndex);
+              }
             }
           }
           
           if (index === selectedRoles.length - 1) {
             populateCards();
-            showNotification(`Simulated AI update for ${updated} roles`);
+            showNotification(`Simulated AI update for ${updatedCount} roles`);
             aiProcessing = false;
             updateAllBtn.disabled = false;
             simulateBtn.disabled = false;
           }
         }, index * 800);
       });
-    }
-
-    function increaseSalaryRange(salary) {
-      const amounts = salary.match(/\d+/g);
-      if (!amounts) return salary;
-      
-      const increased = amounts.map(amount => {
-        const num = parseInt(amount);
-        return Math.floor(num * (1 + (Math.random() * 0.1 + 0.05)));
-      });
-      
-      return salary.replace(/\d+/g, (match, i) => increased[i] || match);
-    }
-
-    function addRandomSkill(skills) {
-      const newSkills = ["AI", "ML", "Generative AI", "Cloud", "Big Data", "Automation"];
-      const randomSkill = newSkills[Math.floor(Math.random() * newSkills.length)];
-      
-      if (skills.includes(randomSkill)) {
-        return skills;
-      }
-      return skills + ", " + randomSkill;
-    }
-
-    function addRandomTool(tools) {
-      const newTools = ["LangChain", "HuggingFace", "OpenAI", "AWS", "Azure", "GCP", "Docker", "Kubernetes"];
-      const randomTool = newTools[Math.floor(Math.random() * newTools.length)];
-      
-      if (tools.includes(randomTool)) {
-        return tools;
-      }
-      return [...tools, randomTool];
     }
 
     function shuffleArray(array) {
@@ -1529,109 +1649,49 @@
       aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
     }
 
-    function handleUserQuery(query) {
-      query = query.trim().toLowerCase();
+    function handleUserQuery() {
+      const query = aiAgentInput.value.trim();
+      if (!query) return;
+      
       addMessage(query, true);
-      if (!query) {
-        addMessage("Please ask a question about data careers!");
-        return;
+      aiAgentInput.value = '';
+      
+      // Simple responses based on keywords
+      const queryLower = query.toLowerCase();
+      let response = "";
+      
+      if (queryLower.includes("hello") || queryLower.includes("hi") || queryLower.includes("hey")) {
+        response = "Hello! I'm your AI Career Assistant. I can help you explore data careers, skills, salaries, and trends. What would you like to know?";
+      } else if (queryLower.includes("data scientist") || queryLower.includes("scientist")) {
+        response = "Data Scientists are in high demand! They typically earn between ₹8L-₹30L+ in India. Key skills include Python, machine learning, statistics, and data visualization. Top tools include TensorFlow, PyTorch, and cloud platforms like AWS/Azure/GCP.";
+      } else if (queryLower.includes("data analyst") || queryLower.includes("analyst")) {
+        response = "Data Analysts typically earn ₹4L-₹12L in India. They need strong SQL, Excel, and data visualization skills (Power BI/Tableau). Entry-level demand is very high, making it a great starting point for a data career.";
+      } else if (queryLower.includes("machine learning") || queryLower.includes("ml engineer")) {
+        response = "Machine Learning Engineers earn ₹10L-₹35L+ in India. They need strong Python skills, knowledge of ML frameworks (TensorFlow/PyTorch), and software engineering principles. MLOps and cloud deployment skills are increasingly important.";
+      } else if (queryLower.includes("salary") || queryLower.includes("pay") || queryLower.includes("earn")) {
+        response = "Salaries in data careers vary by role and experience. Data Scientists: ₹8L-₹30L+, Data Analysts: ₹4L-₹12L, ML Engineers: ₹10L-₹35L+. Salaries have been increasing due to high demand for AI and data skills.";
+      } else if (queryLower.includes("learn") || queryLower.includes("roadmap") || queryLower.includes("skills")) {
+        response = "To start in data careers: 1) Learn Python/SQL, 2) Master statistics and data visualization, 3) Practice with real datasets, 4) Build projects, 5) Learn cloud platforms. For ML roles, add deep learning and MLOps skills.";
+      } else if (queryLower.includes("trend") || queryLower.includes("future") || queryLower.includes("demand")) {
+        response = "Data career demand is growing rapidly, especially for AI/ML roles. Generative AI, MLOps, and cloud data engineering are hot areas. Data Analyst roles remain stable with high entry-level demand.";
+      } else if (queryLower.includes("thank")) {
+        response = "You're welcome! Feel free to ask more questions about data careers, skills, or salary trends.";
+      } else {
+        response = "I can help you with information about data careers in India. I can provide details about salaries, skills, tools, and career paths for roles like Data Scientist, Data Analyst, Machine Learning Engineer, and more. What specific information would you like?";
       }
-
-      const processing = document.createElement('div');
-      processing.className = 'ai-processing';
-      processing.innerHTML = `
-        <span>AI Assistant is thinking</span>
-        <div class="ai-processing-dot"></div>
-        <div class="ai-processing-dot"></div>
-        <div class="ai-processing-dot"></div>
-      `;
-      aiAgentChat.appendChild(processing);
-      aiAgentChat.scrollTop = aiAgentChat.scrollHeight;
-
-      const config = {
-        apiKey: "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",
-        model: "Nous",
-        endpoint: "https://openrouter.ai/api/v1/chat/completions"
-      };
-
-      fetch(config.endpoint, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${config.apiKey}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.href,
-          'X-Title': 'AI-Powered Data Career Explorer'
-        },
-        body: JSON.stringify({
-          model: config.model,
-          messages: [
-            {
-              role: "system",
-              content: "You are a helpful AI career assistant specialized in data-related roles. Provide concise, informative answers about data careers, skills, salaries, and trends. Format any code snippets properly."
-            },
-            {
-              role: "user",
-              content: query
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 500
-        })
-      })
-      .then(res => res.json())
-      .then(data => {
-        processing.remove();
-        if (data.choices && data.choices.length > 0) {
-          const response = data.choices[0].message.content;
-          addMessage(response);
-        } else if (data.error) {
-          addMessage(`Error: ${data.error.message || 'Failed to get response from AI'}`);
-        } else {
-          addMessage("Sorry, I couldn't process your request. Please try again.");
-        }
-      })
-      .catch(err => {
-        processing.remove();
-        addMessage("Failed to connect to AI service. Please check your connection and try again.");
-        console.error("API Error:", err);
-      });
+      
+      // Add a slight delay to simulate thinking
+      setTimeout(() => {
+        addMessage(response);
+      }, 600);
     }
 
-    closePanelBtn.addEventListener('click', closePanel);
-    overlay.addEventListener('click', () => {
-      closePanel();
-      closeAiAgentPanel();
-    });
-    updateAllBtn.addEventListener('click', updateRolesWithAIAgent);
-    simulateBtn.addEventListener('click', simulateAIUpdates);
-    aiAgentBtn.addEventListener('click', openAiAgentPanel);
-    aiAgentCloseBtn.addEventListener('click', closeAiAgentPanel);
-    aiAgentSendBtn.addEventListener('click', () => {
-      const query = aiAgentInput.value;
-      if (query.trim()) {
-        handleUserQuery(query);
-        aiAgentInput.value = '';
-      }
-    });
-    aiAgentInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && aiAgentInput.value.trim()) {
-        const query = aiAgentInput.value;
-        handleUserQuery(query);
-        aiAgentInput.value = '';
-      }
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        if (modalPanel.classList.contains('open')) {
-          closePanel();
-        }
-        if (aiAgentPanel.classList.contains('open')) {
-          closeAiAgentPanel();
-        }
-      }
-    });
-
-    populateCards();
+    // Initialize the app when DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
