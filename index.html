@@ -486,34 +486,34 @@
       },
       {
         title: "Apache Spark Roadmap",
-        description: "Master Apache Spark for large-scale data processing using PySpark or Scala.",
+        description: "Master Apache Spark for large-scale data processing and analytics using Python (PySpark) or Scala.",
         image: "https://cdn.simpleicons.org/apache/0AF",
         levels: {
           beginner: [
-            { topic: "Introduction", concepts: ["What is Spark?", "Spark vs Hadoop", "Spark Ecosystem"], description: "Understand Spark's role in big data." },
+            { topic: "Introduction to Spark", concepts: ["What is Spark?", "Spark vs Hadoop", "Spark Ecosystem"], description: "Understand Spark's role in big data." },
             { topic: "RDD Basics", concepts: ["Resilient Distributed Datasets", "Transformations & Actions"], description: "Learn the foundational data structure in Spark." },
             { topic: "Spark SQL", concepts: ["DataFrames", "SQL queries in Spark"], description: "Use structured data processing with Spark SQL." },
-            { topic: "Setup", concepts: ["PySpark", "Local Mode", "Jupyter Integration"], description: "Run Spark locally for development." }
+            { topic: "Setup & Local Mode", concepts: ["PySpark installation", "Jupyter + Spark"], description: "Run Spark locally for development." }
           ],
           intermediate: [
-            { topic: "DataFrame API", concepts: ["Filtering", "Joins", "Aggregations", "Window Functions"], description: "Process structured data efficiently." },
-            { topic: "Optimization", concepts: ["Caching", "Partitioning", "Lazy Evaluation"], description: "Improve performance of Spark jobs." },
-            { topic: "File Formats", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write efficient data formats." },
-            { topic: "Integration", concepts: ["Pandas UDFs", "Koalas"], description: "Bridge Spark and Python data workflows." }
+            { topic: "DataFrame API", concepts: ["Filtering", "Joins", "Aggregations", "Window functions"], description: "Process structured data efficiently." },
+            { topic: "Optimization", concepts: ["Caching", "Partitioning", "Lazy evaluation"], description: "Improve performance of Spark jobs." },
+            { topic: "Working with File Formats", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write efficient data formats." },
+            { topic: "Integration with Pandas", concepts: ["pandas UDFs", "Koalas"], description: "Bridge Spark and Python data workflows." }
           ],
           advanced: [
-            { topic: "Streaming", concepts: ["Structured Streaming", "Event Time", "Watermarking"], description: "Process real-time data streams." },
-            { topic: "MLlib", concepts: ["Classification", "Clustering", "Regression"], description: "Apply machine learning at scale." },
+            { topic: "Streaming", concepts: ["Structured Streaming", "Event time", "Watermarking"], description: "Process real-time data streams." },
+            { topic: "Machine Learning (MLlib)", concepts: ["Classification", "Clustering", "Regression"], description: "Apply ML at scale using Spark." },
             { topic: "Cluster Mode", concepts: ["Standalone", "YARN", "Kubernetes"], description: "Deploy Spark on clusters." },
-            { topic: "Performance Tuning", concepts: ["Shuffle Partitions", "Broadcast Joins", "Memory Tuning"], description: "Optimize large-scale workloads." }
+            { topic: "Performance Tuning", concepts: ["Shuffle partitions", "Broadcast joins", "Memory tuning"], description: "Optimize large-scale workloads." }
           ],
           expert: [
-            { topic: "Custom Connectors", concepts: ["Kafka", "Delta Lake", "Iceberg"], description: "Extend Spark for advanced sources." },
-            { topic: "Monitoring", concepts: ["Spark UI", "Logging", "Metrics"], description: "Troubleshoot production jobs." },
+            { topic: "Custom Connectors", concepts: ["Kafka integration", "Delta Lake", "Iceberg"], description: "Extend Spark for advanced sources." },
+            { topic: "Monitoring & Debugging", concepts: ["Spark UI", "Logging", "Metrics"], description: "Troubleshoot production jobs." },
             { topic: "Security", concepts: ["Authentication", "Encryption", "ACLs"], description: "Secure Spark deployments." }
           ]
         },
-        tools: ["PySpark", "Databricks", "Spark UI", "Delta Lake", "Hadoop", "Jupyter", "Scala"]
+        tools: ["PySpark", "Databricks", "Spark UI", "Delta Lake", "Kafka", "Hadoop", "Jupyter", "Scala"]
       },
       {
         title: "Apache Kafka Roadmap",
@@ -523,28 +523,191 @@
           beginner: [
             { topic: "Introduction", concepts: ["What is Kafka?", "Publish-Subscribe Model", "Use Cases"], description: "Understand Kafka's role in streaming." },
             { topic: "Core Concepts", concepts: ["Topics", "Producers", "Consumers", "Brokers"], description: "Learn the basic building blocks." },
-            { topic: "Installation", concepts: ["Local Setup", "ZooKeeper vs KRaft"], description: "Run Kafka locally for learning." },
-            { topic: "CLI Basics", concepts: ["kafka-topics.sh", "Console Producer/Consumer"], description: "Use command-line tools to interact with Kafka." }
+            { topic: "Installation", concepts: ["Local setup", "ZooKeeper vs KRaft"], description: "Run Kafka locally for learning." },
+            { topic: "CLI Basics", concepts: ["kafka-topics.sh", "kafka-console-producer/consumer"], description: "Use command-line tools to interact with Kafka." }
           ],
           intermediate: [
-            { topic: "Producers & Consumers", concepts: ["Serialization", "Acknowledgments", "Offset Management"], description: "Build reliable applications." },
-            { topic: "Partitions & Replication", concepts: ["Partition Keys", "Replication Factor", "Fault Tolerance"], description: "Scale and secure your topics." },
-            { topic: "Consumer Groups", concepts: ["Load Balancing", "Rebalancing"], description: "Distribute message consumption." },
+            { topic: "Producers & Consumers", concepts: ["Serialization", "Acknowledgments", "Offset management"], description: "Build reliable applications." },
+            { topic: "Partitions & Replication", concepts: ["Partition keys", "Replication factor", "Fault tolerance"], description: "Scale and secure your topics." },
+            { topic: "Consumer Groups", concepts: ["Load balancing", "Rebalancing"], description: "Distribute message consumption." },
             { topic: "Error Handling", concepts: ["Retries", "Dead Letter Queues"], description: "Handle failures gracefully." }
           ],
           advanced: [
-            { topic: "Kafka Streams", concepts: ["Stream Processing", "KStream vs KTable"], description: "Process data in real time." },
-            { topic: "ksqlDB", concepts: ["SQL for Kafka", "Event Streaming Queries"], description: "Query streams using SQL." },
-            { topic: "Connectors", concepts: ["Kafka Connect", "Source/Sink Connectors"], description: "Integrate with databases and cloud services." },
-            { topic: "Schema Registry", concepts: ["Avro", "Schema Evolution"], description: "Manage data formats safely." }
+            { topic: "Kafka Streams", concepts: ["Stream processing", "KStream vs KTable"], description: "Process data in real time." },
+            { topic: "ksqlDB", concepts: ["SQL for Kafka", "Event streaming queries"], description: "Query streams using SQL." },
+            { topic: "Connectors", concepts: ["Kafka Connect", "Source/Sink connectors"], description: "Integrate with databases and cloud services." },
+            { topic: "Schema Registry", concepts: ["Avro", "Schema evolution"], description: "Manage data formats safely." }
           ],
           expert: [
             { topic: "Security", concepts: ["SSL", "SASL", "ACLs"], description: "Secure Kafka clusters." },
-            { topic: "Monitoring", concepts: ["Prometheus", "Grafana", "JMX Metrics"], description: "Track performance and health." },
-            { topic: "Scaling & Tuning", concepts: ["Broker Tuning", "Network", "Disk I/O"], description: "Optimize for high throughput." }
+            { topic: "Monitoring", concepts: ["Prometheus", "Grafana", "JMX metrics"], description: "Track performance and health." },
+            { topic: "Scaling & Tuning", concepts: ["Broker tuning", "Network", "Disk I/O"], description: "Optimize for high throughput." }
           ]
         },
         tools: ["Kafka", "Confluent Platform", "Kafka Connect", "ksqlDB", "Schema Registry", "Prometheus", "Grafana", "Docker", "Kubernetes"]
+      },
+      {
+        title: "Apache Airflow Roadmap",
+        description: "Master workflow automation and orchestration using Apache Airflow for data pipelines.",
+        image: "https://cdn.simpleicons.org/apacheairflow/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction", concepts: ["What is Airflow?", "DAGs", "UI Overview"], description: "Understand workflow orchestration." },
+            { topic: "Setup", concepts: ["Local install", "Docker", "Astronomer"], description: "Get Airflow running." },
+            { topic: "Writing DAGs", concepts: ["Python DAG files", "Operators", "Dependencies"], description: "Define workflows in code." },
+            { topic: "Basic Operators", concepts: ["BashOperator", "PythonOperator"], description: "Run simple tasks." }
+          ],
+          intermediate: [
+            { topic: "Task Dependencies", concepts: ["upstream/downstream", "set_downstream"], description: "Control execution order." },
+            { topic: "Scheduling", concepts: ["cron expressions", "timedelta", "catchup"], description: "Schedule workflows reliably." },
+            { topic: "XComs", concepts: ["Cross-communication", "Push/pull data"], description: "Share data between tasks." },
+            { topic: "Hooks & Connections", concepts: ["Database", "API", "Cloud"], description: "Connect to external systems." }
+          ],
+          advanced: [
+            { topic: "Dynamic DAGs", concepts: ["Loop-generated tasks", "Templates"], description: "Automate DAG creation." },
+            { topic: "Error Handling", concepts: ["Retries", "Triggers", "Alerts"], description: "Make pipelines resilient." },
+            { topic: "SubDAGs & TaskGroups", concepts: ["Modular workflows", "Scoping"], description: "Organize complex pipelines." },
+            { topic: "Plugins", concepts: ["Custom operators", "Sensors", "UI extensions"], description: "Extend Airflow functionality." }
+          ],
+          expert: [
+            { topic: "Deployment", concepts: ["CeleryExecutor", "KubernetesExecutor", "HA setup"], description: "Run Airflow in production." },
+            { topic: "Monitoring", concepts: ["Logging", "Metrics", "Alerting"], description: "Ensure pipeline reliability." },
+            { topic: "CI/CD for DAGs", concepts: ["GitHub Actions", "Testing", "Versioning"], description: "Treat DAGs as code." },
+            { topic: "Security", concepts: ["RBAC", "Secrets backend", "OAuth"], description: "Secure access and credentials." }
+          ]
+        },
+        tools: ["Airflow", "Astronomer", "Docker", "Kubernetes", "PostgreSQL", "Redis", "GitHub", "Grafana"]
+      },
+      {
+        title: "Elasticsearch Roadmap",
+        description: "Master Elasticsearch for full-text search, log analysis, and real-time data exploration.",
+        image: "https://cdn.simpleicons.org/elasticsearch/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction", concepts: ["What is Elasticsearch?", "Use Cases", "Ecosystem (ELK)"], description: "Understand search and analytics engine." },
+            { topic: "Core Concepts", concepts: ["Index", "Document", "Shards", "Replicas"], description: "Learn the data model." },
+            { topic: "CRUD Operations", concepts: ["Indexing", "Searching", "Updating", "Deleting"], description: "Manage documents." },
+            { topic: "REST API", concepts: ["GET", "POST", "PUT", "DELETE"], description: "Interact with Elasticsearch via HTTP." }
+          ],
+          intermediate: [
+            { topic: "Query DSL", concepts: ["Match", "Term", "Bool", "Range queries"], description: "Write complex search queries." },
+            { topic: "Aggregations", concepts: ["Metrics", "Buckets", "Nested"], description: "Analyze data patterns." },
+            { topic: "Mapping & Data Types", concepts: ["Keyword vs Text", "Dates", "Objects"], description: "Design efficient schemas." },
+            { topic: "Kibana Basics", concepts: ["Dashboards", "Visualizations", "Dev Tools"], description: "Visualize and explore data." }
+          ],
+          advanced: [
+            { topic: "Performance Tuning", concepts: ["Refresh interval", "Bulk indexing", "Search speed"], description: "Optimize for scale." },
+            { topic: "Index Lifecycle Management (ILM)", concepts: ["Hot-Warm-Cold", "Rollover", "Delete"], description: "Manage data over time." },
+            { topic: "Security", concepts: ["Authentication", "Role-based access", "TLS"], description: "Secure your cluster." },
+            { topic: "Scaling", concepts: ["Clustering", "Shard allocation", "Node roles"], description: "Deploy across nodes." }
+          ],
+          expert: [
+            { topic: "Logstash & Beats", concepts: ["Filebeat", "Metricbeat", "Pipelines"], description: "Ingest data into Elasticsearch." },
+            { topic: "Monitoring", concepts: ["Elastic Stack Monitoring", "Alerting"], description: "Track cluster health." },
+            { topic: "Advanced Analytics", concepts: ["Machine Learning in Kibana", "Anomaly detection"], description: "Go beyond search." }
+          ]
+        },
+        tools: ["Elasticsearch", "Kibana", "Logstash", "Filebeat", "Cerebro", "Postman", "Docker", "Kubernetes"]
+      },
+      {
+        title: "NoSQL Roadmap",
+        description: "Master NoSQL databases for scalable, flexible data storage across document, key-value, columnar, and graph models.",
+        image: "https://cdn.simpleicons.org/mongodb/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction to NoSQL", concepts: ["What is NoSQL?", "SQL vs NoSQL", "Use Cases"], description: "Understand when and why to use NoSQL databases." },
+            { topic: "Types of NoSQL", concepts: ["Document", "Key-Value", "Column-Family", "Graph"], description: "Learn the four main categories and their applications." },
+            { topic: "Document Databases", concepts: ["MongoDB", "Couchbase", "JSON/BSON"], description: "Work with flexible schema document stores." },
+            { topic: "Key-Value Stores", concepts: ["Redis", "DynamoDB", "Memcached"], description: "Use fast, simple data structures for caching and sessions." },
+            { topic: "Setup & Installation", concepts: ["MongoDB Atlas", "Redis CLI", "Local DBs"], description: "Get started with local or cloud-based NoSQL instances." }
+          ],
+          intermediate: [
+            { topic: "MongoDB CRUD", concepts: ["insert()", "find()", "update()", "delete()"], description: "Perform operations in MongoDB using shell or drivers." },
+            { topic: "Indexing in NoSQL", concepts: ["Single", "Compound", "TTL", "Text indexes"], description: "Speed up queries with proper indexing." },
+            { topic: "Aggregation Pipeline", concepts: ["$match", "$group", "$sort", "$project"], description: "Transform and analyze data in MongoDB." },
+            { topic: "Cassandra Basics", concepts: ["CQL", "Partition Keys", "Clustering"], description: "Handle large-scale columnar data efficiently." },
+            { topic: "Redis Data Structures", concepts: ["Strings", "Hashes", "Lists", "Sets", "ZSets"], description: "Use Redis for advanced caching and real-time features." },
+            { topic: "Consistency & CAP Theorem", concepts: ["Eventual Consistency", "Tunable Consistency", "Trade-offs"], description: "Understand distributed system design principles." }
+          ],
+          advanced: [
+            { topic: "Scaling & Sharding", concepts: ["Horizontal Scaling", "Shard Keys", "MongoDB Sharding", "Cassandra Rings"], description: "Scale databases across multiple nodes." },
+            { topic: "Replication & High Availability", concepts: ["MongoDB Replica Sets", "Cassandra Multi-DC"], description: "Ensure uptime and fault tolerance." },
+            { topic: "Cloud NoSQL", concepts: ["DynamoDB", "Firestore", "Cosmos DB"], description: "Use managed NoSQL services on AWS, GCP, Azure." },
+            { topic: "Performance Tuning", concepts: ["Query Optimization", "Memory Management", "Connection Pooling"], description: "Optimize latency and throughput." },
+            { topic: "Security", concepts: ["Authentication", "Encryption", "Role-Based Access"], description: "Secure data at rest and in transit." },
+            { topic: "Backup & Recovery", concepts: ["mongodump", "snapshots", "point-in-time recovery"], description: "Implement disaster recovery strategies." }
+          ],
+          expert: [
+            { topic: "Real-Time Applications", concepts: ["Pub/Sub with Redis", "Change Streams in MongoDB"], description: "Build event-driven and reactive systems." },
+            { topic: "Time-Series Data", concepts: ["MongoDB Time Series", "InfluxDB"], description: "Store and query time-stamped data efficiently." },
+            { topic: "Graph Databases", concepts: ["Neo4j", "Cypher Query Language", "Relationships"], description: "Model and query highly connected data." },
+            { topic: "Hybrid Architectures", concepts: ["Polyglot Persistence", "SQL + NoSQL"], description: "Combine multiple databases for optimal performance." },
+            { topic: "Monitoring & Observability", concepts: ["Prometheus", "Grafana", "CloudWatch"], description: "Track database health and performance." }
+          ]
+        },
+        tools: ["MongoDB", "Redis", "Cassandra", "DynamoDB", "Neo4j", "Firestore", "Couchbase", "InfluxDB", "Prometheus", "Grafana"]
+      },
+      {
+        title: "dbt (Data Build Tool) Roadmap",
+        description: "Master dbt for transforming raw data into reliable, production-ready models using SQL and version control.",
+        image: "https://cdn.simpleicons.org/dbt/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction to dbt", concepts: ["What is dbt?", "Why use dbt?", "Core concepts"], description: "Understand dbt’s role in the modern data stack." },
+            { topic: "Setting Up", concepts: ["dbt Cloud", "dbt CLI", "Connecting to warehouse"], description: "Install and configure dbt for your data platform." },
+            { topic: "Writing Models", concepts: ["SELECT statements", "Ref function", "Sources"], description: "Create your first dbt models." },
+            { topic: "Project Structure", concepts: ["models/", "seeds/", "snapshots/", "docs/"], description: "Organize your dbt project effectively." }
+          ],
+          intermediate: [
+            { topic: "Materializations", concepts: ["views", "tables", "incremental", "ephemeral"], description: "Choose the right materialization strategy." },
+            { topic: "Testing & Documentation", concepts: ["Schema tests", "Custom tests", "Generating docs"], description: "Ensure data quality and share documentation." },
+            { topic: "Macros & Variables", concepts: ["Custom SQL macros", "Global variables"], description: "Reuse logic and customize behavior." },
+            { topic: "Packages", concepts: ["dbt-utils", "Analytics Engineering"], description: "Leverage open-source packages to speed up development." }
+          ],
+          advanced: [
+            { topic: "Snapshots", concepts: ["Tracking changes", "SCD Type 2"], description: "Capture historical changes in source data." },
+            { topic: "Exposures & Metrics", concepts: ["Defining business metrics", "Upstream dependencies"], description: "Link models to business outcomes." },
+            { topic: "CI/CD Integration", concepts: ["GitHub Actions", "Pull request workflows"], description: "Automate testing and deployment." },
+            { topic: "Performance Optimization", concepts: ["Partitioning", "Clustering", "Query optimization"], description: "Optimize dbt model performance." }
+          ],
+          expert: [
+            { topic: "Custom Adapters", concepts: ["Building for new warehouses"], description: "Extend dbt to support new platforms." },
+            { topic: "Governance & Lineage", concepts: ["Data catalog integration", "Lineage tracking"], description: "Integrate with data governance tools." },
+            { topic: "Team Collaboration", concepts: ["Branching strategies", "Code reviews"], description: "Scale dbt across large teams." }
+          ]
+        },
+        tools: ["dbt Cloud", "Snowflake", "BigQuery", "PostgreSQL", "GitHub", "Jinja", "VS Code"]
+      },
+      {
+        title: "Snowflake Roadmap",
+        description: "Master Snowflake for cloud data warehousing, ELT, and scalable analytics.",
+        image: "https://cdn.simpleicons.org/snowflake/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction", concepts: ["What is Snowflake?", "Architecture", "Use Cases"], description: "Understand Snowflake's cloud-native data platform." },
+            { topic: "Core Concepts", concepts: ["Virtual Warehouses", "Databases", "Schemas"], description: "Learn the building blocks of Snowflake." },
+            { topic: "Loading Data", concepts: ["CSV, JSON, Parquet", "COPY INTO", "Stages"], description: "Ingest data from various sources." },
+            { topic: "SQL Basics", concepts: ["SELECT", "JOIN", "Filtering"], description: "Query data using Snowflake SQL." }
+          ],
+          intermediate: [
+            { topic: "Semi-Structured Data", concepts: ["VARIANT", "JSON", "XML"], description: "Work with JSON and nested data." },
+            { topic: "Time Travel & Cloning", concepts: ["Recovery", "Zero-copy cloning"], description: "Leverage Snowflake’s unique features." },
+            { topic: "Security", concepts: ["Roles", "Users", "Data Sharing"], description: "Manage access and share data securely." },
+            { topic: "Performance Tuning", concepts: ["Warehouse sizing", "Clustering keys"], description: "Optimize query performance." }
+          ],
+          advanced: [
+            { topic: "Snowpipe", concepts: ["Auto-ingest", "Streaming data"], description: "Load data continuously." },
+            { topic: "Tasks & Scheduling", concepts: ["Stored procedures", "Task graphs"], description: "Automate workflows." },
+            { topic: "External Functions", concepts: ["Calling APIs", "Lambda integration"], description: "Extend Snowflake with external logic." },
+            { topic: "Data Sharing", concepts: ["Secure Data Sharing", "Data Marketplace"], description: "Share data across accounts and organizations." }
+          ],
+          expert: [
+            { topic: "Multi-Cloud & Regions", concepts: ["AWS, GCP, Azure", "Cross-region replication"], description: "Deploy across clouds and regions." },
+            { topic: "Cost Optimization", concepts: ["Warehouse auto-suspend", "Query profiling"], description: "Control costs at scale." },
+            { topic: "Governance", concepts: ["Tagging", "Access History", "Data Lineage"], description: "Implement data governance." }
+          ]
+        },
+        tools: ["Snowflake", "Snowsight", "dbt", "Fivetran", "Matillion", "Airflow", "Git"]
       },
       {
         title: "Apache Flink Roadmap",
@@ -757,6 +920,102 @@
         tools: ["Jira", "Confluence", "Figma", "Slack", "Miro", "Notion", "Power BI", "Tableau", "Excel"],
         salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹10L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr></table>",
         tips: "Improve soft skills. Learn domain knowledge. Be the bridge, not the bottleneck. Focus on business value."
+      },
+      {
+        title: "Data Governance Specialist",
+        description: "Ensure data quality, compliance, and ethical use",
+        image: "https://cdn.simpleicons.org/iso/0AF",
+        responsibilities: [
+          "Define data policies, standards, and metadata management",
+          "Implement data catalog and lineage tools",
+          "Ensure GDPR, CCPA, HIPAA compliance",
+          "Lead data stewardship programs",
+          "Audit data access and usage"
+        ],
+        skills: ["Data Governance", "Metadata Management", "Compliance", "Data Catalog", "Data Lineage", "Collibra", "Alation"],
+        tools: ["Collibra", "Alation", "Informatica Axon", "Atlas", "Snowflake", "dbt", "Power BI", "Git", "Jira"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹10L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr></table>",
+        tips: "Learn data catalog tools. Get IAPP or DAMA certification. Focus on data ethics and compliance."
+      },
+      {
+        title: "Data Quality Engineer",
+        description: "Ensure accuracy, consistency, and reliability of data",
+        image: "https://cdn.simpleicons.org/testcov/0AF",
+        responsibilities: [
+          "Design and implement data validation rules",
+          "Monitor data pipelines for anomalies",
+          "Build automated data quality checks",
+          "Collaborate with engineers and analysts on data issues",
+          "Report on data health and KPIs"
+        ],
+        skills: ["Data Validation", "Great Expectations", "dbt tests", "SQL", "Python", "Monitoring"],
+        tools: ["Great Expectations", "dbt", "Monte Carlo", "Soda", "Airflow", "Snowflake", "BigQuery", "Databricks"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹5L – ₹8L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹9L – ₹16L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹16L – ₹25L+</td></tr></table>",
+        tips: "Master Great Expectations. Automate data tests. Integrate with CI/CD. Monitor in production."
+      },
+      {
+        title: "Cloud Data Engineer",
+        description: "Design and build cloud-native data solutions on AWS, GCP, or Azure",
+        image: "https://cdn.simpleicons.org/amazonaws/0AF",
+        responsibilities: [
+          "Build serverless data pipelines using cloud services",
+          "Architect data lakes and warehouses in the cloud",
+          "Optimize cost and performance of cloud infrastructure",
+          "Implement security and IAM policies",
+          "Automate deployment using IaC"
+        ],
+        skills: ["Cloud (AWS/GCP/Azure)", "Serverless", "IaC (Terraform)", "Lambda", "Glue", "BigQuery", "Dataflow"],
+        tools: ["AWS Lambda", "GCP Dataflow", "Azure Functions", "Terraform", "CloudFormation", "S3", "BigQuery", "Snowflake", "Airflow"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹11L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹12L – ₹20L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹20L – ₹35L+</td></tr></table>",
+        tips: "Get cloud certified (AWS/GCP). Learn IaC. Master serverless patterns. Focus on cost optimization."
+      },
+      {
+        title: "Prompt Engineer / AI Specialist",
+        description: "Design and optimize prompts for LLMs and generative AI",
+        image: "https://cdn.simpleicons.org/openai/0AF",
+        responsibilities: [
+          "Craft high-quality prompts for chatbots, summarization, and code generation",
+          "Fine-tune and evaluate LLM outputs",
+          "Build RAG systems and AI agents",
+          "Collaborate with developers to integrate AI into products",
+          "Ensure ethical and safe AI usage"
+        ],
+        skills: ["Prompt Engineering", "LLMs", "RAG", "LangChain", "AI Safety", "NLP", "Python"],
+        tools: ["OpenAI API", "Anthropic", "LangChain", "LlamaIndex", "Hugging Face", "Jupyter", "VS Code"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹14L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹15L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹45L+</td></tr></table>",
+        tips: "Master LangChain. Experiment with RAG. Build AI agents. Stay updated on LLM research."
+      },
+      {
+        title: "Computer Vision Engineer",
+        description: "Develop models for image and video analysis",
+        image: "https://cdn.simpleicons.org/opencv/0AF",
+        responsibilities: [
+          "Build object detection, segmentation, and classification models",
+          "Optimize models for edge deployment",
+          "Work with video streams and real-time inference",
+          "Annotate and curate image datasets",
+          "Deploy models in production environments"
+        ],
+        skills: ["OpenCV", "CNN", "YOLO", "TensorFlow", "PyTorch", "Image Processing", "Deep Learning"],
+        tools: ["OpenCV", "LabelImg", "Roboflow", "TensorFlow", "PyTorch", "ONNX", "Docker", "Kubernetes"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr></table>",
+        tips: "Master OpenCV and YOLO. Work on real datasets. Learn model quantization. Build real-time apps."
+      },
+      {
+        title: "NLP Engineer",
+        description: "Build models for text processing and language understanding",
+        image: "https://cdn.simpleicons.org/naturallanguageprocessing/0AF",
+        responsibilities: [
+          "Develop text classification, sentiment analysis, and named entity recognition models",
+          "Fine-tune transformer models (BERT, RoBERTa)",
+          "Build chatbots and conversational AI",
+          "Implement text summarization and translation",
+          "Deploy NLP models in production"
+        ],
+        skills: ["NLP", "Transformers", "BERT", "spaCy", "Hugging Face", "Tokenization", "Attention Mechanisms"],
+        tools: ["Hugging Face", "spaCy", "NLTK", "Transformers", "PyTorch", "FastAPI", "Docker", "Kubernetes"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr></table>",
+        tips: "Master Hugging Face. Fine-tune LLMs. Build chatbots. Learn RAG. Deploy with FastAPI."
       }
     ];
 
@@ -793,7 +1052,7 @@
             });
             card.innerHTML = `
               <div class="card-header">
-                <img src="${roadmap.image}" alt="${roadmap.title}" class="card-icon">
+                <img src="${roadmap.image.trim()}" alt="${roadmap.title}" class="card-icon">
                 <h3 class="card-title">${roadmap.title}</h3>
               </div>
               <p class="card-desc">${roadmap.description}</p>
