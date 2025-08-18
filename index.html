@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Data Career Skill Roadmaps</title>
+  <title>Data Career Dashboard</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
     :root {
@@ -11,7 +11,7 @@
       --primary-dark: #0088cc;
       --dark-bg: #121212;
       --light-bg: #f5f5f5;
-      --card-bg: #222;
+      --card-bg: #1e1e1e;
       --card-bg-light: #fff;
       --panel-bg: #1a1a1a;
       --panel-bg-light: #fff;
@@ -19,9 +19,9 @@
       --text-dark: #333;
       --text-secondary: #ddd;
       --text-secondary-light: #666;
-      --success: #00c853;
-      --border-radius: 8px;
+      --border-radius: 12px;
       --transition: all 0.3s ease;
+      --shadow: 0 4px 15px rgba(0, 170, 255, 0.15);
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,45 +29,25 @@
       color: var(--text-light);
       margin: 0;
       padding: 20px;
-      overflow-x: hidden;
-      position: relative;
       transition: var(--transition);
     }
     body.light-mode {
       background-color: var(--light-bg);
       color: var(--text-dark);
     }
-    body.light-mode .card {
+    body.light-mode .roadmap-card, body.light-mode .role-card {
       background-color: var(--card-bg-light);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    body.light-mode .modal-panel {
-      background-color: var(--panel-bg-light);
-    }
-    body.light-mode .subtitle {
-      color: var(--text-secondary-light);
-    }
-    body.light-mode .card::before {
-      background: linear-gradient(90deg, var(--primary), #00c6ff);
-    }
-    body.light-mode th {
-      background-color: #e0e0e0;
-    }
-    body.light-mode tr:nth-child(even) {
-      background-color: #f9f9f9;
+      color: var(--text-dark);
     }
     .header-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-      position: relative;
-      animation: slideDown 1s ease-out;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-out;
     }
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     h1 {
       margin: 0;
@@ -75,401 +55,255 @@
       color: var(--primary);
       text-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
       animation: glow 2s ease-in-out infinite alternate;
-      font-size: 2.5rem;
-      text-align: center;
+      font-size: 2.8rem;
     }
     @keyframes glow {
       from { text-shadow: 0 0 10px rgba(0, 170, 255, 0.3); }
-      to { text-shadow: 0 0 15px rgba(0, 170, 255, 0.6), 0 0 20px rgba(0, 170, 255, 0.4); }
+      to { text-shadow: 0 0 15px rgba(0, 170, 255, 0.6); }
     }
     .subtitle {
       color: var(--text-secondary);
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
       font-size: 1.1rem;
-      line-height: 1.6;
-      animation: fadeIn 1.5s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      max-width: 900px;
+      margin: 10px auto;
     }
     .theme-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
+      width: 50px;
+      height: 50px;
       background-color: var(--primary);
       color: white;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
     .theme-toggle:hover {
+      transform: scale(1.1) rotate(20deg);
       background-color: var(--primary-dark);
-      transform: scale(1.1) rotate(360deg);
     }
-    .card-container {
+    .tabs {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
       justify-content: center;
+      gap: 10px;
+      margin: 20px 0 30px;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      background: #2c2c2c;
+      color: #aaa;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
       margin-bottom: 40px;
     }
-    .card {
+    .roadmap-card, .role-card {
       background-color: var(--card-bg);
       border-radius: var(--border-radius);
-      padding: 16px;
-      width: 300px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      opacity: 0;
-      transform: translateY(50px) rotate(-2deg);
-      animation: slideInRotate 0.6s ease-out forwards;
+      padding: 20px;
+      box-shadow: var(--shadow);
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-    }
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-    .card:nth-child(5) { animation-delay: 0.5s; }
-    .card:nth-child(6) { animation-delay: 0.6s; }
-    @keyframes slideInRotate {
-      from { opacity: 0; transform: translateY(50px) rotate(-2deg); }
-      to { opacity: 1; transform: translateY(0) rotate(0); }
-    }
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), #00c6ff);
-      transform: translateY(-100%);
-      transition: var(--transition);
-    }
-    .card:hover::before {
-      transform: translateY(0);
-    }
-    .card:hover {
-      background-color: #1e1e1e;
-      cursor: pointer;
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0, 170, 255, 0.25);
-    }
-    body.light-mode .card:hover {
-      background-color: #f0f0f0;
-    }
-    .card-content {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: nowrap;
-    }
-    .role-icon-img {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      border-radius: 6px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 2px var(--primary));
-      transition: var(--transition);
-    }
-    .card:hover .role-icon-img {
-      transform: scale(1.2) rotate(5deg);
-      filter: drop-shadow(0 0 4px var(--primary)) brightness(1.1);
-    }
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      color: var(--primary);
-    }
-    .card p {
-      margin: 5px 0;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-    body.light-mode .card p {
-      color: var(--text-secondary-light);
-    }
-    .modal-panel {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.7);
-      width: 600px;
-      max-width: 90%;
-      max-height: 80vh;
-      background-color: var(--panel-bg);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      border-radius: var(--border-radius);
-      padding: 24px;
-      overflow-y: auto;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      z-index: 1500;
-      display: none;
       flex-direction: column;
       opacity: 0;
-      animation: bounceIn 0.5s ease-out forwards;
+      animation: slideUp 0.6s ease-out forwards;
     }
-    @keyframes bounceIn {
-      0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
-      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .modal-panel.open {
+    .roadmap-card:hover, .role-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 170, 255, 0.25);
+    }
+    .card-header {
       display: flex;
-    }
-    .modal-panel h2 {
-      margin-top: 0;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 12px;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 3px var(--primary));
+    }
+    .card-title {
+      font-size: 1.3rem;
       font-weight: 700;
-      font-size: 1.6rem;
       color: var(--primary);
-      text-align: center;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: nowrap;
-      animation: fadeIn 0.8s ease-out;
+      margin: 0;
     }
-    .modal-section {
-      margin-bottom: 20px;
-      padding: 0 10px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 8px 0;
+      line-height: 1.5;
     }
-    .modal-panel.open .modal-section {
-      opacity: 1;
-      transform: translateY(0);
+    .card-section {
+      margin: 12px 0;
+      font-size: 0.9rem;
     }
-    .modal-panel.open .modal-section:nth-child(2) { transition-delay: 0.1s; }
-    .modal-panel.open .modal-section:nth-child(3) { transition-delay: 0.2s; }
-    .modal-panel.open .modal-section:nth-child(4) { transition-delay: 0.3s; }
-    .modal-panel.open .modal-section:nth-child(5) { transition-delay: 0.4s; }
-    .modal-section h3 {
-      margin-bottom: 10px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 4px;
+    .section-title {
+      font-weight: 600;
       color: #66c2ff;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
-    body.light-mode .modal-section h3 {
-      border-bottom: 1px solid #ccc;
-    }
-    .modal-section h3::before {
+    .section-title::before {
       content: "→";
       color: var(--primary);
-      font-weight: bold;
-      transition: transform 0.3s ease;
     }
-    .modal-section h3:hover::before {
-      transform: translateX(5px);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 10px 0;
+    .topic-list {
+      margin: 4px 0;
+      padding-left: 16px;
+      font-size: 0.85rem;
       color: var(--text-secondary);
     }
-    th, td {
-      border: 1px solid #333;
+    .topic-item {
+      margin: 4px 0;
+    }
+    .topic-topic {
+      font-weight: 600;
+      color: #a0e7ff;
+    }
+    .topic-concepts {
+      font-style: italic;
+      color: #999;
+    }
+    .tools-section {
+      margin-top: 10px;
       padding: 8px;
-      text-align: left;
-      font-size: 0.9rem;
-      opacity: 0;
-      transform: translateX(-20px);
-      animation: tableRowFadeIn 0.5s ease-out forwards;
+      background-color: rgba(0, 170, 255, 0.1);
+      border-radius: 6px;
+      font-size: 0.85rem;
     }
-    body.light-mode th, body.light-mode td {
-      border: 1px solid #ccc;
+    .tools-section strong {
+      color: var(--primary);
     }
-    th {
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .tag {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      background: rgba(0, 170, 255, 0.2);
+      color: #80d8ff;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    body.light-mode .tag {
+      background: #e0f7fa; color: #006064;
+    }
+    .salary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 0.85rem;
+    }
+    .salary-table th, .salary-table td {
+      border: 1px solid #333;
+      padding: 6px;
+      text-align: center;
+    }
+    body.light-mode .salary-table th, body.light-mode .salary-table td {
+      border-color: #ccc;
+    }
+    .salary-table th {
       background-color: #2c2c2c;
       color: var(--primary);
     }
-    tr:nth-child(even) {
+    .salary-table tr:nth-child(even) {
       background-color: #1e1e1e;
     }
-    tr:nth-child(1) th, tr:nth-child(1) td { animation-delay: 0.1s; }
-    tr:nth-child(2) th, tr:nth-child(2) td { animation-delay: 0.2s; }
-    tr:nth-child(3) th, tr:nth-child(3) td { animation-delay: 0.3s; }
-    tr:nth-child(4) th, tr:nth-child(4) td { animation-delay: 0.4s; }
-    tr:nth-child(5) th, tr:nth-child(5) td { animation-delay: 0.5s; }
-    tr:nth-child(6) th, tr:nth-child(6) td { animation-delay: 0.6s; }
-    tr:nth-child(7) th, tr:nth-child(7) td { animation-delay: 0.7s; }
-    tr:nth-child(8) th, tr:nth-child(8) td { animation-delay: 0.8s; }
-    @keyframes tableRowFadeIn {
-      to { opacity: 1; transform: translateX(0); }
+    body.light-mode .salary-table tr:nth-child(even) {
+      background-color: #f9f9f9;
     }
-    .topic-cell {
-      transition: var(--transition);
-    }
-    .topic-cell:hover {
-      transform: scale(1.02);
-      color: var(--primary);
-      cursor: default;
-    }
-    body.light-mode .topic-cell:hover {
-      color: var(--primary-dark);
-    }
-    .close-btn {
-      background: none;
-      color: var(--primary);
-      font-size: 28px;
-      border: none;
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      cursor: pointer;
-      font-weight: 700;
-      transition: var(--transition);
-      user-select: none;
-    }
-    .close-btn:hover {
-      color: #44caff;
-      transform: rotate(90deg) scale(1.1);
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: none;
-      z-index: 1400;
-      backdrop-filter: blur(3px);
-      transition: opacity 0.4s ease;
-    }
-    .overlay.visible {
-      display: block;
-      opacity: 1;
-    }
-    .role-header-img {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5));
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
-      50% { filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.8)); }
-      100% { filter: drop-shadow(0 0 4px rgba(0, 170, 255, 0.5)); }
-    }
-    .modal-section-content {
-      padding: 0 10px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    body.light-mode .modal-section-content {
-      color: var(--text-secondary-light);
-    }
-    .tools-list {
+    .tips {
       margin-top: 10px;
-      padding: 10px;
-      background-color: #2a2a2a;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      color: #66c2ff;
+      padding: 8px;
+      background-color: rgba(255, 255, 0, 0.1);
+      border-left: 3px solid #ffeb3b;
+      font-size: 0.85rem;
+      color: #ffeb3b;
+      border-radius: 0 4px 4px 0;
     }
-    body.light-mode .tools-list {
-      background-color: #f0f8ff;
-      color: #0055aa;
-    }
-    .tools-list strong {
-      color: var(--primary);
+    body.light-mode .tips {
+      background-color: #fff9c4;
+      color: #5d4037;
+      border-left-color: #fbc02d;
     }
     @media (max-width: 768px) {
-      .card {
-        width: 100%;
+      .grid {
+        grid-template-columns: 1fr;
       }
-      .modal-panel {
-        width: 100%;
-        padding: 16px;
+      h1 {
+        font-size: 2.2rem;
       }
-      .modal-panel h2 {
-        font-size: 1.3rem;
-        gap: 8px;
-      }
-      .role-header-img {
-        width: 36px;
-        height: 36px;
-      }
-      .modal-section {
-        padding: 0 8px;
-      }
-    }
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--panel-bg);
-    }
-    body.light-mode ::-webkit-scrollbar-track {
-      background: var(--panel-bg-light);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #44caff;
     }
   </style>
 </head>
 <body>
   <div class="header-container">
-    <h1>Data Career Skill Roadmaps</h1>
-    <p class="subtitle">Explore structured learning paths for SQL, Power BI, Python, Excel, Git, Linux, NoSQL, Kafka, Spark, Flink, Airflow, and Elasticsearch.</p>
+    <h1>Data Career Dashboard</h1>
+    <p class="subtitle">Explore skill roadmaps and job roles in data science, engineering, and analytics.</p>
   </div>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-  <div class="card-container" id="cardContainer" tabindex="0"></div>
-  <div class="modal-panel" id="modalPanel" tabindex="0" aria-live="polite" aria-label="Skill Roadmap Details Modal">
-    <button class="close-btn" id="closePanelBtn" aria-label="Close Details Modal">&times;</button>
-    <h2 id="panelTitle"></h2>
-    <div class="modal-section" id="beginnerSection">
-      <h3>Beginner</h3>
-      <div class="modal-section-content" id="beginnerContent"></div>
-    </div>
-    <div class="modal-section" id="intermediateSection">
-      <h3>Intermediate</h3>
-      <div class="modal-section-content" id="intermediateContent"></div>
-    </div>
-    <div class="modal-section" id="advancedSection">
-      <h3>Advanced</h3>
-      <div class="modal-section-content" id="advancedContent"></div>
-    </div>
-    <div class="modal-section" id="expertSection" style="display: none;">
-      <h3>Expert</h3>
-      <div class="modal-section-content" id="expertContent"></div>
-    </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="roadmaps">Skill Roadmaps</button>
+    <button class="tab-btn" data-tab="roles">Job Roles</button>
   </div>
-  <div class="overlay" id="overlay" tabindex="-1"></div>
+
+  <!-- Skill Roadmaps Panel -->
+  <div id="roadmaps" class="tab-content active">
+    <div class="grid" id="roadmapsGrid"></div>
+  </div>
+
+  <!-- Job Roles Panel -->
+  <div id="roles" class="tab-content">
+    <div class="grid" id="rolesGrid"></div>
+  </div>
+
   <script>
+    // === SKILL ROADMAPS DATA ===
     const roadmaps = [
       {
         title: "SQL Roadmap",
         description: "A structured path to master SQL from basics to advanced techniques for data management and analysis.",
         image: "https://cdn.simpleicons.org/mysql/0AF",
-        panelImage: "https://cdn.simpleicons.org/mysql/0AF",
         levels: {
           beginner: [
             { topic: "Introduction", concepts: ["What is SQL?", "RDBMS vs DBMS", "Tables, Rows, Columns"], description: "Learn the fundamentals of SQL and relational databases." },
@@ -507,13 +341,48 @@
             { topic: "Pivot/Unpivot", concepts: ["Data transformation techniques"], description: "Transform data for reporting purposes." }
           ]
         },
-        tools: ["MySQL Workbench"]
+        tools: ["MySQL Workbench", "PostgreSQL", "SQL Server", "DBeaver"]
+      },
+      {
+        title: "Python Roadmap",
+        description: "Master Python programming from basics to advanced data science and automation.",
+        image: "https://cdn.simpleicons.org/python/0AF",
+        levels: {
+          beginner: [
+            { topic: "Variables & Data Types", concepts: ["int", "str", "bool", "float", "type()"], description: "Store and manipulate different kinds of data." },
+            { topic: "Basic I/O", concepts: ["print()", "input()", "comments"], description: "Interact with users and add code documentation." },
+            { topic: "Control Flow", concepts: ["if", "elif", "else", "Nested conditions"], description: "Write logic to control the flow of your program." },
+            { topic: "Loops", concepts: ["for", "while", "break", "continue", "range()"], description: "Repeat tasks efficiently and loop through data structures." },
+            { topic: "Functions", concepts: ["def", "Parameters", "Return values", "Scope", "*args", "**kwargs"], description: "Organize code into reusable blocks with custom behavior." }
+          ],
+          intermediate: [
+            { topic: "Data Structures", concepts: ["Lists", "Tuples", "Dictionaries", "Sets"], description: "Store and organize data efficiently." },
+            { topic: "File Handling", concepts: ["Reading/Writing files", "CSV", "JSON"], description: "Work with external data files." },
+            { topic: "Exception Handling", concepts: ["try", "except", "finally", "raise", "Custom exceptions"], description: "Handle errors gracefully and write more reliable code." },
+            { topic: "Modules & Packages", concepts: ["import", "Creating your own modules", "__name__ == '__main__'"], description: "Organize code into reusable and maintainable components." },
+            { topic: "Object-Oriented Programming (OOP)", concepts: ["class", "__init__", "self", "Methods", "Inheritance", "super()"], description: "Build complex programs using real-world modeling concepts." },
+            { topic: "Lambda & Functional Tools", concepts: ["lambda", "map()", "filter()", "reduce()", "zip()"], description: "Write concise, efficient data-processing code." },
+            { topic: "Working with JSON & CSV", concepts: ["json", "csv libraries", "Parsing & writing"], description: "Read and write structured data formats for APIs and datasets." }
+          ],
+          advanced: [
+            { topic: "Multithreading & Multiprocessing", concepts: ["threading", "multiprocessing", "GIL", "Concurrency"], description: "Speed up tasks with parallel processing and thread management." },
+            { topic: "Advanced OOP & Design Patterns", concepts: ["SOLID principles", "Singleton", "Factory", "Observer"], description: "Design scalable and maintainable applications using proven patterns." },
+            { topic: "Decorators", concepts: ["@decorator", "Function modification"], description: "Enhance functions with reusable logic." },
+            { topic: "Generators", concepts: ["yield", "Memory-efficient iteration"], description: "Create iterators that save memory." },
+            { topic: "Context Managers", concepts: ["with statement", "Custom managers"], description: "Manage resources safely and automatically." }
+          ],
+          expert: [
+            { topic: "Logging", concepts: ["Logging levels", "basicConfig", "Writing logs to file"], description: "Track application behavior and debug production issues." },
+            { topic: "Profiling & Optimization", concepts: ["timeit", "cProfile", "Big-O basics", "Memory usage"], description: "Identify performance bottlenecks and write efficient code." },
+            { topic: "Working with APIs", concepts: ["requests", "Parsing JSON", "Error handling", "Real API calls"], description: "Fetch and process data from web APIs for automation and data pipelines." }
+          ]
+        },
+        tools: ["PyCharm", "Jupyter Notebook", "VS Code", "Git", "Docker", "Flask", "FastAPI"]
       },
       {
         title: "Power BI Roadmap",
         description: "A comprehensive guide to mastering Power BI for data visualization and business intelligence.",
-        image: "https://img.icons8.com/?size=96&id=59885&format=png",
-        panelImage: "https://img.icons8.com/?size=96&id=59885&format=png",
+        image: "https://img.icons8.com/fluency/96/microsoft.png",
         levels: {
           beginner: [
             { topic: "Power BI Overview", concepts: ["What is Power BI", "Components", "Use Cases"], description: "Understand what Power BI is and where it fits in business intelligence." },
@@ -554,459 +423,457 @@
             { topic: "Power BI REST API & Dev", concepts: ["Embed APIs", "Refresh APIs", "Custom dev tools"], description: "Automate and embed Power BI into custom applications." }
           ]
         },
-        tools: ["Power BI Desktop", "DAX Studio", "Power BI Service", "Power Query", "Tabular Editor"]
-      },
-      {
-        title: "Python Roadmap",
-        description: "A complete roadmap to master Python programming for data science, web development, and more.",
-        image: "https://img.icons8.com/?size=96&id=30596&format=png",
-        panelImage: "https://img.icons8.com/?size=96&id=30596&format=png",
-        levels: {
-          beginner: [
-            { topic: "Python Basics", concepts: ["Installation", "REPL", "Variables", "print()", "Comments"], description: "Set up Python, write first programs, and understand the development flow." },
-            { topic: "Data Types", concepts: ["int", "float", "str", "bool", "Type checking", "Type conversion"], description: "Learn Python's core data types and how to convert between them." },
-            { topic: "Operators", concepts: ["Arithmetic", "Comparison", "Logical", "Assignment", "Membership", "Identity"], description: "Perform calculations and make decisions using operators." },
-            { topic: "Strings", concepts: ["Indexing", "Slicing", "Methods", "f-strings", "Escape characters"], description: "Handle and manipulate text-based data effectively." },
-            { topic: "Control Flow", concepts: ["if", "elif", "else", "Nested conditions"], description: "Write logic to control the flow of your program." },
-            { topic: "Loops", concepts: ["for", "while", "break", "continue", "range()"], description: "Repeat tasks efficiently and loop through data structures." },
-            { topic: "Functions", concepts: ["def", "Parameters", "Return values", "Scope", "*args", "**kwargs"], description: "Organize code into reusable blocks with custom behavior." },
-            { topic: "Lists & Tuples", concepts: ["Creation", "Indexing", "Slicing", "Methods", "List Comprehension"], description: "Store and manage ordered collections of data." },
-            { topic: "Dictionaries & Sets", concepts: ["dict creation", "Methods", "set", "set() operations"], description: "Store key-value pairs and handle unique items efficiently." }
-          ],
-          intermediate: [
-            { topic: "File Handling", concepts: ["open()", "read()", "write()", "with", "Working with .txt and .csv"], description: "Read/write files to persist or process data." },
-            { topic: "Exception Handling", concepts: ["try", "except", "finally", "raise", "Custom exceptions"], description: "Handle errors gracefully and write more reliable code." },
-            { topic: "Modules & Packages", concepts: ["import", "Creating your own modules", "__name__ == '__main__'"], description: "Organize code into reusable and maintainable components." },
-            { topic: "Python Libraries", concepts: ["math", "random", "datetime", "collections", "itertools"], description: "Leverage built-in tools to solve common programming problems." },
-            { topic: "Object-Oriented Programming (OOP)", concepts: ["class", "__init__", "self", "Methods", "Inheritance", "super()"], description: "Build complex programs using real-world modeling concepts." },
-            { topic: "Lambda & Functional Tools", concepts: ["lambda", "map()", "filter()", "reduce()", "zip()"], description: "Write concise, efficient data-processing code." },
-            { topic: "Working with JSON & CSV", concepts: ["json", "csv libraries", "Parsing & writing"], description: "Read and write structured data formats for APIs and datasets." }
-          ],
-          advanced: [
-            { topic: "Comprehensions", concepts: ["List", "Dict", "Set comprehensions", "Nested comprehensions"], description: "Write cleaner and faster data transformation logic." },
-            { topic: "Decorators", concepts: ["Function decorators", "@wraps", "Common use-cases"], description: "Extend functionality of functions in a clean and reusable way." },
-            { topic: "Generators & Iterators", concepts: ["yield", "Generator expressions", "iter()", "next()"], description: "Handle large data streams efficiently with lazy evaluation." },
-            { topic: "Regular Expressions", concepts: ["re module", "search()", "match()", "findall()", "Groups", "Patterns"], description: "Extract patterns and validate formats in strings." },
-            { topic: "Virtual Environments", concepts: ["venv", "pip", "requirements.txt", "Dependencies"], description: "Manage project dependencies in isolated environments." },
-            { topic: "Unit Testing", concepts: ["unittest", "pytest", "Assertions", "Fixtures"], description: "Write testable and bug-free code for production environments." },
-            { topic: "Logging", concepts: ["Logging levels", "basicConfig", "Writing logs to file"], description: "Track application behavior and debug production issues." },
-            { topic: "Profiling & Optimization", concepts: ["timeit", "cProfile", "Big-O basics", "Memory usage"], description: "Identify performance bottlenecks and write efficient code." },
-            { topic: "Working with APIs", concepts: ["requests", "Parsing JSON", "Error handling", "Real API calls"], description: "Fetch and process data from web APIs for automation and data pipelines." }
-          ],
-          expert: [
-            { topic: "NumPy & Pandas", concepts: ["Arrays", "Series", "DataFrames", "Indexing", "Filtering", "Aggregation"], description: "Perform powerful data analysis and manipulation." },
-            { topic: "Matplotlib & Seaborn", concepts: ["Data visualization: plots", "Charts", "Customizations"], description: "Create visual representations of data for analysis and storytelling." },
-            { topic: "Flask / FastAPI", concepts: ["Building APIs", "Endpoints", "Routing", "Templates"], description: "Build web apps and APIs for real-world services and products." },
-            { topic: "Multithreading & Multiprocessing", concepts: ["threading", "multiprocessing", "GIL", "Concurrency"], description: "Speed up tasks with parallel processing and thread management." },
-            { topic: "Advanced OOP & Design Patterns", concepts: ["SOLID principles", "Singleton", "Factory", "Observer"], description: "Design scalable and maintainable applications using proven patterns." }
-          ]
-        },
-        tools: ["PyCharm", "Jupyter Notebook", "VS Code", "Git", "Docker"]
-      },
-      {
-        title: "Excel Roadmap",
-        description: "A comprehensive guide to mastering Excel for data analysis, reporting, and automation.",
-        image: "https://img.icons8.com/?size=96&id=51218&format=png",
-        panelImage: "https://img.icons8.com/?size=96&id=51218&format=png",
-        levels: {
-          beginner: [
-            { topic: "Excel Basics", concepts: ["Interface", "Workbooks", "Worksheets", "Cells", "Ribbons"], description: "Understand the Excel interface and basic navigation." },
-            { topic: "Data Entry", concepts: ["Entering data", "Auto-fill", "Data validation"], description: "Learn how to input and validate data efficiently." },
-            { topic: "Basic Formulas", concepts: ["SUM", "AVERAGE", "MIN", "MAX", "COUNT"], description: "Perform basic calculations using Excel formulas." },
-            { topic: "Formatting", concepts: ["Cell formatting", "Conditional formatting", "Borders", "Number formats"], description: "Enhance spreadsheet readability with formatting techniques." },
-            { topic: "Basic Charts", concepts: ["Bar", "Pie", "Line", "Column"], description: "Create simple visualizations to represent data." },
-            { topic: "Sorting & Filtering", concepts: ["Sort A-Z", "Custom sort", "Filter by value"], description: "Organize and narrow down data for analysis." },
-            { topic: "Tables", concepts: ["Creating tables", "Table styles", "Total row"], description: "Use Excel tables for structured data management." }
-          ],
-          intermediate: [
-            { topic: "Advanced Formulas", concepts: ["VLOOKUP", "HLOOKUP", "IF", "AND", "OR"], description: "Use lookup and logical functions for complex calculations." },
-            { topic: "Pivot Tables", concepts: ["Creating pivots", "Grouping", "Slicers", "Calculated fields"], description: "Summarize and analyze large datasets with pivot tables." },
-            { topic: "Data Validation", concepts: ["Drop-down lists", "Custom rules", "Error messages"], description: "Ensure data integrity with advanced validation." },
-            { topic: "Text Functions", concepts: ["LEFT", "RIGHT", "MID", "CONCAT", "TEXT"], description: "Manipulate and clean text data effectively." },
-            { topic: "Charts & Sparklines", concepts: ["Combo charts", "Trendlines", "Sparklines"], description: "Create advanced visualizations for insights." },
-            { topic: "Named Ranges", concepts: ["Creating named ranges", "Using in formulas"], description: "Simplify formulas with named ranges." },
-            { topic: "Data Import", concepts: ["From CSV", "From text", "From databases"], description: "Import external data into Excel for analysis." }
-          ],
-          advanced: [
-            { topic: "Advanced Pivot Tables", concepts: ["Pivot charts", "GETPIVOTDATA", "Data model"], description: "Enhance pivot table functionality for complex reporting." },
-            { topic: "Power Query", concepts: ["Importing data", "Transforming", "Merging", "Appending"], description: "Automate data cleaning and transformation with Power Query." },
-            { topic: "Advanced Formulas", concepts: ["INDEX", "MATCH", "IFERROR", "ARRAY formulas"], description: "Write powerful formulas for dynamic calculations." },
-            { topic: "Macros & VBA", concepts: ["Recording macros", "VBA basics", "Automating tasks"], description: "Automate repetitive tasks using macros and VBA." },
-            { topic: "What-If Analysis", concepts: ["Goal Seek", "Data Tables", "Scenario Manager"], description: "Perform scenario-based analysis for decision-making." },
-            { topic: "Conditional Formatting", concepts: ["Custom rules", "Formula-based formatting"], description: "Apply dynamic formatting based on complex conditions." },
-            { topic: "Data Connections", concepts: ["ODBC", "External data refresh"], description: "Connect Excel to external databases for real-time data." }
-          ],
-          expert: [
-            { topic: "Advanced VBA", concepts: ["User forms", "Event handling", "Custom functions"], description: "Build complex automation scripts with VBA." },
-            { topic: "Power Pivot", concepts: ["DAX formulas", "Data models", "Relationships"], description: "Create advanced data models for business intelligence." },
-            { topic: "Excel Online & Collaboration", concepts: ["Co-authoring", "Sharing", "Cloud integration"], description: "Collaborate on spreadsheets in real-time using Excel Online." },
-            { topic: "Dynamic Arrays", concepts: ["FILTER", "SORT", "UNIQUE", "SEQUENCE"], description: "Leverage Excel's dynamic array formulas for efficient data processing." },
-            { topic: "Integration with Power BI", concepts: ["Export to Power BI", "Data sharing"], description: "Connect Excel with Power BI for enhanced reporting." }
-          ]
-        },
-        tools: ["Excel", "Power Query", "Power Pivot", "VBA Editor", "Office 365"]
-      },
-      {
-        title: "Git Roadmap",
-        description: "A guide to mastering Git for version control and collaborative software development.",
-        image: "https://cdn.simpleicons.org/git/0AF",
-        panelImage: "https://cdn.simpleicons.org/git/0AF",
-        levels: {
-          beginner: [
-            { topic: "Git Basics", concepts: ["What is Git?", "Version control", "Repositories"], description: "Understand Git and its role in version control." },
-            { topic: "Setup", concepts: ["Installing Git", "Configuring user.name", "Configuring user.email"], description: "Set up Git on your system with basic configuration." },
-            { topic: "Basic Commands", concepts: ["git init", "git add", "git commit", "git status"], description: "Learn core commands to start tracking changes." },
-            { topic: "Working with Repositories", concepts: ["Cloning", "git clone", "Remote vs local"], description: "Create and clone repositories for collaboration." },
-            { topic: "Basic Branching", concepts: ["git branch", "git checkout", "Switching branches"], description: "Understand branching for parallel development." },
-            { topic: "Viewing History", concepts: ["git log", "git diff"], description: "Inspect commit history and changes in your repository." }
-          ],
-          intermediate: [
-            { topic: "Branching & Merging", concepts: ["git merge", "Merge conflicts", "Resolving conflicts"], description: "Manage branches and resolve merge conflicts." },
-            { topic: "Remote Repositories", concepts: ["git push", "git pull", "git fetch", "Remote branches"], description: "Work with remote repositories like GitHub." },
-            { topic: "Stashing", concepts: ["git stash", "git stash apply", "Managing changes"], description: "Temporarily save changes without committing." },
-            { topic: "Rebasing", concepts: ["git rebase", "Interactive rebase"], description: "Rewrite commit history for cleaner workflows." },
-            { topic: "Undoing Changes", concepts: ["git reset", "git revert", "git checkout"], description: "Undo or modify commits and changes." },
-            { topic: "Gitignore", concepts: [".gitignore file", "Patterns", "Ignoring files"], description: "Exclude unnecessary files from version control." }
-          ],
-          advanced: [
-            { topic: "Advanced Branching", concepts: ["Gitflow", "Feature branches", "Hotfixes"], description: "Implement structured branching strategies." },
-            { topic: "Submodules", concepts: ["git submodule add", "Updating submodules"], description: "Manage nested repositories within a project." },
-            { topic: "Cherry-picking", concepts: ["git cherry-pick", "Selective commits"], description: "Apply specific commits to different branches." },
-            { topic: "Reflog", concepts: ["git reflog", "Recovering lost commits"], description: "Recover lost commits and understand repository history." },
-            { topic: "Hooks", concepts: ["Pre-commit", "Post-merge", "Custom scripts"], description: "Automate tasks with Git hooks." },
-            { topic: "Git Worktrees", concepts: ["git worktree", "Multiple working directories"], description: "Work on multiple branches simultaneously." }
-          ],
-          expert: [
-            { topic: "Git Internals", concepts: ["Git objects", "Blobs", "Trees", "Commits"], description: "Understand Git's internal data structures." },
-            { topic: "Advanced Rebasing", concepts: ["Interactive rebase with scripts", "Rewriting history"], description: "Perform complex history rewrites with confidence." },
-            { topic: "Git Server Setup", concepts: ["Bare repositories", "Hosting Git servers"], description: "Set up and manage your own Git server." },
-            { topic: "CI/CD Integration", concepts: ["GitHub Actions", "GitLab CI", "Triggers"], description: "Integrate Git with continuous integration pipelines." },
-            { topic: "Bisect", concepts: ["git bisect", "Debugging with binary search"], description: "Debug issues by finding problematic commits." }
-          ]
-        },
-        tools: ["GitHub", "GitLab", "VS Code", "SourceTree", "Bitbucket"]
+        tools: ["Power BI Desktop", "DAX Studio", "Power BI Service", "Power Query", "Tabular Editor", "Azure"]
       },
       {
         title: "Linux Roadmap",
-        description: "A roadmap to mastering Linux for system administration, development, and data workflows.",
+        description: "Master Linux command line, system administration, and automation for data engineering and DevOps.",
         image: "https://cdn.simpleicons.org/linux/0AF",
-        panelImage: "https://cdn.simpleicons.org/linux/0AF",
         levels: {
           beginner: [
-            { topic: "Linux Basics", concepts: ["What is Linux?", "Distributions", "Command line basics"], description: "Understand Linux and its ecosystem." },
-            { topic: "File System Navigation", concepts: ["ls", "cd", "pwd", "File hierarchy"], description: "Navigate the Linux file system using basic commands." },
-            { topic: "File Operations", concepts: ["cp", "mv", "rm", "mkdir", "touch"], description: "Perform basic file and directory operations." },
-            { topic: "Text Viewing", concepts: ["cat", "less", "more", "head", "tail"], description: "View and manipulate text file contents." },
-            { topic: "Permissions", concepts: ["chmod", "chown", "File permissions"], description: "Understand and manage file permissions." },
-            { topic: "Basic Commands", concepts: ["echo", "man", "whoami", "uptime"], description: "Learn essential utility commands." }
+            { topic: "File System", concepts: ["cd", "ls", "pwd", "mkdir", "touch"], description: "Navigate and manage files and directories." },
+            { topic: "File Operations", concepts: ["cp", "mv", "rm", "cat", "less"], description: "Copy, move, delete, and view files." },
+            { topic: "Permissions", concepts: ["chmod", "chown", "rwx"], description: "Control access to files and directories." },
+            { topic: "Networking Basics", concepts: ["ping", "netstat", "ifconfig", "curl"], description: "Perform basic network diagnostics." },
+            { topic: "Process Management", concepts: ["ps", "top", "kill", "nice"], description: "Monitor and control running processes." }
           ],
           intermediate: [
             { topic: "Text Processing", concepts: ["grep", "awk", "sed", "cut"], description: "Process and manipulate text data efficiently." },
             { topic: "Pipes & Redirection", concepts: ["|", ">", ">>", "<"], description: "Combine commands and redirect input/output." },
             { topic: "Package Management", concepts: ["apt", "yum", "dnf", "Installing software"], description: "Install and manage software packages." },
             { topic: "User Management", concepts: ["useradd", "usermod", "passwd", "sudo"], description: "Manage users and permissions." },
-            { topic: "Process Management", concepts: ["ps", "top", "kill", "nice"], description: "Monitor and control running processes." },
-            { topic: "Networking Basics", concepts: ["ping", "netstat", "ifconfig", "curl"], description: "Perform basic network diagnostics." }
+            { topic: "Shell Scripting", concepts: ["Bash scripts", "Variables", "Loops", "Conditionals"], description: "Automate tasks with shell scripts." },
+            { topic: "System Monitoring", concepts: ["htop", "vmstat", "iostat", "dmesg"], description: "Monitor system performance and logs." }
           ],
           advanced: [
-            { topic: "Shell Scripting", concepts: ["Bash scripts", "Variables", "Loops", "Conditionals"], description: "Automate tasks with shell scripts." },
-            { topic: "System Monitoring", concepts: ["htop", "vmstat", "iostat", "dmesg"], description: "Monitor system performance and logs." },
             { topic: "Cron Jobs", concepts: ["crontab", "Scheduling tasks"], description: "Automate recurring tasks with cron." },
             { topic: "Networking Advanced", concepts: ["ssh", "scp", "rsync", "nmap"], description: "Manage remote connections and file transfers." },
             { topic: "File Systems", concepts: ["mount", "umount", "LVM", "RAID"], description: "Manage disk partitions and file systems." },
-            { topic: "Security Basics", concepts: ["firewall-cmd", "ufw", "SELinux basics"], description: "Implement basic system security measures." }
+            { topic: "Security Basics", concepts: ["firewall-cmd", "ufw", "SELinux basics"], description: "Implement basic system security measures." },
+            { topic: "Kernel Basics", concepts: ["Kernel modules", "modprobe", "Kernel parameters"], description: "Understand and configure the Linux kernel." }
           ],
           expert: [
-            { topic: "Advanced Shell Scripting", concepts: ["Functions", "Error handling", "Script debugging"], description: "Write robust and complex shell scripts." },
-            { topic: "System Administration", concepts: ["Systemd", "Service management", "Log rotation"], description: "Manage Linux services and system configurations." },
-            { topic: "Containerization", concepts: ["Docker", "Podman", "Container orchestration"], description: "Run and manage containers for applications." },
-            { topic: "Kernel Basics", concepts: ["Kernel modules", "modprobe", "Kernel parameters"], description: "Understand and configure the Linux kernel." },
             { topic: "Advanced Security", concepts: ["AppArmor", "Auditd", "Intrusion detection"], description: "Implement advanced security practices." }
           ]
         },
         tools: ["Ubuntu", "VS Code", "Terminal", "Docker", "SSH"]
       },
       {
-        title: "NoSQL Roadmap",
-        description: "Master NoSQL databases for scalable, flexible data storage across document, key-value, columnar, and graph models.",
-        image: "https://cdn.simpleicons.org/mongodb/0AF",
-        panelImage: "https://cdn.simpleicons.org/mongodb/0AF",
+        title: "Git Roadmap",
+        description: "Learn Git for version control, collaboration, and managing code in data science and software projects.",
+        image: "https://cdn.simpleicons.org/git/0AF",
         levels: {
           beginner: [
-            { topic: "Introduction to NoSQL", concepts: ["SQL vs NoSQL", "CAP Theorem", "Use Cases"], description: "Understand when and why to use NoSQL over relational databases." },
-            { topic: "Types of NoSQL", concepts: ["Document", "Key-Value", "Column-Family", "Graph"], description: "Explore the four main categories of NoSQL databases." },
-            { topic: "Basic CRUD Operations", concepts: ["Insert", "Query", "Update", "Delete"], description: "Perform basic operations in a NoSQL database." }
+            { topic: "Basics", concepts: ["init", "clone", "status", "log"], description: "Initialize and inspect repositories." },
+            { topic: "Staging & Committing", concepts: ["add", "commit", "message"], description: "Save changes to version history." },
+            { topic: "Branching", concepts: ["branch", "checkout", "switch"], description: "Isolate work in separate branches." },
+            { topic: "Merging", concepts: ["merge", "fast-forward", "recursive"], description: "Combine changes from different branches." }
           ],
           intermediate: [
-            { topic: "Indexing & Query Optimization", concepts: ["Secondary Indexes", "TTL Indexes", "Explain Query Plan"], description: "Improve read performance with proper indexing." },
-            { topic: "Data Modeling", concepts: ["Embedding vs Referencing", "Denormalization", "Schema Design"], description: "Design efficient schemas tailored to access patterns." },
-            { topic: "Replication & Sharding", concepts: ["Master-Slave", "Leader-Follower", "Horizontal Scaling"], description: "Scale NoSQL databases across nodes and regions." }
+            { topic: "Remote Repositories", concepts: ["push", "pull", "fetch", "origin"], description: "Sync with remote repositories like GitHub." },
+            { topic: "Stashing", concepts: ["git stash", "git stash apply", "Managing changes"], description: "Temporarily save changes without committing." },
+            { topic: "Rebasing", concepts: ["git rebase", "Interactive rebase"], description: "Rewrite commit history for cleaner workflows." },
+            { topic: "Undoing Changes", concepts: ["git reset", "git revert", "git checkout"], description: "Undo or modify commits and changes." },
+            { topic: "Gitignore", concepts: [".gitignore file", "Patterns", "Ignoring files"], description: "Exclude unnecessary files from version control." }
           ],
           advanced: [
-            { topic: "Consistency & Transactions", concepts: ["Eventual Consistency", "Multi-Document ACID", "Read/Write Concerns"], description: "Manage trade-offs between consistency, availability, and performance." },
-            { topic: "Aggregation Pipelines", concepts: ["$match", "$group", "$lookup", "$facet"], description: "Process and analyze data directly in the database." },
-            { topic: "Security & Access Control", concepts: ["Authentication", "Role-Based Access", "Encryption"], description: "Secure your NoSQL deployments in production." }
-          ],
-          expert: [
-            { topic: "Cloud-Native NoSQL", concepts: ["Serverless Databases", "Auto-Scaling", "Global Distribution"], description: "Deploy and manage fully managed NoSQL services." },
-            { topic: "Change Data Capture (CDC)", concepts: ["Oplog Tailing", "WAL Streaming", "Real-Time Sync"], description: "Capture and stream data changes for downstream systems." },
-            { topic: "Backup & Disaster Recovery", concepts: ["Point-in-Time Restore", "Cross-Region Replication"], description: "Ensure data durability and recoverability." }
+            { topic: "Tags", concepts: ["git tag", "Annotated vs Lightweight"], description: "Mark specific commits as releases." },
+            { topic: "Submodules", concepts: ["Adding", "Updating", "Cloning"], description: "Include other repos as subdirectories." },
+            { topic: "Hooks", concepts: ["pre-commit", "post-merge", "Custom scripts"], description: "Run scripts automatically during Git events." }
           ]
         },
-        tools: ["MongoDB Atlas", "Redis", "Cassandra", "Neo4j", "DynamoDB"]
-      },
-      {
-        title: "Apache Kafka Roadmap",
-        description: "Learn Apache Kafka for building real-time data pipelines and event-driven architectures.",
-        image: "https://cdn.simpleicons.org/apachekafka/0AF",
-        panelImage: "https://cdn.simpleicons.org/apachekafka/0AF",
-        levels: {
-          beginner: [
-            { topic: "Kafka Basics", concepts: ["Producers", "Consumers", "Topics", "Brokers"], description: "Understand the core components of Kafka architecture." },
-            { topic: "Setting Up Kafka", concepts: ["Local Setup", "ZooKeeper vs KRaft", "Single Node Cluster"], description: "Run Kafka locally for development and testing." },
-            { topic: "Publish & Subscribe", concepts: ["Message Publishing", "Consumer Groups", "Offsets"], description: "Send and receive messages using Kafka’s pub/sub model." }
-          ],
-          intermediate: [
-            { topic: "Partitioning & Replication", concepts: ["Partition Keys", "ISR", "Replication Factor"], description: "Scale and replicate data across brokers for fault tolerance." },
-            { topic: "Kafka Connect", concepts: ["Sources", "Sinks", "Connectors"], description: "Integrate Kafka with external systems like databases and cloud services." },
-            { topic: "Schema Management", concepts: ["Avro", "Schema Registry", "Compatibility Rules"], description: "Enforce data contracts using schemas." }
-          ],
-          advanced: [
-            { topic: "Kafka Streams", concepts: ["Stream Processing", "KTable", "Windowing", "Joins"], description: "Process data in real time using Kafka Streams API." },
-            { topic: "Security", concepts: ["SSL/TLS", "SASL Authentication", "ACLs"], description: "Secure communication and access in Kafka clusters." },
-            { topic: "Monitoring & Observability", concepts: ["Metrics", "Prometheus", "Grafana"], description: "Monitor cluster health and performance." }
-          ],
-          expert: [
-            { topic: "Event-Driven Architecture", concepts: ["CQRS", "Event Sourcing", "Saga Pattern"], description: "Design scalable, decoupled systems using events." },
-            { topic: "Multi-Cluster & Federation", concepts: ["Mirrormaker", "Cluster Linking", "Hybrid Cloud"], description: "Connect and manage multiple Kafka clusters." },
-            { topic: "Kubernetes Integration", concepts: ["Strimzi", "Helm Charts", "Operator Pattern"], description: "Run Kafka on Kubernetes at scale." }
-          ]
-        },
-        tools: ["Confluent Platform", "Kafka CLI", "Kafka Connect", "Kafka Streams", "Prometheus"]
+        tools: ["GitHub", "GitLab", "VS Code", "Git Bash", "SourceTree"]
       },
       {
         title: "Apache Spark Roadmap",
-        description: "Master Apache Spark for large-scale data processing using SQL, streaming, and machine learning.",
-        image: "https://cdn.simpleicons.org/apachespark/0AF",
-        panelImage: "https://cdn.simpleicons.org/apachespark/0AF",
+        description: "Master Apache Spark for large-scale data processing using PySpark or Scala.",
+        image: "https://cdn.simpleicons.org/apache/0AF",
         levels: {
           beginner: [
-            { topic: "Spark Basics", concepts: ["RDD", "Spark Context", "Transformations vs Actions"], description: "Understand the core abstractions of Spark." },
-            { topic: "Spark SQL", concepts: ["DataFrames", "Datasets", "Catalyst Optimizer"], description: "Query structured data using SQL-like syntax." },
-            { topic: "Running Spark", concepts: ["Local Mode", "Standalone Cluster", "Spark Submit"], description: "Run Spark jobs locally and in clusters." }
+            { topic: "Introduction", concepts: ["What is Spark?", "Spark vs Hadoop", "Spark Ecosystem"], description: "Understand Spark's role in big data." },
+            { topic: "RDD Basics", concepts: ["Resilient Distributed Datasets", "Transformations & Actions"], description: "Learn the foundational data structure in Spark." },
+            { topic: "Spark SQL", concepts: ["DataFrames", "SQL queries in Spark"], description: "Use structured data processing with Spark SQL." },
+            { topic: "Setup", concepts: ["PySpark", "Local Mode", "Jupyter Integration"], description: "Run Spark locally for development." }
           ],
           intermediate: [
-            { topic: "Data Sources", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write various file formats efficiently." },
-            { topic: "Performance Tuning", concepts: ["Caching", "Broadcast Joins", "Partitioning"], description: "Optimize Spark job performance." },
-            { topic: "Structured Streaming", concepts: ["Micro-batching", "Watermarking", "Event Time"], description: "Process real-time data streams with Spark." }
+            { topic: "DataFrame API", concepts: ["Filtering", "Joins", "Aggregations", "Window Functions"], description: "Process structured data efficiently." },
+            { topic: "Optimization", concepts: ["Caching", "Partitioning", "Lazy Evaluation"], description: "Improve performance of Spark jobs." },
+            { topic: "File Formats", concepts: ["Parquet", "ORC", "JSON", "CSV"], description: "Read and write efficient data formats." },
+            { topic: "Integration", concepts: ["Pandas UDFs", "Koalas"], description: "Bridge Spark and Python data workflows." }
           ],
           advanced: [
-            { topic: "Spark MLlib", concepts: ["Classification", "Clustering", "Pipelines"], description: "Build machine learning models at scale." },
-            { topic: "Custom UDFs", concepts: ["Python UDFs", "Scala UDFs", "Vectorized UDFs"], description: "Extend Spark with custom functions." },
-            { topic: "Cluster Managers", concepts: ["YARN", "Kubernetes", "Mesos"], description: "Deploy Spark on different cluster environments." }
+            { topic: "Streaming", concepts: ["Structured Streaming", "Event Time", "Watermarking"], description: "Process real-time data streams." },
+            { topic: "MLlib", concepts: ["Classification", "Clustering", "Regression"], description: "Apply machine learning at scale." },
+            { topic: "Cluster Mode", concepts: ["Standalone", "YARN", "Kubernetes"], description: "Deploy Spark on clusters." },
+            { topic: "Performance Tuning", concepts: ["Shuffle Partitions", "Broadcast Joins", "Memory Tuning"], description: "Optimize large-scale workloads." }
           ],
           expert: [
-            { topic: "Delta Lake", concepts: ["ACID Transactions", "Time Travel", "Schema Enforcement"], description: "Build reliable data lakes with Delta Lake." },
-            { topic: "Spark Internals", concepts: ["DAG Scheduler", "Task Scheduler", "Shuffle Service"], description: "Understand how Spark executes jobs under the hood." },
-            { topic: "CI/CD for Spark", concepts: ["Testing", "Job Orchestration", "Infrastructure as Code"], description: "Automate deployment and testing of Spark applications." }
+            { topic: "Custom Connectors", concepts: ["Kafka", "Delta Lake", "Iceberg"], description: "Extend Spark for advanced sources." },
+            { topic: "Monitoring", concepts: ["Spark UI", "Logging", "Metrics"], description: "Troubleshoot production jobs." },
+            { topic: "Security", concepts: ["Authentication", "Encryption", "ACLs"], description: "Secure Spark deployments." }
           ]
         },
-        tools: ["Databricks", "Spark UI", "Delta Lake", "Zeppelin", "Jupyter Notebook"]
+        tools: ["PySpark", "Databricks", "Spark UI", "Delta Lake", "Hadoop", "Jupyter", "Scala"]
+      },
+      {
+        title: "Apache Kafka Roadmap",
+        description: "Learn Kafka for building real-time data streaming and event-driven architectures.",
+        image: "https://cdn.simpleicons.org/apachekafka/0AF",
+        levels: {
+          beginner: [
+            { topic: "Introduction", concepts: ["What is Kafka?", "Publish-Subscribe Model", "Use Cases"], description: "Understand Kafka's role in streaming." },
+            { topic: "Core Concepts", concepts: ["Topics", "Producers", "Consumers", "Brokers"], description: "Learn the basic building blocks." },
+            { topic: "Installation", concepts: ["Local Setup", "ZooKeeper vs KRaft"], description: "Run Kafka locally for learning." },
+            { topic: "CLI Basics", concepts: ["kafka-topics.sh", "Console Producer/Consumer"], description: "Use command-line tools to interact with Kafka." }
+          ],
+          intermediate: [
+            { topic: "Producers & Consumers", concepts: ["Serialization", "Acknowledgments", "Offset Management"], description: "Build reliable applications." },
+            { topic: "Partitions & Replication", concepts: ["Partition Keys", "Replication Factor", "Fault Tolerance"], description: "Scale and secure your topics." },
+            { topic: "Consumer Groups", concepts: ["Load Balancing", "Rebalancing"], description: "Distribute message consumption." },
+            { topic: "Error Handling", concepts: ["Retries", "Dead Letter Queues"], description: "Handle failures gracefully." }
+          ],
+          advanced: [
+            { topic: "Kafka Streams", concepts: ["Stream Processing", "KStream vs KTable"], description: "Process data in real time." },
+            { topic: "ksqlDB", concepts: ["SQL for Kafka", "Event Streaming Queries"], description: "Query streams using SQL." },
+            { topic: "Connectors", concepts: ["Kafka Connect", "Source/Sink Connectors"], description: "Integrate with databases and cloud services." },
+            { topic: "Schema Registry", concepts: ["Avro", "Schema Evolution"], description: "Manage data formats safely." }
+          ],
+          expert: [
+            { topic: "Security", concepts: ["SSL", "SASL", "ACLs"], description: "Secure Kafka clusters." },
+            { topic: "Monitoring", concepts: ["Prometheus", "Grafana", "JMX Metrics"], description: "Track performance and health." },
+            { topic: "Scaling & Tuning", concepts: ["Broker Tuning", "Network", "Disk I/O"], description: "Optimize for high throughput." }
+          ]
+        },
+        tools: ["Kafka", "Confluent Platform", "Kafka Connect", "ksqlDB", "Schema Registry", "Prometheus", "Grafana", "Docker", "Kubernetes"]
       },
       {
         title: "Apache Flink Roadmap",
-        description: "Learn Apache Flink for high-throughput, low-latency stream processing and real-time analytics.",
-        image: "https://cdn.simpleicons.org/apacheflink/0AF",
-        panelImage: "https://cdn.simpleicons.org/apacheflink/0AF",
+        description: "Master Apache Flink for high-throughput, low-latency stream processing and real-time analytics.",
+        image: "https://cdn.simpleicons.org/apache/0AF",
         levels: {
           beginner: [
-            { topic: "Flink Basics", concepts: ["DataStream API", "Execution Environment", "Sources & Sinks"], description: "Get started with Flink’s core stream processing model." },
-            { topic: "Event Time & Watermarks", concepts: ["Event Time vs Processing Time", "Watermark Generation"], description: "Handle out-of-order events in streaming pipelines." },
-            { topic: "State Management", concepts: ["Keyed State", "Operator State", "Checkpointing"], description: "Maintain state reliably in fault-tolerant applications." }
+            { topic: "Introduction", concepts: ["What is Flink?", "Batch vs Streaming", "Use Cases"], description: "Understand Flink’s role in real-time processing." },
+            { topic: "Core Concepts", concepts: ["DataStream", "Time (Event/Processing)", "State"], description: "Learn Flink’s programming model." },
+            { topic: "Setup", concepts: ["Local Cluster", "Flink CLI"], description: "Get Flink running for development." },
+            { topic: "Hello World", concepts: ["Word Count", "Data Sources/Sinks"], description: "Write your first Flink application." }
           ],
           intermediate: [
-            { topic: "Windowing", concepts: ["Tumbling", "Sliding", "Session Windows"], description: "Aggregate data over time intervals." },
-            { topic: "Fault Tolerance", concepts: ["Checkpointing", "Savepoints", "Exactly-Once Semantics"], description: "Ensure data consistency and recovery." },
-            { topic: "Flink SQL", concepts: ["Table API", "SQL Queries", "Catalogs"], description: "Write stream processing logic using SQL." }
+            { topic: "Windowing", concepts: ["Tumbling", "Sliding", "Session Windows"], description: "Aggregate data over time." },
+            { topic: "Event Time & Watermarks", concepts: ["Handling Late Data", "Timestamps"], description: "Ensure accurate time-based processing." },
+            { topic: "State Management", concepts: ["Keyed State", "Operator State"], description: "Store and manage state in streaming jobs." },
+            { topic: "Checkpointing", concepts: ["Fault Tolerance", "Savepoints"], description: "Enable recovery from failures." }
           ],
           advanced: [
-            { topic: "CEP (Complex Event Processing)", concepts: ["Patterns", "Pattern Streams", "Temporal Conditions"], description: "Detect complex patterns in event streams." },
-            { topic: "Async I/O", concepts: ["Async Function", "Callback Handling"], description: "Call external services without blocking the pipeline." },
-            { topic: "Scaling & Performance", concepts: ["Parallelism", "Backpressure", "Network Buffers"], description: "Optimize Flink jobs for high throughput." }
+            { topic: "Connectors", concepts: ["Kafka", "Pulsar", "JDBC", "S3"], description: "Integrate with external systems." },
+            { topic: "CEP (Complex Event Processing)", concepts: ["Pattern Matching", "Event Sequences"], description: "Detect patterns in event streams." },
+            { topic: "Table API & SQL", concepts: ["Flink SQL", "Stream-Batch Unity"], description: "Use SQL for stream processing." },
+            { topic: "Performance Tuning", concepts: ["Parallelism", "Backpressure", "Memory Management"], description: "Optimize job performance." }
           ],
           expert: [
-            { topic: "Kubernetes Deployment", concepts: ["Flink on K8s", "Session vs Application Mode"], description: "Run Flink clusters on Kubernetes." },
-            { topic: "Custom Connectors", concepts: ["SourceFunction", "SinkFunction", "Serialization"], description: "Build connectors for proprietary systems." },
-            { topic: "Integration with Kafka & Kafka Streams", concepts: ["Kafka Consumer", "Transactional Sinks"], description: "Build end-to-end streaming pipelines." }
+            { topic: "Deployment", concepts: ["YARN", "Kubernetes", "Standalone"], description: "Run Flink in production environments." },
+            { topic: "Monitoring", concepts: ["Flink Web UI", "Metrics", "Logging"], description: "Monitor and debug running jobs." },
+            { topic: "Custom UDFs", concepts: ["Java/Scala/Python UDFs"], description: "Extend Flink with custom logic." },
+            { topic: "Security", concepts: ["Kerberos", "TLS", "Authorization"], description: "Secure Flink deployments." }
           ]
         },
-        tools: ["Flink Web UI", "IntelliJ IDEA", "Kafka", "Prometheus", "RocksDB"]
-      },
-      {
-        title: "Apache Airflow Roadmap",
-        description: "Master Apache Airflow for orchestrating complex data workflows and ETL pipelines.",
-        image: "https://cdn.simpleicons.org/apacheairflow/0AF",
-        panelImage: "https://cdn.simpleicons.org/apacheairflow/0AF",
-        levels: {
-          beginner: [
-            { topic: "Airflow Basics", concepts: ["DAGs", "Operators", "Tasks", "Scheduler"], description: "Understand the core components of Airflow." },
-            { topic: "Writing DAGs", concepts: ["Python DAG Definition", "Dependencies", "Scheduling"], description: "Create workflows using Python code." },
-            { topic: "Core Operators", concepts: ["BashOperator", "PythonOperator", "EmailOperator"], description: "Execute common task types." }
-          ],
-          intermediate: [
-            { topic: "Hooks & Connections", concepts: ["Database Hooks", "API Hooks", "Secrets Backend"], description: "Connect Airflow to external systems securely." },
-            { topic: "XComs & Task Communication", concepts: ["Push/Pop Data", "Limitations", "Best Practices"], description: "Share data between tasks." },
-            { topic: "Triggers & Sensors", concepts: ["FileSensor", "HttpSensor", "ExternalTaskSensor"], description: "Wait for external conditions before proceeding." }
-          ],
-          advanced: [
-            { topic: "Deployment & Executors", concepts: ["CeleryExecutor", "KubernetesExecutor", "Scaling"], description: "Run Airflow in production environments." },
-            { topic: "Monitoring & Logging", concepts: ["Task Logs", "Metrics", "Alerting"], description: "Track pipeline health and failures." },
-            { topic: "Dynamic DAGs", concepts: ["Parametrized DAGs", "DAG Factories"], description: "Generate DAGs programmatically." }
-          ],
-          expert: [
-            { topic: "CI/CD for DAGs", concepts: ["Testing", "Linting", "Automated Deployment"], description: "Apply DevOps practices to data pipelines." },
-            { topic: "Airflow REST API", concepts: ["Trigger DAGs", "Check Status", "List DAGs"], description: "Integrate Airflow with external tools." },
-            { topic: "Custom Operators & Plugins", concepts: ["Extending Airflow", "Plugin System"], description: "Build reusable components for your organization." }
-          ]
-        },
-        tools: ["Airflow Web UI", "VS Code", "Docker", "Kubernetes", "GitHub Actions"]
-      },
-      {
-        title: "Elasticsearch Roadmap",
-        description: "Master Elasticsearch for full-text search, log analysis, and real-time data exploration.",
-        image: "https://cdn.simpleicons.org/elasticsearch/0AF",
-        panelImage: "https://cdn.simpleicons.org/elasticsearch/0AF",
-        levels: {
-          beginner: [
-            { topic: "Elasticsearch Basics", concepts: ["Index", "Document", "Shard", "Node"], description: "Understand the fundamental concepts of Elasticsearch." },
-            { topic: "CRUD Operations", concepts: ["Indexing", "Searching", "Updating", "Deleting"], description: "Manage documents in an index." },
-            { topic: "REST API", concepts: ["HTTP Methods", "JSON Requests", "Status Codes"], description: "Interact with Elasticsearch using its RESTful API." }
-          ],
-          intermediate: [
-            { topic: "Query DSL", concepts: ["Match Query", "Bool Query", "Range Query", "Term Query"], description: "Write complex search queries using Query DSL." },
-            { topic: "Aggregations", concepts: ["Metrics", "Bucket", "Pipeline Aggregations"], description: "Analyze data using aggregations." },
-            { topic: "Mapping & Data Types", concepts: ["Text vs Keyword", "Date", "Nested Objects"], description: "Define how data is indexed and stored." }
-          ],
-          advanced: [
-            { topic: "Performance Tuning", concepts: ["Refresh Interval", "Replicas", "Bulk API"], description: "Optimize indexing and search performance." },
-            { topic: "Security", concepts: ["Authentication", "Authorization", "TLS Encryption"], description: "Secure your cluster and data." },
-            { topic: "Index Lifecycle Management (ILM)", concepts: ["Hot-Warm-Cold Architecture", "Rolling Indices", "Rollover"], description: "Automate index management based on age and usage." }
-          ],
-          expert: [
-            { topic: "Elastic Stack Integration", concepts: ["Beats", "Logstash", "APM"], description: "Build end-to-end observability pipelines." },
-            { topic: "Search Relevance Tuning", concepts: ["Scoring", "Boosting", "Synonyms", "Analyzers"], description: "Improve search accuracy and relevance." },
-            { topic: "Scaling & High Availability", concepts: ["Cluster Design", "Shard Allocation", "Cross-Cluster Search"], description: "Deploy Elasticsearch at scale with fault tolerance." }
-          ]
-        },
-        tools: ["Kibana", "Dev Tools", "Logstash", "Filebeat", "Cerebro"]
+        tools: ["Flink", "Kafka", "Docker", "Kubernetes", "Prometheus", "Grafana", "AWS S3", "Hadoop"]
       }
     ];
 
-    let currentPanelIndex = -1;
-    const cardContainer = document.getElementById('cardContainer');
-    const modalPanel = document.getElementById('modalPanel');
-    const overlay = document.getElementById('overlay');
-    const closePanelBtn = document.getElementById('closePanelBtn');
-    const panelTitle = document.getElementById('panelTitle');
-    const beginnerContent = document.getElementById('beginnerContent');
-    const intermediateContent = document.getElementById('intermediateContent');
-    const advancedContent = document.getElementById('advancedContent');
-    const expertContent = document.getElementById('expertSection');
-    const themeToggle = document.getElementById('themeToggle');
+    // === JOB ROLES DATA ===
+    const jobRoles = [
+      {
+        title: "Data Engineer",
+        description: "Build and maintain data pipelines, storage, and infrastructure",
+        image: "https://cdn.simpleicons.org/apacheairflow/0AF",
+        responsibilities: [
+          "Design and develop ETL/ELT pipelines for data ingestion and transformation",
+          "Ensure data quality, reliability, and scalability across systems",
+          "Work with cloud platforms (AWS, GCP, Azure) to build data lakes and warehouses",
+          "Optimize data models for performance and efficiency",
+          "Collaborate with data scientists and analysts to deliver clean, usable data"
+        ],
+        skills: ["SQL", "Python", "ETL", "Apache Spark", "Kafka", "Airflow", "dbt", "Data Modeling", "Cloud (AWS/GCP/Azure)", "Docker", "Linux", "NoSQL", "REST APIs"],
+        tools: ["Databricks", "Snowflake", "Fivetran", "dbt", "Kubernetes", "AWS Redshift", "Azure Data Factory", "Google BigQuery", "Apache Kafka", "Airflow", "MongoDB", "Redis", "Elasticsearch", "Flink", "Docker", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹9L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹10L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr></table>",
+        tips: "Master Spark and Airflow. Learn cloud data services (AWS S3, Redshift). Build real-time pipelines. Get certified in AWS/GCP."
+      },
+      {
+        title: "Data Analyst",
+        description: "Analyze and visualize data to provide insights",
+        image: "https://img.icons8.com/fluency/96/microsoft.png",
+        responsibilities: [
+          "Generate SQL queries to extract and analyze data from databases",
+          "Create dashboards and reports using Power BI or Tableau",
+          "Identify trends, anomalies, and business insights",
+          "Support marketing, finance, or operations teams with data-driven recommendations",
+          "Clean and preprocess data for reporting and analysis"
+        ],
+        skills: ["SQL", "Excel", "Power BI", "Tableau", "Statistics", "Python (basic)", "DAX", "Data Cleaning", "Data Storytelling"],
+        tools: ["Power BI", "Excel", "Google Sheets", "Looker Studio", "Mode Analytics", "Snowflake", "BigQuery", "Airflow", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹4L – ₹7L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹12L – ₹18L+</td></tr></table>",
+        tips: "Master Power BI and DAX. Learn data modeling. Build a dashboard portfolio. Practice storytelling."
+      },
+      {
+        title: "Data Scientist",
+        description: "Build predictive models, apply ML, extract insights",
+        image: "https://img.icons8.com/color/96/data-science.png",
+        responsibilities: [
+          "Develop machine learning models for classification, regression, and clustering",
+          "Analyze large datasets to extract actionable insights",
+          "Present findings using visualizations and reports",
+          "Deploy models into production with MLOps practices",
+          "Collaborate with business teams to define problems and solutions"
+        ],
+        skills: ["Python/R", "Machine Learning", "Statistics", "Pandas", "Scikit-learn", "TensorFlow/PyTorch", "Data Visualization", "SQL", "Hypothesis Testing", "A/B Testing"],
+        tools: ["Jupyter Notebook", "VS Code", "Git", "Docker", "MLflow", "Kubeflow", "Tableau", "Power BI", "Google Colab", "PyCharm", "Kafka", "Spark", "Airflow", "Flink", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹5L – ₹8L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹9L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹28L+</td></tr></table>",
+        tips: "Build a strong GitHub portfolio. Participate in Kaggle. Learn ML deployment. Focus on business impact."
+      },
+      {
+        title: "Machine Learning Engineer",
+        description: "Deploy ML models in production",
+        image: "https://cdn.simpleicons.org/tensorflow/0AF",
+        responsibilities: [
+          "Convert ML prototypes into scalable APIs and microservices",
+          "Monitor model performance, drift, and latency",
+          "Build CI/CD pipelines for ML models",
+          "Optimize inference speed and cost",
+          "Integrate models into production applications"
+        ],
+        skills: ["Python", "ML", "APIs (Flask/FastAPI)", "Docker", "Kubernetes", "CI/CD", "Model Monitoring", "Feature Stores", "MLOps"],
+        tools: ["TensorFlow", "PyTorch", "SageMaker", "Vertex AI", "MLflow", "Prometheus", "Grafana", "Argo CD", "GitHub Actions", "Datadog", "Kafka", "Airflow", "Flink", "Elasticsearch", "Docker", "Kubernetes", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹12L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹35L+</td></tr></table>",
+        tips: "Learn Docker & Kubernetes. Master MLflow and model registries. Understand CI/CD. Work on real-time inference."
+      },
+      {
+        title: "AI / Deep Learning Specialist",
+        description: "Advanced ML, NLP, computer vision",
+        image: "https://cdn.simpleicons.org/openai/0AF",
+        responsibilities: [
+          "Develop and fine-tune large language models (LLMs) and vision models",
+          "Implement NLP pipelines for text classification, summarization, and translation",
+          "Work with computer vision models for object detection and image recognition",
+          "Research and implement cutting-edge AI techniques",
+          "Optimize models for inference and deployment"
+        ],
+        skills: ["Python", "TensorFlow/PyTorch", "NLP frameworks", "GPU computing", "Transformers", "RAG", "LangChain", "Fine-tuning", "Computer Vision"],
+        tools: ["Hugging Face", "LangChain", "OpenAI API", "NVIDIA GPUs", "Weights & Biases", "MLflow", "Kubeflow", "PyTorch Lightning", "Docker", "Kubernetes", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹14L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹40L+</td></tr></table>",
+        tips: "Study transformers and LLMs. Work with Hugging Face. Build generative AI projects. Publish on GitHub."
+      },
+      {
+        title: "Data Architect",
+        description: "Design large-scale data systems and storage",
+        image: "https://cdn.simpleicons.org/aws/0AF",
+        responsibilities: [
+          "Design data lakes, warehouses, and ETL pipelines",
+          "Define data governance, security, and compliance policies",
+          "Choose cloud storage and processing technologies",
+          "Mentor junior engineers and lead technical decisions",
+          "Ensure scalability and performance of data systems"
+        ],
+        skills: ["Data Modeling", "Cloud Architecture", "SQL/NoSQL", "Kimball/Inmon", "Snowflake", "Databricks", "Data Governance", "Security"],
+        tools: ["AWS Redshift", "Azure Synapse", "Google BigQuery", "ER/Studio", "Informatica", "dbt", "Databricks", "Alation", "Airflow", "Kafka", "Flink", "Elasticsearch", "MongoDB", "Cassandra", "Docker", "GitHub"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹14L – ₹24L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹24L – ₹40L+</td></tr></table>",
+        tips: "Learn cloud data services. Master data modeling. Get TOGAF or cloud certification. Focus on scalability."
+      },
+      {
+        title: "BI Developer",
+        description: "Build dashboards and reporting tools",
+        image: "https://img.icons8.com/fluency/96/microsoft.png",
+        responsibilities: [
+          "Design star/snowflake schemas for data warehouses",
+          "Build interactive dashboards with drill-down capabilities",
+          "Ensure data accuracy and consistency",
+          "Train business users on BI tools",
+          "Develop semantic layers for self-service analytics"
+        ],
+        skills: ["DAX", "SQL", "Data Modeling", "ETL", "Power BI", "Tableau", "Looker", "Data Warehousing", "Semantic Layers"],
+        tools: ["Power BI", "Tableau", "Looker", "SSIS", "Snowflake", "Redshift", "Azure Synapse", "dbt", "Power Query", "Airflow", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹4L – ₹7L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹8L – ₹14L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹14L – ₹22L+</td></tr></table>",
+        tips: "Master DAX and Power BI. Learn Kimball methodology. Focus on performance optimization. Understand KPIs."
+      },
+      {
+        title: "Statistician",
+        description: "Apply statistical methods to analyze data",
+        image: "https://img.icons8.com/office/96/statistics.png",
+        responsibilities: [
+          "Design experiments and surveys for data collection",
+          "Apply statistical tests and models to analyze data",
+          "Estimate parameters and test hypotheses",
+          "Validate models and assumptions",
+          "Communicate results to non-technical stakeholders"
+        ],
+        skills: ["R/Python", "Probability", "Hypothesis Testing", "Regression", "Experimental Design", "ANOVA", "Bayesian Statistics"],
+        tools: ["R", "Python", "JASP", "SPSS", "SAS", "Stata", "Jupyter", "LaTeX", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹5L – ₹8L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹8L – ₹14L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹14L – ₹22L+</td></tr></table>",
+        tips: "Master R and statistical theory. Learn experimental design. Practice reproducible research. Publish findings."
+      },
+      {
+        title: "Data Visualization Specialist",
+        description: "Communicate data insights visually",
+        image: "https://img.icons8.com/color/96/data-visualization.png",
+        responsibilities: [
+          "Design dashboards and visualizations for clarity and impact",
+          "Use D3.js or Power BI for custom interactive visuals",
+          "Apply design principles (color, layout, typography)",
+          "Ensure accessibility and usability",
+          "Collaborate with stakeholders on visual storytelling"
+        ],
+        skills: ["D3.js", "Tableau", "Figma", "Design", "Storytelling", "Python (Matplotlib/Seaborn)", "JavaScript", "CSS", "UX Principles"],
+        tools: ["Tableau", "D3.js", "Figma", "Adobe Illustrator", "Power BI", "Plotly", "Chart.js", "Canva", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹5L – ₹8L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹8L – ₹15L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹15L – ₹25L+</td></tr></table>",
+        tips: "Learn design fundamentals. Master D3.js or Tableau. Build a strong portfolio. Focus on storytelling."
+      },
+      {
+        title: "MLOps Engineer",
+        description: "Deploy, monitor, and maintain ML models",
+        image: "https://cdn.simpleicons.org/kubernetes/0AF",
+        responsibilities: [
+          "Automate ML pipelines using CI/CD",
+          "Set up model monitoring and alerting",
+          "Manage model versioning and rollback",
+          "Secure and scale ML infrastructure",
+          "Bridge data science and DevOps teams"
+        ],
+        skills: ["CI/CD", "Docker", "Kubernetes", "MLflow", "Airflow", "Prometheus", "Model Registry", "Feature Store", "Cloud Platforms"],
+        tools: ["GitHub Actions", "Argo CD", "Kubeflow", "Seldon", "Datadog", "MLflow", "EKS", "GKE", "Terraform", "Kafka", "Flink", "Elasticsearch", "Docker", "Kubernetes", "GitHub", "GitLab"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹14L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹40L+</td></tr></table>",
+        tips: "Learn DevOps tools. Master Kubernetes. Get cloud certified. Understand ML lifecycle."
+      },
+      {
+        title: "Analytics Translator / Data Product Manager",
+        description: "Connect data teams with business units",
+        image: "https://img.icons8.com/color/96/business-consultant.png",
+        responsibilities: [
+          "Translate business problems into data requirements",
+          "Prioritize analytics projects based on impact",
+          "Facilitate communication between technical and non-technical teams",
+          "Measure the ROI of data initiatives",
+          "Define KPIs and success metrics"
+        ],
+        skills: ["Communication", "Storytelling", "Data Literacy", "Business Acumen", "Project Management", "Stakeholder Management"],
+        tools: ["Jira", "Confluence", "Figma", "Slack", "Miro", "Notion", "Power BI", "Tableau", "Excel"],
+        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹10L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr></table>",
+        tips: "Improve soft skills. Learn domain knowledge. Be the bridge, not the bottleneck. Focus on business value."
+      }
+    ];
 
-    function populateCards() {
-      cardContainer.innerHTML = '';
-      roadmaps.forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.tabIndex = 0;
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-pressed', 'false');
-        card.setAttribute('aria-label', `View details about ${item.title}`);
-        card.innerHTML = `
-          <div class="card-content">
-            <img src="${item.image}" alt="${item.title} icon" class="role-icon-img" 
-                 onerror="this.onerror=null;this.src='https://via.placeholder.com/36?text='+encodeURIComponent('${item.title}');this.alt='Image Not Found';" />
-            <div>
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-            </div>
-          </div>
-        `;
-        card.addEventListener('click', () => openPanel(roadmaps.indexOf(item)));
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openPanel(roadmaps.indexOf(item));
-          }
+    // === DOM ELEMENTS & EVENT LISTENERS ===
+    document.addEventListener('DOMContentLoaded', function () {
+      const themeToggle = document.getElementById('themeToggle');
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const roadmapsGrid = document.getElementById('roadmapsGrid');
+      const rolesGrid = document.getElementById('rolesGrid');
+
+      // === RENDER SKILL ROADMAPS ===
+      function renderRoadmaps() {
+        roadmapsGrid.innerHTML = '';
+        roadmaps.forEach((roadmap, idx) => {
+          setTimeout(() => {
+            const card = document.createElement('div');
+            card.className = 'roadmap-card';
+            card.style.animationDelay = (idx * 0.1) + 's';
+            let topicsHTML = '';
+            ['beginner', 'intermediate', 'advanced', 'expert'].forEach(level => {
+              if (roadmap.levels[level] && roadmap.levels[level].length > 0) {
+                topicsHTML += `<div class="card-section">
+                  <div class="section-title">${level.charAt(0).toUpperCase() + level.slice(1)}</div>
+                  <ul class="topic-list">`;
+                roadmap.levels[level].forEach(item => {
+                  topicsHTML += `
+                    <li class="topic-item">
+                      <span class="topic-topic">${item.topic}</span>: 
+                      <span class="topic-concepts">${item.concepts.join(', ')}</span>
+                    </li>`;
+                });
+                topicsHTML += `</ul></div>`;
+              }
+            });
+            card.innerHTML = `
+              <div class="card-header">
+                <img src="${roadmap.image}" alt="${roadmap.title}" class="card-icon">
+                <h3 class="card-title">${roadmap.title}</h3>
+              </div>
+              <p class="card-desc">${roadmap.description}</p>
+              ${topicsHTML}
+              <div class="tools-section">
+                <strong>Tools:</strong> ${roadmap.tools.join(', ')}
+              </div>
+            `;
+            roadmapsGrid.appendChild(card);
+          }, idx * 50);
         });
-        cardContainer.appendChild(card);
+      }
+
+      // === RENDER JOB ROLES ===
+      function renderRoles() {
+        rolesGrid.innerHTML = '';
+        jobRoles.forEach((role, idx) => {
+          setTimeout(() => {
+            const card = document.createElement('div');
+            card.className = 'role-card';
+            card.style.animationDelay = (idx * 0.1) + 's';
+            const responsibilitiesHTML = role.responsibilities.map(r => `<li>${r}</li>`).join('');
+            card.innerHTML = `
+              <div class="card-header">
+                <img src="${role.image}" alt="${role.title}" class="card-icon">
+                <h3 class="card-title">${role.title}</h3>
+              </div>
+              <p class="card-desc">${role.description}</p>
+              <div class="card-section">
+                <div class="section-title">Responsibilities</div>
+                <ul class="tags-container">${responsibilitiesHTML}</ul>
+              </div>
+              <div class="card-section">
+                <div class="section-title">Key Skills</div>
+                <div class="tags-container">
+                  ${role.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+                </div>
+              </div>
+              <div class="card-section">
+                <div class="section-title">Tools & Technologies</div>
+                <div class="tags-container">
+                  ${role.tools.map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+              </div>
+              <div class="card-section">
+                <div class="section-title">Salary (INR)</div>
+                ${role.salary}
+              </div>
+              <div class="tips">
+                <strong>Tip:</strong> ${role.tips}
+              </div>
+            `;
+            rolesGrid.appendChild(card);
+          }, idx * 50);
+        });
+      }
+
+      // === TAB SWITCHING ===
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabButtons.forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+        });
       });
-    }
 
-    function openPanel(index) {
-      currentPanelIndex = index;
-      const item = roadmaps[index];
-      panelTitle.innerHTML = `
-        <img src="${item.panelImage}" alt="${item.title}" class="role-header-img" 
-             onerror="this.onerror=null;this.src='https://via.placeholder.com/48?text='+encodeURIComponent('${item.title}');this.alt='Image Not Found';" />
-        <span>${item.title}</span>
-      `;
-
-      const renderSection = (section, container, startNum) => {
-        container.innerHTML = '';
-        if (section) {
-          const table = document.createElement('table');
-          table.innerHTML = `
-            <tr><th>No.</th><th>Topic</th><th>Key Concepts</th><th>Description</th></tr>
-            ${section.map((level, i) => `
-              <tr>
-                <td>${startNum + i}</td>
-                <td class="topic-cell">${level.topic}</td>
-                <td>${level.concepts.join(', ')}</td>
-                <td>${level.description}</td>
-              </tr>
-            `).join('')}
-          `;
-          container.appendChild(table);
-        }
-      };
-
-      renderSection(item.levels.beginner, beginnerContent, 1);
-      renderSection(item.levels.intermediate, intermediateContent, 9);
-      renderSection(item.levels.advanced, advancedContent, 17);
-
-      expertContent.style.display = item.levels.expert ? 'block' : 'none';
-      if (item.levels.expert) {
-        renderSection(item.levels.expert, expertContent.querySelector('.modal-section-content'), 25);
+      // === THEME TOGGLE ===
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('light-mode');
+          themeToggle.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+          themeToggle.setAttribute('aria-label', document.body.classList.contains('light-mode') ? 'Switch to dark mode' : 'Switch to light mode');
+        });
       }
 
-      modalPanel.classList.add('open');
-      overlay.classList.add('visible');
-      modalPanel.focus();
-    }
-
-    function closePanel() {
-      modalPanel.classList.remove('open');
-      overlay.classList.remove('visible');
-      cardContainer.querySelector('.card')?.focus();
-    }
-
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
-      themeToggle.setAttribute('aria-label', document.body.classList.contains('light-mode') ? 'Switch to dark mode' : 'Switch to light mode');
+      // === INITIALIZE ===
+      renderRoadmaps();
+      renderRoles();
     });
-
-    closePanelBtn.addEventListener('click', closePanel);
-    overlay.addEventListener('click', closePanel);
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && modalPanel.classList.contains('open')) {
-        closePanel();
-      }
-    });
-
-    populateCards();
   </script>
 </body>
 </html>
