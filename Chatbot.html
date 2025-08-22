@@ -250,7 +250,7 @@
       const sendBtn = document.getElementById("sendBtn");
 
       // === CONFIG ===
-      const GROQ_API_KEY = "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";
+      const GROQ_API_KEY = "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";
       const API_URL = "https://api.groq.com/openai/v1/chat/completions";
       const MODEL = "llama3-8b-8192";
 
@@ -332,95 +332,107 @@
       }
 
       // Send message
-      function sendMessage() {
-        const input = userInput.value.trim();
-        if (!input || isStreaming) return;
+function sendMessage() {
+  const input = userInput.value.trim();
+  if (!input || isStreaming) return;
 
-        appendMessage("user", input);
-        chatHistory.push({ role: "user", content: input });
+  console.log("User input:", input); // Debug: user input
 
-        userInput.value = "";
-        userInput.style.height = "auto";
-        sendBtn.disabled = true;
-        isStreaming = true;
+  appendMessage("user", input);
+  chatHistory.push({ role: "user", content: input });
 
-        const assistantMsg = appendMessage("assistant", "", true);
+  userInput.value = "";
+  userInput.style.height = "auto";
+  sendBtn.disabled = true;
+  isStreaming = true;
 
-        fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${GROQ_API_KEY}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            model: MODEL,
-            messages: chatHistory,
-            temperature: 0.5,
-            stream: true
-          })
-        })
-        .then(async (response) => {
-          if (!response.body) throw new Error("No stream");
+  const assistantMsg = appendMessage("assistant", "", true);
 
-          const reader = response.body.getReader();
-          const decoder = new TextDecoder();
-          let buffer = "";
-          let fullText = "";
+  console.log("Sending API request..."); // Debug: before fetch
 
-          function read() {
-            reader.read().then(({ done, value }) => {
-              if (done) {
-                const el = assistantMsg.querySelector(".content");
-                el.innerHTML = marked.parse(fullText);
-                postProcessCodeBlocks(el);
-                chatHistory.push({ role: "assistant", content: fullText });
-                isStreaming = false;
-                sendBtn.disabled = false;
-                if (isAutoScroll) chat.scrollTop = chat.scrollHeight;
-                return;
-              }
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${GROQ_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: chatHistory,
+      temperature: 0.5,
+      stream: true
+    })
+  })
+  .then(async (response) => {
+    console.log("API response received:", response); // Debug: response object
 
-              buffer += decoder.decode(value, { stream: true });
-              const lines = buffer.split("\n");
-              buffer = lines.pop();
+    if (!response.body) throw new Error("No stream");
 
-              for (const line of lines) {
-                if (line.startsWith("data: ")) {
-                  const data = line.slice(6).trim();
-                  if (data === "[DONE]") continue;
-                  try {
-                    const json = JSON.parse(data);
-                    const token = json.choices?.[0]?.delta?.content || "";
-                    if (token) {
-                      fullText += token;
-                      const el = assistantMsg.querySelector(".content");
-                      el.innerHTML = marked.parse(fullText) + '<span class="cursor">▌</span>';
-                      postProcessCodeBlocks(el);
-                      if (isAutoScroll) chat.scrollTop = chat.scrollHeight;
-                    }
-                  } catch (e) { }
-                }
-              }
-              read();
-            }).catch(handleError);
-          }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let fullText = "";
 
-          function handleError(err) {
-            assistantMsg.querySelector(".content").innerText = `⚠️ Error: ${err.message}`;
-            isStreaming = false;
-            sendBtn.disabled = false;
-          }
-
-          read();
-        })
-        .catch(handleError);
-
-        function handleError(err) {
-          assistantMsg.querySelector(".content").innerText = `⚠️ Network error: ${err.message}`;
+    function read() {
+      reader.read().then(({ done, value }) => {
+        if (done) {
+          console.log("Streaming done. Full text:", fullText); // Debug: streaming finished
+          const el = assistantMsg.querySelector(".content");
+          el.innerHTML = marked.parse(fullText);
+          postProcessCodeBlocks(el);
+          chatHistory.push({ role: "assistant", content: fullText });
           isStreaming = false;
           sendBtn.disabled = false;
+          if (isAutoScroll) chat.scrollTop = chat.scrollHeight;
+          return;
         }
-      }
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop();
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const data = line.slice(6).trim();
+            if (data === "[DONE]") continue;
+            try {
+              const json = JSON.parse(data);
+              const token = json.choices?.[0]?.delta?.content || "";
+              if (token) {
+                fullText += token;
+                console.log("Streaming token:", token); // Debug: streaming token
+                const el = assistantMsg.querySelector(".content");
+                el.innerHTML = marked.parse(fullText) + '<span class="cursor">▌</span>';
+                postProcessCodeBlocks(el);
+                if (isAutoScroll) chat.scrollTop = chat.scrollHeight;
+              }
+            } catch (e) {
+              console.error("JSON parse error:", e); // Debug: JSON parse error
+            }
+          }
+        }
+        read();
+      }).catch(handleError);
+    }
+
+    function handleError(err) {
+      console.error("Stream error:", err); // Debug: stream/network error
+      assistantMsg.querySelector(".content").innerText = `⚠️ Error: ${err.message}`;
+      isStreaming = false;
+      sendBtn.disabled = false;
+    }
+
+    read();
+  })
+  .catch(handleError);
+
+  function handleError(err) {
+    console.error("Network error:", err); // Debug: network fetch error
+    assistantMsg.querySelector(".content").innerText = `⚠️ Network error: ${err.message}`;
+    isStreaming = false;
+    sendBtn.disabled = false;
+  }
+}
 
       // Copy to clipboard
       window.copyToClipboard = (btn) => {
