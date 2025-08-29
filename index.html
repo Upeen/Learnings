@@ -346,6 +346,7 @@
     </div>
     <div class="grid" id="roadmapsGrid"></div>
   </div>
+  
   <!-- Job Roles Panel -->
   <div id="roles" class="tab-content">
     <div class="grid" id="rolesGrid"></div>
@@ -951,39 +952,6 @@
         difficulty: "intermediate"
       },
       {
-        title: "Data Science Roadmap",
-        description: "Comprehensive path to master data science from data manipulation to advanced analytics.",
-        image: "https://img.icons8.com/color/96/data-science.png",
-        levels: {
-          beginner: [
-            { topic: "Introduction", concepts: ["What is Data Science?", "Data Science Process", "CRISP-DM"], description: "Understand the data science lifecycle." },
-            { topic: "Programming", concepts: ["Python", "R", "Jupyter", "Command Line"], description: "Learn essential programming skills." },
-            { topic: "Data Manipulation", concepts: ["Pandas", "dplyr", "Data Cleaning", "Data Wrangling"], description: "Transform and clean data." },
-            { topic: "Data Visualization", concepts: ["Matplotlib", "Seaborn", "ggplot2", "Plotly"], description: "Create effective visualizations." }
-          ],
-          intermediate: [
-            { topic: "Statistics", concepts: ["Descriptive Stats", "Inferential Stats", "Hypothesis Testing", "A/B Testing"], description: "Apply statistical methods." },
-            { topic: "Machine Learning", concepts: ["Supervised/Unsupervised", "Model Evaluation", "Feature Engineering"], description: "Build predictive models." },
-            { topic: "Databases", concepts: ["SQL", "NoSQL", "Data Modeling", "ETL"], description: "Work with data storage systems." },
-            { topic: "Big Data", concepts: ["Hadoop", "Spark", "Distributed Computing", "Data Lakes"], description: "Handle large-scale data." }
-          ],
-          advanced: [
-            { topic: "Advanced Analytics", concepts: ["Time Series", "Recommendation Systems", "Natural Language Processing"], description: "Solve complex problems." },
-            { topic: "Cloud Platforms", concepts: ["AWS", "GCP", "Azure", "Cloud Services"], description: "Deploy in cloud environments." },
-            { topic: "MLOps", concepts: ["Model Deployment", "Monitoring", "CI/CD", "Versioning"], description: "Operationalize data science." },
-            { topic: "Data Storytelling", concepts: ["Dashboards", "Presentations", "Reports", "Communication"], description: "Communicate insights effectively." }
-          ],
-          expert: [
-            { topic: "Deep Learning", concepts: ["Neural Networks", "CNN", "RNN", "Transformers"], description: "Apply deep learning techniques." },
-            { topic: "Research & Innovation", concepts: ["Paper Reading", "Algorithm Development", "Novel Applications"], description: "Contribute to the field." },
-            { topic: "Leadership", concepts: ["Project Management", "Team Leadership", "Strategic Planning"], description: "Lead data science initiatives." },
-            { topic: "Ethics & Governance", concepts: ["Bias Detection", "Fairness", "Privacy", "Regulatory Compliance"], description: "Ensure responsible AI." }
-          ]
-        },
-        tools: ["Python", "R", "Jupyter", "RStudio", "Tableau", "Power BI", "SQL", "Git", "Docker", "Kubernetes", "AWS", "GCP", "Azure"],
-        difficulty: "intermediate"
-      },
-      {
         title: "Data Engineering Roadmap",
         description: "Comprehensive path to master data engineering from pipelines to architecture.",
         image: "https://cdn.simpleicons.org/apacheairflow/0AF",
@@ -1247,39 +1215,7 @@
         tools: ["Airbyte", "Docker", "Kubernetes", "dbt", "Terraform", "PostgreSQL", "BigQuery", "Snowflake", "Kafka", "GitHub"],
         difficulty: "intermediate"
       },
-      {
-        title: "Apache Druid Roadmap",
-        description: "Master Apache Druid for real-time analytics on high-volume event data.",
-        image: "https://cdn.simpleicons.org/apache/0AF",
-        levels: {
-          beginner: [
-            { topic: "Introduction to Druid", concepts: ["What is Druid?", "OLAP vs OLTP", "Use Cases"], description: "Understand Druid's role in analytics." },
-            { topic: "Core Concepts", concepts: ["Segments", "Datasources", "Ingestion", "Querying"], description: "Learn Druid's data model." },
-            { topic: "Installation", concepts: ["Single-Server", "Docker", "Cluster Setup"], description: "Set up Druid locally." },
-            { topic: "Basic Ingestion", concepts: ["Batch Ingestion", "JSON Spec", "Console UI"], description: "Ingest sample data." }
-          ],
-          intermediate: [
-            { topic: "Real-Time Ingestion", concepts: ["Kafka Integration", "Tranquility", "Streaming Specs"], description: "Ingest streaming data." },
-            { topic: "Querying", concepts: ["SQL Queries", "GroupBy", "TopN", "Timeseries"], description: "Query data with Druid SQL." },
-            { topic: "Schema Design", concepts: ["Dimensions", "Metrics", "Time Column", "Rollup"], description: "Design efficient datasources." },
-            { topic: "UI & Tools", concepts: ["Druid Console", "Superset Integration"], description: "Visualize and explore data." }
-          ],
-          advanced: [
-            { topic: "Cluster Management", concepts: ["Coordinator", "Overlord", "Broker", "Historical Nodes"], description: "Manage distributed clusters." },
-            { topic: "Performance Tuning", concepts: ["Segment Optimization", "Query Caching", "Indexing"], description: "Optimize for sub-second queries." },
-            { topic: "Extensions", concepts: ["Custom Aggregators", "Lookups", "Deep Storage"], description: "Extend Druid functionality." },
-            { topic: "Security", concepts: ["Authentication", "Authorization", "Encryption"], description: "Secure Druid clusters." }
-          ],
-          expert: [
-            { topic: "High Availability", concepts: ["Replication", "Failover", "Multi-DC"], description: "Ensure uptime in production." },
-            { topic: "Monitoring", concepts: ["Metrics Emission", "Prometheus", "Alerting"], description: "Monitor cluster health." },
-            { topic: "Advanced Ingestion", concepts: ["Custom Parsers", "Multi-Phase Ingestion"], description: "Handle complex data sources." },
-            { topic: "Druid Internals", concepts: ["Segment Lifecycle", "Query Processing", "Indexing Algorithms"], description: "Understand Druid's architecture." }
-          ]
-        },
-        tools: ["Druid", "Kafka", "Superset", "Docker", "Kubernetes", "Prometheus", "Grafana", "Zookeeper", "MySQL", "PostgreSQL"],
-        difficulty: "advanced"
-      },
+    
       {
         title: "ClickHouse Roadmap",
         description: "Master ClickHouse for high-performance analytical queries on large datasets.",
@@ -1692,25 +1628,6 @@
         tips: "Improve soft skills. Learn domain knowledge. Be the bridge, not the bottleneck. Focus on business value. Learn product management frameworks. Develop financial acumen."
       },
       {
-        title: "Data Governance Specialist",
-        description: "Ensure data quality, compliance, and ethical use",
-        image: "https://cdn.simpleicons.org/iso/0AF",
-        responsibilities: [
-          "Define data policies, standards, and metadata management",
-          "Implement data catalog and lineage tools",
-          "Ensure GDPR, CCPA, HIPAA compliance",
-          "Lead data stewardship programs",
-          "Audit data access and usage",
-          "Manage data classification and sensitivity",
-          "Develop data quality frameworks",
-          "Create data ethics guidelines"
-        ],
-        skills: ["Data Governance", "Metadata Management", "Compliance", "Data Catalog", "Data Lineage", "Collibra", "Alation", "Data Quality", "Data Privacy", "Risk Management", "Policy Development", "Audit", "Data Ethics", "Regulatory Knowledge", "Stakeholder Management"],
-        tools: ["Collibra", "Alation", "Informatica Axon", "Atlas", "Snowflake", "dbt", "Power BI", "Git", "Jira", "ServiceNow", "SAP GRC", "OneTrust", "BigID", "Varonis", "SecuPi", "Data.World", "Acin", "OvalEdge", "MANTA"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹10L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹30L – ₹50L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹50L – ₹80L+</td></tr></table>",
-        tips: "Learn data catalog tools. Get IAPP or DAMA certification. Focus on data ethics and compliance. Understand regulatory requirements. Develop stakeholder management skills. Learn data lineage tools."
-      },
-      {
         title: "Data Quality Engineer",
         description: "Ensure accuracy, consistency, and reliability of data",
         image: "https://cdn.simpleicons.org/testcov/0AF",
@@ -1805,25 +1722,7 @@
         salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
         tips: "Master Hugging Face. Fine-tune LLMs. Build chatbots. Learn RAG. Deploy with FastAPI. Study attention mechanisms. Focus on multilingual NLP. Learn about bias in language models."
       },
-      {
-        title: "Data Scientist - Healthcare",
-        description: "Apply data science to healthcare and life sciences",
-        image: "https://cdn.simpleicons.org/healthicons/0AF",
-        responsibilities: [
-          "Analyze clinical trial data and patient records",
-          "Develop fraud detection and credit scoring models",
-          "Build risk assessment and portfolio optimization models",
-          "Work with time series and high-frequency data",
-          "Ensure compliance with financial regulations",
-          "Develop algorithmic trading strategies",
-          "Conduct customer segmentation and churn prediction",
-          "Create financial forecasting models"
-        ],
-        skills: ["Finance Domain Knowledge", "Risk Management", "Fraud Detection", "Time Series Analysis", "Algorithmic Trading", "Portfolio Optimization", "Credit Scoring", "Regulatory Compliance", "Python/R", "Machine Learning", "Statistical Modeling", "SQL", "Big Data", "Blockchain"],
-        tools: ["Python", "R", "MATLAB", "SAS", "Tableau", "Power BI", "SQL", "Git", "Docker", "Jupyter", "TensorFlow", "PyTorch", "KDB+", "Bloomberg", "Reuters", "QuantConnect", "Backtrader", "Zipline", "Alpaca", "Robinhood", "Stripe", "Plaid", "Coinbase", "Kraken"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹9L – ₹14L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹16L – ₹28L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹28L – ₹50L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹50L – ₹80L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹80L – ₹1.5Cr+</td></tr></table>",
-        tips: "Gain finance domain knowledge. Learn financial modeling. Study time series analysis. Understand regulatory requirements. Build trading algorithms. Focus on risk management. Learn about blockchain and cryptocurrencies."
-      },
+      
       {
         title: "Data Engineer - Real-time",
         description: "Specialize in real-time data processing and streaming",
@@ -1882,139 +1781,6 @@
         tips: "Get cloud certified. Master cloud data services. Learn IaC. Focus on cost optimization. Understand cloud security. Gain experience with multiple cloud providers. Learn serverless patterns."
       },
       {
-        title: "Data Scientist - E-commerce",
-        description: "Apply data science to e-commerce and retail",
-        image: "https://cdn.simpleicons.org/shopify/0AF",
-        responsibilities: [
-          "Analyze customer purchase behavior and funnel",
-          "Develop product recommendation engines",
-          "Optimize pricing and inventory management",
-          "Predict demand and sales forecasting",
-          "Analyze customer reviews and sentiment",
-          "Optimize website UX and conversion rates",
-          "Develop personalization algorithms",
-          "Analyze supply chain and logistics data"
-        ],
-        skills: ["E-commerce Domain Knowledge", "Recommendation Systems", "Demand Forecasting", "Pricing Optimization", "Inventory Management", "Customer Analytics", "A/B Testing", "Funnel Analysis", "Market Basket Analysis", "Sentiment Analysis", "Python/R", "Machine Learning", "Statistical Analysis"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "Google Analytics", "Adobe Analytics", "Mixpanel", "Amplitude", "Segment", "Shopify", "Magento", "WooCommerce", "Salesforce Commerce", "Oracle Commerce", "SAP Commerce", "Amazon Seller Central", "eBay", "Walmart Marketplace", "Target Plus", "Instacart", "DoorDash", "Uber Eats"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain e-commerce domain knowledge. Learn recommendation systems. Learn pricing optimization. Focus on customer lifetime value. Understand supply chain analytics. Learn about personalization algorithms. Build A/B testing expertise."
-      },
-      {
-        title: "Data Engineer - ETL",
-        description: "Specialize in ETL/ELT processes and data integration",
-        image: "https://cdn.simpleicons.org/etl/0AF",
-        responsibilities: [
-          "Design and implement ETL/ELT pipelines",
-          "Extract data from various sources (APIs, databases, files)",
-          "Transform and clean data for analysis",
-          "Load data into data warehouses and lakes",
-          "Ensure data quality and consistency",
-          "Optimize ETL performance and efficiency",
-          "Document ETL processes and data flows",
-          "Troubleshoot and maintain ETL pipelines"
-        ],
-        skills: ["ETL/ELT", "Data Integration", "Data Warehousing", "Data Modeling", "SQL", "Python", "Data Quality", "Performance Optimization", "Error Handling", "Scheduling", "Monitoring", "Data Validation", "Incremental Loading", "Slowly Changing Dimensions", "Data Profiling"],
-        tools: ["Informatica", "Talend", "Alteryx", "SSIS", "DataStage", "Pentaho", "Fivetran", "Stitch", "Matillion", "Airbyte", "dbt", "Snowflake", "BigQuery", "Redshift", "Apache Druid", "ClickHouse", "Apache Hive", "Airflow", "Prefect", "Luigi", "Dagster", "SQL", "Python", "Shell Scripting"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹11L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹30L – ₹50L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹50L – ₹80L+</td></tr></table>",
-        tips: "Master ETL tools. Learn data warehousing concepts. Focus on data quality. Understand slowly changing dimensions. Learn performance optimization. Build error handling expertise. Document everything."
-      },
-      {
-        title: "Data Scientist - Supply Chain",
-        description: "Apply data science to supply chain and logistics",
-        image: "https://cdn.simpleicons.org/logistics/0AF",
-        responsibilities: [
-          "Optimize supply chain networks and routing",
-          "Predict demand and inventory needs",
-          "Analyze logistics and transportation data",
-          "Develop supplier risk assessment models",
-          "Optimize warehouse operations and layout",
-          "Analyze supply chain disruptions and risks",
-          "Develop sustainability and carbon footprint models",
-          "Create supply chain resilience strategies"
-        ],
-        skills: ["Supply Chain Domain Knowledge", "Logistics", "Inventory Management", "Demand Forecasting", "Network Optimization", "Routing Algorithms", "Risk Management", "Sustainability", "Python/R", "Machine Learning", "Statistical Analysis", "Geospatial Analysis", "Time Series"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "AnyLogic", "Arena", "FlexSim", "Supply Chain Guru", "Llamasoft", "SAP IBP", "Oracle SCM", "Blue Yonder", "Kinaxis", "E2open", "Coupa", "JDA", "Manhattan Associates", "Oracle Transportation", "Descartes", "FourKites", "Project44", "Trimble", "Geotab"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain supply chain domain knowledge. Learn logistics optimization. Study demand forecasting. Focus on network design. Understand risk management. Learn geospatial analysis. Build sustainability expertise."
-      },
-      {
-        title: "Data Engineer - Streaming",
-        description: "Specialize in real-time streaming data pipelines",
-        image: "https://cdn.simpleicons.org/stream/0AF",
-        responsibilities: [
-          "Design and implement real-time data pipelines",
-          "Work with streaming technologies (Kafka, Flink, Spark Streaming)",
-          "Build event-driven architectures",
-          "Ensure low-latency data processing",
-          "Monitor and optimize streaming performance",
-          "Develop stream processing applications",
-          "Implement exactly-once processing semantics",
-          "Handle backpressure and fault tolerance"
-        ],
-        skills: ["Stream Processing", "Kafka", "Flink", "Spark Streaming", "Kinesis", "Pub/Sub", "Event-Driven Architecture", "Low-Latency Systems", "Exactly-Once Processing", "State Management", "Watermarking", "Windowing", "Backpressure", "Monitoring", "Performance Optimization"],
-        tools: ["Kafka", "Flink", "Spark Streaming", "Kinesis", "Pub/Sub", "Pulsar", "Redis", "Elasticsearch", "InfluxDB", "Prometheus", "Grafana", "Docker", "Kubernetes", "Airflow", "dbt", "Snowflake", "BigQuery", "Redshift", "Apache Druid", "ClickHouse", "Apache Hive"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹13L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹15L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹45L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹45L – ₹75L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹75L – ₹1.2Cr+</td></tr></table>",
-        tips: "Master Kafka and Flink. Learn event-driven architecture. Focus on low-latency systems. Understand exactly-once processing. Study backpressure handling. Build real-time dashboards. Learn about stream-table duality."
-      },
-      {
-        title: "Data Scientist - Manufacturing",
-        description: "Apply data science to manufacturing and industrial processes",
-        image: "https://cdn.simpleicons.org/manufacturing/0AF",
-        responsibilities: [
-          "Analyze production data and equipment performance",
-          "Develop predictive maintenance models",
-          "Optimize manufacturing processes and quality control",
-          "Analyze supply chain and inventory data",
-          "Develop digital twin models",
-          "Implement Industry 4.0 and IoT analytics",
-          "Analyze energy consumption and sustainability",
-          "Optimize workforce and scheduling"
-        ],
-        skills: ["Manufacturing Domain Knowledge", "Predictive Maintenance", "Quality Control", "Process Optimization", "Digital Twin", "Industry 4.0", "IoT Analytics", "Time Series Analysis", "Anomaly Detection", "Python/R", "Machine Learning", "Statistical Analysis"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "Siemens MindSphere", "GE Predix", "PTC ThingWorx", "Rockwell FactoryTalk", "Honeywell Forge", "SAP Manufacturing", "Oracle Manufacturing", "Epicor", "Infor", "IFS", "PTC Windchill", "Siemens Teamcenter", "Dassault Systèmes", "ANSYS", "COMSOL", "LabVIEW", "SCADA", "MES"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain manufacturing domain knowledge. Learn predictive maintenance. Study quality control. Focus on process optimization. Understand digital twin concepts. Learn about Industry 4.0. Build IoT analytics expertise."
-      },
-      {
-        title: "Data Engineer - Data Warehousing",
-        description: "Specialize in data warehouse design and implementation",
-        image: "https://cdn.simpleicons.org/datawarehouse/0AF",
-        responsibilities: [
-          "Design and implement data warehouses",
-          "Develop dimensional data models (star/snowflake schemas)",
-          "Build ETL/ELT pipelines for data warehouses",
-          "Optimize data warehouse performance",
-          "Ensure data quality and consistency",
-          "Implement data warehouse security and access controls",
-          "Migrate legacy data systems to modern warehouses",
-          "Support business intelligence and analytics teams"
-        ],
-        skills: ["Data Warehousing", "Dimensional Modeling", "Kimball Methodology", "ETL/ELT", "SQL", "Data Modeling", "Performance Optimization", "Data Quality", "Data Governance", "Cloud Data Warehouses", "On-Premise Data Warehouses", "Data Vault", "Inmon Methodology"],
-        tools: ["Snowflake", "BigQuery", "Redshift", "Azure Synapse", "Oracle Exadata", "Teradata", "SAP BW", "IBM Db2", "Greenplum", "Vertica", "Informatica", "Talend", "Alteryx", "SSIS", "DataStage", "Pentaho", "dbt", "Airflow", "Looker", "Tableau", "Power BI", "ER/Studio", "ERwin", "Toad Data Modeler"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹11L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹30L – ₹50L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹50L – ₹80L+</td></tr></table>",
-        tips: "Master dimensional modeling. Learn data warehousing methodologies. Focus on performance optimization. Understand cloud data warehouses. Build ETL expertise. Learn data governance. Study data vault modeling."
-      },
-      {
-        title: "Data Scientist - Energy",
-        description: "Apply data science to energy and utilities",
-        image: "https://cdn.simpleicons.org/energy/0AF",
-        responsibilities: [
-          "Analyze energy consumption and demand patterns",
-          "Develop renewable energy forecasting models",
-          "Optimize energy grid operations",
-          "Analyze smart meter and IoT data",
-          "Develop energy efficiency and conservation models",
-          "Predict equipment failures and maintenance needs",
-          "Analyze energy market data and pricing",
-          "Develop sustainability and emissions models"
-        ],
-        skills: ["Energy Domain Knowledge", "Energy Forecasting", "Grid Optimization", "Renewable Energy", "Smart Grid", "IoT Analytics", "Time Series Analysis", "Anomaly Detection", "Python/R", "Machine Learning", "Statistical Analysis", "Geospatial Analysis", "Optimization"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "PSCAD", "DIgSILENT", "PowerWorld", "GE Grid Analytics", "Siemens Spectrum Power", "ABB Network Manager", "Schneider Electric EcoStruxure", "Siemens MindSphere", "GE Predix", "PTC ThingWorx", "Weather APIs", "NOAA", "NASA", "EnergyHub", "Bidgely", "Uplight", "Opower", "Sense", "Span"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain energy domain knowledge. Learn energy forecasting. Study grid optimization. Focus on renewable energy. Understand smart grid concepts. Learn about energy markets. Build IoT analytics expertise."
-      },
-      {
         title: "Data Engineer - Big Data",
         description: "Specialize in large-scale data processing and distributed systems",
         image: "https://cdn.simpleicons.org/hadoop/0AF",
@@ -2046,196 +1812,6 @@
         },
         tools: ["Hadoop", "Spark", "Hive", "Pig", "Sqoop", "Flume", "Oozie", "HBase", "Ambari", "Cloudera Manager"],
         difficulty: "intermediate"
-      },
-      {
-        title: "Data Scientist - Transportation",
-        description: "Apply data science to transportation and mobility",
-        image: "https://cdn.simpleicons.org/transportation/0AF",
-        responsibilities: [
-          "Analyze transportation networks and routing",
-          "Develop demand forecasting and capacity planning models",
-          "Optimize fleet management and scheduling",
-          "Analyze traffic patterns and congestion",
-          "Develop predictive maintenance models for vehicles",
-          "Analyze rider behavior and journey patterns",
-          "Optimize pricing and fare structures",
-          "Develop sustainability and emissions models"
-        ],
-        skills: ["Transportation Domain Knowledge", "Network Optimization", "Routing Algorithms", "Demand Forecasting", "Fleet Management", "Traffic Analysis", "Geospatial Analysis", "Time Series", "Python/R", "Machine Learning", "Statistical Analysis", "Simulation", "Optimization"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "PTV Visum", "PTV Vissim", "TransCAD", "Cube", "AIMSUN", "Paramics", "Quadstone Paramics", "Siemens PTV", "TransModeler", "Google Maps", "Here Maps", "Mapbox", "OpenStreetMap", "Uber Movement", "TomTom", "Waze", "Moovit", "Citymapper", "Transit", "Strava", "Fitbit", "Apple Health", "Google Fit"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain transportation domain knowledge. Learn network optimization. Study routing algorithms. Focus on demand forecasting. Understand fleet management. Learn geospatial analysis. Build simulation expertise."
-      },
-      {
-        title: "Data Engineer - IoT",
-        description: "Specialize in Internet of Things data pipelines",
-        image: "https://cdn.simpleicons.org/internetofthings/0AF",
-        responsibilities: [
-          "Design and implement IoT data ingestion pipelines",
-          "Work with time-series databases and streaming platforms",
-          "Process and analyze sensor data at scale",
-          "Ensure data quality and consistency from IoT devices",
-          "Optimize data storage and retrieval for time-series data",
-          "Develop edge computing data processing solutions",
-          "Implement IoT data security and privacy measures",
-          "Support real-time monitoring and alerting systems"
-        ],
-        skills: ["IoT", "Time-Series Data", "Sensor Data", "Streaming Platforms", "Edge Computing", "Time-Series Databases", "Data Quality", "Data Security", "Low-Latency Processing", "Scalability", "Device Management", "Protocol Integration", "Data Compression"],
-        tools: ["Kafka", "Flink", "Spark Streaming", "Kinesis", "Pub/Sub", "InfluxDB", "TimescaleDB", "OpenTSDB", "Prometheus", "Grafana", "MQTT", "CoAP", "HTTP", "WebSocket", "Node-RED", "AWS IoT", "Azure IoT", "Google Cloud IoT", "IBM Watson IoT", "Siemens MindSphere", "GE Predix", "PTC ThingWorx", "Losant", "Ubidots", "Adafruit IO", "Blynk", "Thinger.io", "Carriots", "Xively", "Evrythng"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹13L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹15L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹45L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹45L – ₹75L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹75L – ₹1.2Cr+</td></tr></table>",
-        tips: "Learn IoT protocols. Master time-series databases. Focus on streaming platforms. Understand edge computing. Build data quality expertise. Learn about device management. Study data compression techniques."
-      },
-      {
-        title: "Data Scientist - Sports Analytics",
-        description: "Apply data science to sports and athletic performance",
-        image: "https://cdn.simpleicons.org/sports/0AF",
-        responsibilities: [
-          "Analyze player and team performance metrics",
-          "Develop predictive models for game outcomes",
-          "Optimize player recruitment and scouting",
-          "Analyze fan engagement and behavior",
-          "Develop injury prediction and prevention models",
-          "Optimize game strategies and tactics",
-          "Analyze broadcast and media data",
-          "Develop fantasy sports and betting models"
-        ],
-        skills: ["Sports Domain Knowledge", "Performance Analysis", "Predictive Modeling", "Player Tracking", "Biomechanics", "Injury Prediction", "Fan Analytics", "Python/R", "Machine Learning", "Statistical Analysis", "Video Analysis", "Geospatial Analysis", "Optimization"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "Kinexon", "STATS Perform", "Second Spectrum", "Sportradar", "Hudl", "Catapult", "STATSports", "GPSports", "Polar", "Garmin", "WHOOP", "Oura", "Apple Watch", "Fitbit", "Strava", "Runkeeper", "MyFitnessPal", "Google Fit", "Apple Health", "NBA Stats", "NFL Next Gen Stats", "Premier League Stats", "FIFA", "UEFA", "IOC"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹11L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹30L – ₹50L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹50L – ₹80L+</td></tr></table>",
-        tips: "Gain sports domain knowledge. Learn performance analysis. Study player tracking data. Focus on predictive modeling. Understand biomechanics. Build fan analytics expertise. Learn about injury prediction."
-      },
-      {
-        title: "Data Engineer - Geospatial",
-        description: "Specialize in geospatial data processing and analysis",
-        image: "https://cdn.simpleicons.org/geospatial/0AF",
-        responsibilities: [
-          "Design and implement geospatial data pipelines",
-          "Work with GIS data and spatial databases",
-          "Process and analyze location-based data at scale",
-          "Ensure data quality and consistency for geospatial data",
-          "Optimize spatial queries and indexing",
-          "Develop geospatial data visualization solutions",
-          "Implement geospatial data security and privacy measures",
-          "Support location-based services and applications"
-        ],
-        skills: ["Geospatial", "GIS", "Spatial Databases", "Location-Based Services", "Spatial Analysis", "Geocoding", "Routing", "Mapping", "Data Quality", "Data Security", "Scalability", "Coordinate Systems", "Projection", "Remote Sensing"],
-        tools: ["PostGIS", "Oracle Spatial", "SQL Server Spatial", "BigQuery GIS", "Snowflake Spatial", "ArcGIS", "QGIS", "GRASS GIS", "Google Earth Engine", "Mapbox", "Leaflet", "OpenLayers", "CARTO", "Esri", "HERE Maps", "Google Maps", "OpenStreetMap", "GeoPandas", "Shapely", "Fiona", "GDAL", "PROJ", "PostgreSQL", "MongoDB", "Elasticsearch", "Kafka", "Flink", "Spark", "Airflow", "Docker", "Kubernetes"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Learn GIS concepts. Master spatial databases. Focus on spatial analysis. Understand coordinate systems. Build geocoding expertise. Learn about remote sensing. Study location-based services."
-      },
-      {
-        title: "Data Scientist - Education",
-        description: "Apply data science to education and learning analytics",
-        image: "https://cdn.simpleicons.org/education/0AF",
-        responsibilities: [
-          "Analyze student performance and learning outcomes",
-          "Develop predictive models for student success",
-          "Optimize curriculum and teaching methods",
-          "Analyze educational technology usage",
-          "Develop personalized learning recommendations",
-          "Analyze institutional effectiveness and accreditation",
-          "Develop early warning systems for at-risk students",
-          "Conduct educational research and evaluation"
-        ],
-        skills: ["Education Domain Knowledge", "Learning Analytics", "Student Success", "Educational Technology", "Curriculum Optimization", "Personalized Learning", "Educational Research", "Python/R", "Machine Learning", "Statistical Analysis", "Longitudinal Analysis", "Multilevel Modeling", "Educational Assessment"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "Blackboard", "Canvas", "Moodle", "Google Classroom", "Schoology", "Edmodo", "Khan Academy", "Coursera", "edX", "Udacity", "Duolingo", "Quizlet", "Chegg", "Course Hero", "Turnitin", "ProctorU", "Honorlock", "LockDown Browser", "Zoom", "Microsoft Teams", "Google Meet"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹5L – ₹8L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹9L – ₹15L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹15L – ₹25L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹25L – ₹40L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹40L – ₹65L+</td></tr></table>",
-        tips: "Gain education domain knowledge. Learn learning analytics. Study educational research. Focus on student success. Understand educational technology. Build personalized learning expertise. Learn about educational assessment."
-      },
-      {
-        title: "Data Engineer - Gaming",
-        description: "Specialize in gaming and interactive entertainment data",
-        image: "https://cdn.simpleicons.org/gaming/0AF",
-        responsibilities: [
-          "Design and implement gaming data pipelines",
-          "Process and analyze player behavior and telemetry data",
-          "Optimize in-game economies and progression systems",
-          "Ensure data quality and consistency for gaming data",
-          "Develop real-time analytics for live operations",
-          "Implement anti-cheat and fraud detection systems",
-          "Support game balancing and tuning",
-          "Analyze monetization and engagement metrics"
-        ],
-        skills: ["Gaming Domain Knowledge", "Player Telemetry", "Game Analytics", "Real-Time Analytics", "In-Game Economies", "Player Behavior", "Anti-Cheat", "Fraud Detection", "Data Quality", "Scalability", "Low-Latency Processing", "Event-Driven Architecture", "A/B Testing"],
-        tools: ["Unity", "Unreal Engine", "PlayFab", "Gamesparks", "Firebase", "GameAnalytics", "deltaDNA", "Swrve", "Kochava", "Adjust", "AppsFlyer", "Branch", "GameAnalytics", "GameSparks", "PlayFab", "Photon", "Normcore", "Mirror", "Netcode for GameObjects", "Kafka", "Flink", "Spark", "Snowflake", "BigQuery", "Redshift", "PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Docker", "Kubernetes", "Airflow", "dbt"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹13L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹15L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹45L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹45L – ₹75L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹75L – ₹1.2Cr+</td></tr></table>",
-        tips: "Gain gaming domain knowledge. Learn game analytics. Study player telemetry. Focus on real-time analytics. Understand in-game economies. Build anti-cheat expertise. Document everything."
-      },
-      {
-        title: "Data Scientist - Media & Entertainment",
-        description: "Apply data science to media and entertainment industries",
-        image: "https://cdn.simpleicons.org/media/0AF",
-        responsibilities: [
-          "Analyze content consumption and viewer behavior",
-          "Develop recommendation engines for content",
-          "Optimize content scheduling and programming",
-          "Analyze audience demographics and segmentation",
-          "Predict content success and popularity",
-          "Optimize advertising and monetization",
-          "Analyze social media and sentiment around content",
-          "Develop content discovery and personalization"
-        ],
-        skills: ["Media Domain Knowledge", "Content Analytics", "Viewer Behavior", "Recommendation Systems", "Content Scheduling", "Audience Segmentation", "Ad Optimization", "Social Media Analytics", "Python/R", "Machine Learning", "Statistical Analysis", "Time Series", "Natural Language Processing"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "Nielsen", "Comscore", "Kantar", "Google Analytics", "Adobe Analytics", "Socialbakers", "Sprinklr", "Brandwatch", "Talkwalker", "Meltwater", "NetBase Quid", "YouGov", "Statista", "SimilarWeb", "Alexa", "SEMrush", "Ahrefs", "BuzzSumo", "Hootsuite", "Buffer", "Sprout Social", "TweetDeck", "YouTube Analytics", "TikTok Analytics", "Instagram Insights", "Facebook Insights", "Spotify for Artists", "Apple Music for Artists", "Pandora for Artists"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹7L – ₹12L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹13L – ₹22L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹22L – ₹40L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹40L – ₹65L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹65L – ₹1Cr+</td></tr></table>",
-        tips: "Gain media domain knowledge. Learn content analytics. Study viewer behavior. Focus on recommendation systems. Understand audience segmentation. Build ad optimization expertise. Learn about social media analytics."
-      },
-      {
-        title: "Data Engineer - Financial Services",
-        description: "Specialize in data engineering for financial institutions",
-        image: "https://cdn.simpleicons.org/finance/0AF",
-        responsibilities: [
-          "Design and implement data pipelines for financial data",
-          "Work with market data, transaction data, and risk data",
-          "Ensure data quality and consistency at scale",
-          "Optimize data processing for low-latency trading",
-          "Implement data security and compliance measures",
-          "Develop real-time analytics for risk management",
-          "Support algorithmic trading and quantitative analysis",
-          "Ensure data accuracy for regulatory reporting"
-        ],
-        skills: ["Financial Services Domain Knowledge", "Market Data", "Transaction Data", "Risk Data", "Low-Latency Processing", "Data Security", "Regulatory Compliance", "Data Quality", "Real-Time Analytics", "Scalability", "High Availability", "Disaster Recovery", "Data Lineage"],
-        tools: ["KDB+", "OneMarketData", "Tick42", "Fusion Markets", "Goldman Sachs SecDB", "JPMorgan Athena", "Morgan Stanley RiskMetrics", "Bloomberg", "Reuters", "FactSet", "S&P Capital IQ", "Morningstar", "Thomson Reuters", "ICE Data Services", "Quandl", "IEX Cloud", "Alpha Vantage", "Google Finance", "Yahoo Finance", "Kafka", "Flink", "Spark", "Tibco", "Solace", "IBM MQ", "ActiveMQ", "RabbitMQ", "PostgreSQL", "Oracle", "SQL Server", "Snowflake", "BigQuery", "Redshift", "Databricks", "Airflow", "dbt", "Docker", "Kubernetes"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹9L – ₹14L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹16L – ₹28L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹28L – ₹50L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹50L – ₹80L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹80L – ₹1.5Cr+</td></tr></table>",
-        tips: "Gain financial services domain knowledge. Learn market data systems. Focus on low-latency processing. Understand regulatory requirements. Build data security expertise. Learn about risk management. Study high-frequency trading."
-      },
-      {
-        title: "Data Scientist - Climate & Environment",
-        description: "Apply data science to climate change and environmental protection",
-        image: "https://cdn.simpleicons.org/environment/0AF",
-        responsibilities: [
-          "Analyze climate data and environmental monitoring",
-          "Develop predictive models for climate change impacts",
-          "Optimize renewable energy systems",
-          "Analyze biodiversity and ecosystem data",
-          "Develop sustainability and carbon footprint models",
-          "Analyze pollution and air/water quality data",
-          "Support conservation and environmental protection efforts",
-          "Conduct environmental research and policy analysis"
-        ],
-        skills: ["Climate Science", "Environmental Science", "Climate Modeling", "Renewable Energy", "Biodiversity", "Sustainability", "Carbon Footprint", "Geospatial Analysis", "Time Series", "Python/R", "Machine Learning", "Statistical Analysis", "Remote Sensing", "GIS"],
-        tools: ["Python", "R", "SQL", "Tableau", "Power BI", "MATLAB", "Simulink", "NASA Earthdata", "NOAA", "Copernicus", "Google Earth Engine", "MODIS", "Landsat", "Sentinel", "ENVI", "ERDAS Imagine", "PCI Geomatica", "QGIS", "ArcGIS", "GRASS GIS", "NetCDF", "HDF", "GDAL", "PROJ", "CF Conventions", "CMIP", "IPCC", "UNFCCC", "UNEP", "WWF", "Greenpeace", "IUCN", "Nature Conservancy", "Conservation International", "World Resources Institute", "Global Forest Watch", "Climate TRACE", "Carbon Monitor", "Climate Action Tracker"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹6L – ₹10L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹11L – ₹18L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹18L – ₹30L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹30L – ₹50L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹50L – ₹80L+</td></tr></table>",
-        tips: "Gain climate science knowledge. Learn climate modeling. Study environmental monitoring. Focus on sustainability. Understand geospatial analysis. Build remote sensing expertise. Learn about carbon footprint analysis."
-      },
-      {
-        title: "Data Engineer - Healthcare",
-        description: "Specialize in healthcare and life sciences data engineering",
-        image: "https://cdn.simpleicons.org/healthicons/0AF",
-        responsibilities: [
-          "Design and implement data pipelines for healthcare data",
-          "Work with EHR, medical imaging, and genomic data",
-          "Ensure data quality and consistency at scale",
-          "Implement data security and compliance measures (HIPAA, GDPR)",
-          "Optimize data processing for clinical research",
-          "Develop real-time analytics for patient monitoring",
-          "Support precision medicine and personalized healthcare",
-          "Ensure data accuracy for regulatory reporting"
-        ],
-        skills: ["Healthcare Domain Knowledge", "EHR Systems", "Medical Imaging", "Genomics", "HIPAA Compliance", "GDPR Compliance", "Data Security", "Data Quality", "Real-Time Analytics", "Scalability", "High Availability", "Data Lineage", "Medical Coding"],
-        tools: ["HL7", "FHIR", "DICOM", "PACS", "EPIC", "Cerner", "Meditech", "Allscripts", "NextGen", "GE Centricity", "McKesson", "athenahealth", "RedCap", "i2b2", "OHDSI", "OMOP", "Bioconductor", "GATK", "PLINK", "BWA", "Samtools", "Picard", "FastQC", "Trimmomatic", "STAR", "HISAT2", "Kallisto", "Salmon", "DESeq2", "edgeR", "limma", "Python", "R", "SQL", "PostgreSQL", "Oracle", "SQL Server", "Snowflake", "BigQuery", "Redshift", "Databricks", "Kafka", "Flink", "Spark", "Airflow", "dbt", "Docker", "Kubernetes"],
-        salary: "<table class='salary-table'><tr><th>Experience</th><th>Salary (INR)</th></tr><tr><td>Entry (0-2 yrs)</td><td>₹8L – ₹13L</td></tr><tr><td>Mid (3-5 yrs)</td><td>₹15L – ₹25L</td></tr><tr><td>Senior (6-10 yrs)</td><td>₹25L – ₹45L+</td></tr><tr><td>Lead (10-15 yrs)</td><td>₹45L – ₹75L+</td></tr><tr><td>Principal (15+ yrs)</td><td>₹75L – ₹1.2Cr+</td></tr></table>",
-        tips: "Gain healthcare domain knowledge. Learn medical data standards. Focus on data security. Understand regulatory requirements. Build EHR expertise. Learn about medical imaging. Study genomics data."
       }
     ];
    
